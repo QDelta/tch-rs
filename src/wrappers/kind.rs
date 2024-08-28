@@ -1,10 +1,11 @@
 //! The different kind of elements supported in Torch.
 
+use serde::{Deserialize, Serialize};
 use half;
 
 /// The different kind of elements that a Tensor can hold.
 #[allow(clippy::upper_case_acronyms)]
-#[derive(Debug, Copy, Clone, PartialEq, Eq, Hash)]
+#[derive(Debug, Copy, Clone, PartialEq, Eq, Hash, Serialize, Deserialize)]
 pub enum Kind {
     Uint8,
     Int8,
