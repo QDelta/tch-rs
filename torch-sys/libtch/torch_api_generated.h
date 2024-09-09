@@ -263,6 +263,8 @@ void atg__nested_from_padded_and_nested_example_out(tensor *, tensor out, tensor
 void atg__nested_from_padded_out(tensor *, tensor out, tensor padded, tensor cpu_nested_shape_example, int fuse_transform_0213);
 void atg__nested_get_jagged_dummy(tensor *, tensor any);
 void atg__nested_get_lengths(tensor *, tensor self);
+void atg__nested_get_max_seqlen(tensor *, tensor self);
+void atg__nested_get_min_seqlen(tensor *, tensor self);
 void atg__nested_get_offsets(tensor *, tensor self);
 int64_t atg__nested_get_ragged_idx(tensor self);
 void atg__nested_get_values(tensor *, tensor self);
@@ -273,9 +275,9 @@ void atg__nested_sum_backward(tensor *, tensor grad, tensor self, int64_t *dim_d
 void atg__nested_view_from_buffer(tensor *, tensor self, tensor nested_size, tensor nested_strides, tensor offsets);
 void atg__nested_view_from_buffer_copy(tensor *, tensor self, tensor nested_size, tensor nested_strides, tensor offsets);
 void atg__nested_view_from_buffer_copy_out(tensor *, tensor out, tensor self, tensor nested_size, tensor nested_strides, tensor offsets);
-void atg__nested_view_from_jagged(tensor *, tensor self, tensor offsets, tensor dummy, tensor lengths, int64_t ragged_idx);
-void atg__nested_view_from_jagged_copy(tensor *, tensor self, tensor offsets, tensor dummy, tensor lengths, int64_t ragged_idx);
-void atg__nested_view_from_jagged_copy_out(tensor *, tensor out, tensor self, tensor offsets, tensor dummy, tensor lengths, int64_t ragged_idx);
+void atg__nested_view_from_jagged(tensor *, tensor self, tensor offsets, tensor dummy, tensor lengths, int64_t ragged_idx, tensor min_seqlen, tensor max_seqlen);
+void atg__nested_view_from_jagged_copy(tensor *, tensor self, tensor offsets, tensor dummy, tensor lengths, int64_t ragged_idx, tensor min_seqlen, tensor max_seqlen);
+void atg__nested_view_from_jagged_copy_out(tensor *, tensor out, tensor self, tensor offsets, tensor dummy, tensor lengths, int64_t ragged_idx, tensor min_seqlen, tensor max_seqlen);
 void atg__new_zeros_with_same_feature_meta(tensor *, tensor self, tensor other, int64_t self_num_batch_dims);
 void atg__new_zeros_with_same_feature_meta_out(tensor *, tensor out, tensor self, tensor other, int64_t self_num_batch_dims);
 int atg__nnpack_available();
@@ -315,8 +317,8 @@ void atg__scaled_dot_product_efficient_attention(tensor *, tensor query, tensor 
 void atg__scaled_dot_product_flash_attention_backward(tensor *, tensor grad_out, tensor query, tensor key, tensor value, tensor out, tensor logsumexp, tensor cum_seq_q, tensor cum_seq_k, int64_t max_q, int64_t max_k, double dropout_p, int is_causal, tensor philox_seed, tensor philox_offset, double scale_v, uint8_t scale_null);
 void atg__scaled_dot_product_flash_attention_for_cpu(tensor *, tensor query, tensor key, tensor value, double dropout_p, int is_causal, tensor attn_mask, double scale_v, uint8_t scale_null);
 void atg__scaled_dot_product_flash_attention_for_cpu_backward(tensor *, tensor grad_out, tensor query, tensor key, tensor value, tensor out, tensor logsumexp, double dropout_p, int is_causal, tensor attn_mask, double scale_v, uint8_t scale_null);
-void atg__scaled_mm(tensor *, tensor self, tensor mat2, tensor bias, int out_dtype, tensor scale_a, tensor scale_b, tensor scale_result, int use_fast_accum);
-void atg__scaled_mm_out(tensor *, tensor out, tensor out_amax, tensor self, tensor mat2, tensor bias, int out_dtype, tensor scale_a, tensor scale_b, tensor scale_result, int use_fast_accum);
+void atg__scaled_mm(tensor *, tensor self, tensor mat2, tensor scale_a, tensor scale_b, tensor bias, tensor scale_result, int out_dtype, int use_fast_accum);
+void atg__scaled_mm_out(tensor *, tensor out, tensor self, tensor mat2, tensor scale_a, tensor scale_b, tensor bias, tensor scale_result, int out_dtype, int use_fast_accum);
 void atg__scatter_reduce(tensor *, tensor self, int64_t dim, tensor index, tensor src, char* reduce_ptr, int reduce_len, int include_self);
 void atg__scatter_reduce_(tensor *, tensor self, int64_t dim, tensor index, tensor src, char* reduce_ptr, int reduce_len, int include_self);
 void atg__scatter_reduce_two_out(tensor *, tensor out, tensor self, int64_t dim, tensor index, tensor src, char* reduce_ptr, int reduce_len, int include_self);

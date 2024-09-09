@@ -4815,6 +4815,18 @@ impl Tensor {
         Ok(Tensor { c_tensor: c_tensors[0] })
     }
 
+    pub fn f_internal_nested_get_max_seqlen(&self) -> Result<Tensor, TchError> {
+        let mut c_tensors = [std::ptr::null_mut(); 1];
+        unsafe_torch_err!(atg__nested_get_max_seqlen(c_tensors.as_mut_ptr(), self.c_tensor));
+        Ok(Tensor { c_tensor: c_tensors[0] })
+    }
+
+    pub fn f_internal_nested_get_min_seqlen(&self) -> Result<Tensor, TchError> {
+        let mut c_tensors = [std::ptr::null_mut(); 1];
+        unsafe_torch_err!(atg__nested_get_min_seqlen(c_tensors.as_mut_ptr(), self.c_tensor));
+        Ok(Tensor { c_tensor: c_tensors[0] })
+    }
+
     pub fn f_internal_nested_get_offsets(&self) -> Result<Tensor, TchError> {
         let mut c_tensors = [std::ptr::null_mut(); 1];
         unsafe_torch_err!(atg__nested_get_offsets(c_tensors.as_mut_ptr(), self.c_tensor));
@@ -4943,6 +4955,8 @@ impl Tensor {
         dummy: &Tensor,
         lengths: Option<T>,
         ragged_idx: i64,
+        min_seqlen: Option<T>,
+        max_seqlen: Option<T>,
     ) -> Result<Tensor, TchError> {
         let mut c_tensors = [std::ptr::null_mut(); 1];
         unsafe_torch_err!(atg__nested_view_from_jagged(
@@ -4951,7 +4965,9 @@ impl Tensor {
             offsets.c_tensor,
             dummy.c_tensor,
             lengths.as_ref().map_or(std::ptr::null_mut(), |t| t.borrow().c_tensor),
-            ragged_idx
+            ragged_idx,
+            min_seqlen.as_ref().map_or(std::ptr::null_mut(), |t| t.borrow().c_tensor),
+            max_seqlen.as_ref().map_or(std::ptr::null_mut(), |t| t.borrow().c_tensor)
         ));
         Ok(Tensor { c_tensor: c_tensors[0] })
     }
@@ -4962,6 +4978,8 @@ impl Tensor {
         dummy: &Tensor,
         lengths: Option<T>,
         ragged_idx: i64,
+        min_seqlen: Option<T>,
+        max_seqlen: Option<T>,
     ) -> Result<Tensor, TchError> {
         let mut c_tensors = [std::ptr::null_mut(); 1];
         unsafe_torch_err!(atg__nested_view_from_jagged_copy(
@@ -4970,7 +4988,9 @@ impl Tensor {
             offsets.c_tensor,
             dummy.c_tensor,
             lengths.as_ref().map_or(std::ptr::null_mut(), |t| t.borrow().c_tensor),
-            ragged_idx
+            ragged_idx,
+            min_seqlen.as_ref().map_or(std::ptr::null_mut(), |t| t.borrow().c_tensor),
+            max_seqlen.as_ref().map_or(std::ptr::null_mut(), |t| t.borrow().c_tensor)
         ));
         Ok(Tensor { c_tensor: c_tensors[0] })
     }
@@ -4982,6 +5002,8 @@ impl Tensor {
         dummy: &Tensor,
         lengths: Option<T>,
         ragged_idx: i64,
+        min_seqlen: Option<T>,
+        max_seqlen: Option<T>,
     ) -> Result<Tensor, TchError> {
         let mut c_tensors = [std::ptr::null_mut(); 1];
         unsafe_torch_err!(atg__nested_view_from_jagged_copy_out(
@@ -4991,7 +5013,9 @@ impl Tensor {
             offsets.c_tensor,
             dummy.c_tensor,
             lengths.as_ref().map_or(std::ptr::null_mut(), |t| t.borrow().c_tensor),
-            ragged_idx
+            ragged_idx,
+            min_seqlen.as_ref().map_or(std::ptr::null_mut(), |t| t.borrow().c_tensor),
+            max_seqlen.as_ref().map_or(std::ptr::null_mut(), |t| t.borrow().c_tensor)
         ));
         Ok(Tensor { c_tensor: c_tensors[0] })
     }
@@ -5668,55 +5692,53 @@ impl Tensor {
     pub fn f_internal_scaled_mm<T: Borrow<Tensor>>(
         &self,
         mat2: &Tensor,
+        scale_a: &Tensor,
+        scale_b: &Tensor,
         bias: Option<T>,
-        out_dtype: impl Into<Option<Kind>>,
-        scale_a: Option<T>,
-        scale_b: Option<T>,
         scale_result: Option<T>,
+        out_dtype: impl Into<Option<Kind>>,
         use_fast_accum: bool,
-    ) -> Result<(Tensor, Tensor), TchError> {
-        let mut c_tensors = [std::ptr::null_mut(); 2];
+    ) -> Result<Tensor, TchError> {
+        let mut c_tensors = [std::ptr::null_mut(); 1];
         unsafe_torch_err!(atg__scaled_mm(
             c_tensors.as_mut_ptr(),
             self.c_tensor,
             mat2.c_tensor,
+            scale_a.c_tensor,
+            scale_b.c_tensor,
             bias.as_ref().map_or(std::ptr::null_mut(), |t| t.borrow().c_tensor),
-            out_dtype.into().map_or(-1, |s| s.c_int()),
-            scale_a.as_ref().map_or(std::ptr::null_mut(), |t| t.borrow().c_tensor),
-            scale_b.as_ref().map_or(std::ptr::null_mut(), |t| t.borrow().c_tensor),
             scale_result.as_ref().map_or(std::ptr::null_mut(), |t| t.borrow().c_tensor),
+            out_dtype.into().map_or(-1, |s| s.c_int()),
             if use_fast_accum { 1 } else { 0 }
         ));
-        Ok((Tensor { c_tensor: c_tensors[0] }, Tensor { c_tensor: c_tensors[1] }))
+        Ok(Tensor { c_tensor: c_tensors[0] })
     }
 
     pub fn f_internal_scaled_mm_out<T: Borrow<Tensor>>(
         &self,
         out: &Tensor,
-        out_amax: &Tensor,
         mat2: &Tensor,
+        scale_a: &Tensor,
+        scale_b: &Tensor,
         bias: Option<T>,
-        out_dtype: impl Into<Option<Kind>>,
-        scale_a: Option<T>,
-        scale_b: Option<T>,
         scale_result: Option<T>,
+        out_dtype: impl Into<Option<Kind>>,
         use_fast_accum: bool,
-    ) -> Result<(Tensor, Tensor), TchError> {
-        let mut c_tensors = [std::ptr::null_mut(); 2];
+    ) -> Result<Tensor, TchError> {
+        let mut c_tensors = [std::ptr::null_mut(); 1];
         unsafe_torch_err!(atg__scaled_mm_out(
             c_tensors.as_mut_ptr(),
             out.c_tensor,
-            out_amax.c_tensor,
             self.c_tensor,
             mat2.c_tensor,
+            scale_a.c_tensor,
+            scale_b.c_tensor,
             bias.as_ref().map_or(std::ptr::null_mut(), |t| t.borrow().c_tensor),
-            out_dtype.into().map_or(-1, |s| s.c_int()),
-            scale_a.as_ref().map_or(std::ptr::null_mut(), |t| t.borrow().c_tensor),
-            scale_b.as_ref().map_or(std::ptr::null_mut(), |t| t.borrow().c_tensor),
             scale_result.as_ref().map_or(std::ptr::null_mut(), |t| t.borrow().c_tensor),
+            out_dtype.into().map_or(-1, |s| s.c_int()),
             if use_fast_accum { 1 } else { 0 }
         ));
-        Ok((Tensor { c_tensor: c_tensors[0] }, Tensor { c_tensor: c_tensors[1] }))
+        Ok(Tensor { c_tensor: c_tensors[0] })
     }
 
     pub fn f_internal_scatter_reduce(

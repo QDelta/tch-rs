@@ -1953,6 +1953,20 @@ void atg__nested_get_lengths(tensor *out__, tensor self) {
   )
 }
 
+void atg__nested_get_max_seqlen(tensor *out__, tensor self) {
+  PROTECT(
+    auto outputs__ = torch::_nested_get_max_seqlen(*self);
+    out__[0] = new torch::Tensor(outputs__);
+  )
+}
+
+void atg__nested_get_min_seqlen(tensor *out__, tensor self) {
+  PROTECT(
+    auto outputs__ = torch::_nested_get_min_seqlen(*self);
+    out__[0] = new torch::Tensor(outputs__);
+  )
+}
+
 void atg__nested_get_offsets(tensor *out__, tensor self) {
   PROTECT(
     auto outputs__ = torch::_nested_get_offsets(*self);
@@ -2023,23 +2037,23 @@ void atg__nested_view_from_buffer_copy_out(tensor *out__, tensor out, tensor sel
   )
 }
 
-void atg__nested_view_from_jagged(tensor *out__, tensor self, tensor offsets, tensor dummy, tensor lengths, int64_t ragged_idx) {
+void atg__nested_view_from_jagged(tensor *out__, tensor self, tensor offsets, tensor dummy, tensor lengths, int64_t ragged_idx, tensor min_seqlen, tensor max_seqlen) {
   PROTECT(
-    auto outputs__ = torch::_nested_view_from_jagged(*self, *offsets, *dummy, (lengths ? *lengths : torch::Tensor()), ragged_idx);
+    auto outputs__ = torch::_nested_view_from_jagged(*self, *offsets, *dummy, (lengths ? *lengths : torch::Tensor()), ragged_idx, (min_seqlen ? *min_seqlen : torch::Tensor()), (max_seqlen ? *max_seqlen : torch::Tensor()));
     out__[0] = new torch::Tensor(outputs__);
   )
 }
 
-void atg__nested_view_from_jagged_copy(tensor *out__, tensor self, tensor offsets, tensor dummy, tensor lengths, int64_t ragged_idx) {
+void atg__nested_view_from_jagged_copy(tensor *out__, tensor self, tensor offsets, tensor dummy, tensor lengths, int64_t ragged_idx, tensor min_seqlen, tensor max_seqlen) {
   PROTECT(
-    auto outputs__ = torch::_nested_view_from_jagged_copy(*self, *offsets, *dummy, (lengths ? *lengths : torch::Tensor()), ragged_idx);
+    auto outputs__ = torch::_nested_view_from_jagged_copy(*self, *offsets, *dummy, (lengths ? *lengths : torch::Tensor()), ragged_idx, (min_seqlen ? *min_seqlen : torch::Tensor()), (max_seqlen ? *max_seqlen : torch::Tensor()));
     out__[0] = new torch::Tensor(outputs__);
   )
 }
 
-void atg__nested_view_from_jagged_copy_out(tensor *out__, tensor out, tensor self, tensor offsets, tensor dummy, tensor lengths, int64_t ragged_idx) {
+void atg__nested_view_from_jagged_copy_out(tensor *out__, tensor out, tensor self, tensor offsets, tensor dummy, tensor lengths, int64_t ragged_idx, tensor min_seqlen, tensor max_seqlen) {
   PROTECT(
-    auto outputs__ = torch::_nested_view_from_jagged_copy_out(*out, *self, *offsets, *dummy, (lengths ? *lengths : torch::Tensor()), ragged_idx);
+    auto outputs__ = torch::_nested_view_from_jagged_copy_out(*out, *self, *offsets, *dummy, (lengths ? *lengths : torch::Tensor()), ragged_idx, (min_seqlen ? *min_seqlen : torch::Tensor()), (max_seqlen ? *max_seqlen : torch::Tensor()));
     out__[0] = new torch::Tensor(outputs__);
   )
 }
@@ -2331,19 +2345,17 @@ void atg__scaled_dot_product_flash_attention_for_cpu_backward(tensor *out__, ten
   )
 }
 
-void atg__scaled_mm(tensor *out__, tensor self, tensor mat2, tensor bias, int out_dtype, tensor scale_a, tensor scale_b, tensor scale_result, int use_fast_accum) {
+void atg__scaled_mm(tensor *out__, tensor self, tensor mat2, tensor scale_a, tensor scale_b, tensor bias, tensor scale_result, int out_dtype, int use_fast_accum) {
   PROTECT(
-    auto outputs__ = torch::_scaled_mm(*self, *mat2, (bias ? *bias : torch::Tensor()), out_dtype < 0 ? c10::nullopt : c10::optional<at::ScalarType>(at::ScalarType(out_dtype)), (scale_a ? *scale_a : torch::Tensor()), (scale_b ? *scale_b : torch::Tensor()), (scale_result ? *scale_result : torch::Tensor()), (bool)use_fast_accum);
-    out__[0] = new torch::Tensor(std::get<0>(outputs__));
-    out__[1] = new torch::Tensor(std::get<1>(outputs__));
+    auto outputs__ = torch::_scaled_mm(*self, *mat2, *scale_a, *scale_b, (bias ? *bias : torch::Tensor()), (scale_result ? *scale_result : torch::Tensor()), out_dtype < 0 ? c10::nullopt : c10::optional<at::ScalarType>(at::ScalarType(out_dtype)), (bool)use_fast_accum);
+    out__[0] = new torch::Tensor(outputs__);
   )
 }
 
-void atg__scaled_mm_out(tensor *out__, tensor out, tensor out_amax, tensor self, tensor mat2, tensor bias, int out_dtype, tensor scale_a, tensor scale_b, tensor scale_result, int use_fast_accum) {
+void atg__scaled_mm_out(tensor *out__, tensor out, tensor self, tensor mat2, tensor scale_a, tensor scale_b, tensor bias, tensor scale_result, int out_dtype, int use_fast_accum) {
   PROTECT(
-    auto outputs__ = torch::_scaled_mm_out(*out, *out_amax, *self, *mat2, (bias ? *bias : torch::Tensor()), out_dtype < 0 ? c10::nullopt : c10::optional<at::ScalarType>(at::ScalarType(out_dtype)), (scale_a ? *scale_a : torch::Tensor()), (scale_b ? *scale_b : torch::Tensor()), (scale_result ? *scale_result : torch::Tensor()), (bool)use_fast_accum);
-    out__[0] = new torch::Tensor(std::get<0>(outputs__));
-    out__[1] = new torch::Tensor(std::get<1>(outputs__));
+    auto outputs__ = torch::_scaled_mm_out(*out, *self, *mat2, *scale_a, *scale_b, (bias ? *bias : torch::Tensor()), (scale_result ? *scale_result : torch::Tensor()), out_dtype < 0 ? c10::nullopt : c10::optional<at::ScalarType>(at::ScalarType(out_dtype)), (bool)use_fast_accum);
+    out__[0] = new torch::Tensor(outputs__);
   )
 }
 

@@ -2944,6 +2944,14 @@ impl Tensor {
         self.f_internal_nested_get_lengths().unwrap()
     }
 
+    pub fn internal_nested_get_max_seqlen(&self) -> Tensor {
+        self.f_internal_nested_get_max_seqlen().unwrap()
+    }
+
+    pub fn internal_nested_get_min_seqlen(&self) -> Tensor {
+        self.f_internal_nested_get_min_seqlen().unwrap()
+    }
+
     pub fn internal_nested_get_offsets(&self) -> Tensor {
         self.f_internal_nested_get_offsets().unwrap()
     }
@@ -3017,8 +3025,13 @@ impl Tensor {
         dummy: &Tensor,
         lengths: Option<T>,
         ragged_idx: i64,
+        min_seqlen: Option<T>,
+        max_seqlen: Option<T>,
     ) -> Tensor {
-        self.f_internal_nested_view_from_jagged(offsets, dummy, lengths, ragged_idx).unwrap()
+        self.f_internal_nested_view_from_jagged(
+            offsets, dummy, lengths, ragged_idx, min_seqlen, max_seqlen,
+        )
+        .unwrap()
     }
 
     pub fn internal_nested_view_from_jagged_copy<T: Borrow<Tensor>>(
@@ -3027,8 +3040,13 @@ impl Tensor {
         dummy: &Tensor,
         lengths: Option<T>,
         ragged_idx: i64,
+        min_seqlen: Option<T>,
+        max_seqlen: Option<T>,
     ) -> Tensor {
-        self.f_internal_nested_view_from_jagged_copy(offsets, dummy, lengths, ragged_idx).unwrap()
+        self.f_internal_nested_view_from_jagged_copy(
+            offsets, dummy, lengths, ragged_idx, min_seqlen, max_seqlen,
+        )
+        .unwrap()
     }
 
     pub fn internal_nested_view_from_jagged_copy_out<T: Borrow<Tensor>>(
@@ -3038,9 +3056,13 @@ impl Tensor {
         dummy: &Tensor,
         lengths: Option<T>,
         ragged_idx: i64,
+        min_seqlen: Option<T>,
+        max_seqlen: Option<T>,
     ) -> Tensor {
-        self.f_internal_nested_view_from_jagged_copy_out(out, offsets, dummy, lengths, ragged_idx)
-            .unwrap()
+        self.f_internal_nested_view_from_jagged_copy_out(
+            out, offsets, dummy, lengths, ragged_idx, min_seqlen, max_seqlen,
+        )
+        .unwrap()
     }
 
     pub fn internal_new_zeros_with_same_feature_meta(
@@ -3412,20 +3434,20 @@ impl Tensor {
     pub fn internal_scaled_mm<T: Borrow<Tensor>>(
         &self,
         mat2: &Tensor,
+        scale_a: &Tensor,
+        scale_b: &Tensor,
         bias: Option<T>,
-        out_dtype: impl Into<Option<Kind>>,
-        scale_a: Option<T>,
-        scale_b: Option<T>,
         scale_result: Option<T>,
+        out_dtype: impl Into<Option<Kind>>,
         use_fast_accum: bool,
-    ) -> (Tensor, Tensor) {
+    ) -> Tensor {
         self.f_internal_scaled_mm(
             mat2,
-            bias,
-            out_dtype,
             scale_a,
             scale_b,
+            bias,
             scale_result,
+            out_dtype,
             use_fast_accum,
         )
         .unwrap()
@@ -3434,24 +3456,22 @@ impl Tensor {
     pub fn internal_scaled_mm_out<T: Borrow<Tensor>>(
         &self,
         out: &Tensor,
-        out_amax: &Tensor,
         mat2: &Tensor,
+        scale_a: &Tensor,
+        scale_b: &Tensor,
         bias: Option<T>,
-        out_dtype: impl Into<Option<Kind>>,
-        scale_a: Option<T>,
-        scale_b: Option<T>,
         scale_result: Option<T>,
+        out_dtype: impl Into<Option<Kind>>,
         use_fast_accum: bool,
-    ) -> (Tensor, Tensor) {
+    ) -> Tensor {
         self.f_internal_scaled_mm_out(
             out,
-            out_amax,
             mat2,
-            bias,
-            out_dtype,
             scale_a,
             scale_b,
+            bias,
             scale_result,
+            out_dtype,
             use_fast_accum,
         )
         .unwrap()

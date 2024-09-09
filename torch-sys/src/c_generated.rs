@@ -1947,6 +1947,8 @@ extern "C" {
     );
     pub fn atg__nested_get_jagged_dummy(out__: *mut *mut C_tensor, any_: *mut C_tensor);
     pub fn atg__nested_get_lengths(out__: *mut *mut C_tensor, self_: *mut C_tensor);
+    pub fn atg__nested_get_max_seqlen(out__: *mut *mut C_tensor, self_: *mut C_tensor);
+    pub fn atg__nested_get_min_seqlen(out__: *mut *mut C_tensor, self_: *mut C_tensor);
     pub fn atg__nested_get_offsets(out__: *mut *mut C_tensor, self_: *mut C_tensor);
     pub fn atg__nested_get_ragged_idx(self_: *mut C_tensor) -> i64;
     pub fn atg__nested_get_values(out__: *mut *mut C_tensor, self_: *mut C_tensor);
@@ -2000,6 +2002,8 @@ extern "C" {
         dummy_: *mut C_tensor,
         lengths_: *mut C_tensor,
         ragged_idx_: i64,
+        min_seqlen_: *mut C_tensor,
+        max_seqlen_: *mut C_tensor,
     );
     pub fn atg__nested_view_from_jagged_copy(
         out__: *mut *mut C_tensor,
@@ -2008,6 +2012,8 @@ extern "C" {
         dummy_: *mut C_tensor,
         lengths_: *mut C_tensor,
         ragged_idx_: i64,
+        min_seqlen_: *mut C_tensor,
+        max_seqlen_: *mut C_tensor,
     );
     pub fn atg__nested_view_from_jagged_copy_out(
         out__: *mut *mut C_tensor,
@@ -2017,6 +2023,8 @@ extern "C" {
         dummy_: *mut C_tensor,
         lengths_: *mut C_tensor,
         ragged_idx_: i64,
+        min_seqlen_: *mut C_tensor,
+        max_seqlen_: *mut C_tensor,
     );
     pub fn atg__new_zeros_with_same_feature_meta(
         out__: *mut *mut C_tensor,
@@ -2303,24 +2311,23 @@ extern "C" {
         out__: *mut *mut C_tensor,
         self_: *mut C_tensor,
         mat2_: *mut C_tensor,
-        bias_: *mut C_tensor,
-        out_dtype_: c_int,
         scale_a_: *mut C_tensor,
         scale_b_: *mut C_tensor,
+        bias_: *mut C_tensor,
         scale_result_: *mut C_tensor,
+        out_dtype_: c_int,
         use_fast_accum_: c_int,
     );
     pub fn atg__scaled_mm_out(
         out__: *mut *mut C_tensor,
         out_: *mut C_tensor,
-        out_amax_: *mut C_tensor,
         self_: *mut C_tensor,
         mat2_: *mut C_tensor,
-        bias_: *mut C_tensor,
-        out_dtype_: c_int,
         scale_a_: *mut C_tensor,
         scale_b_: *mut C_tensor,
+        bias_: *mut C_tensor,
         scale_result_: *mut C_tensor,
+        out_dtype_: c_int,
         use_fast_accum_: c_int,
     );
     pub fn atg__scatter_reduce(
