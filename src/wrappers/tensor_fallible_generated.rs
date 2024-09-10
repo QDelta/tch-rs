@@ -2955,6 +2955,2744 @@ impl Tensor {
         Ok(Tensor { c_tensor: c_tensors[0] })
     }
 
+    pub fn f_internal_foreach_abs<T: Borrow<Tensor>>(self_: &[T]) -> Result<Vec<Tensor>, TchError> {
+        let c_tensors =
+            unsafe_torch_err!(atg__foreach_abs(ptr_list(self_).as_ptr(), self_.len() as i32));
+        let mut r__ = vec![];
+        let mut i = 0;
+        loop {
+            let c__ = unsafe { *c_tensors.add(i) };
+            if c__.is_null() {
+                break;
+            }
+            r__.push(Tensor { c_tensor: c__ });
+            i += 1;
+        }
+        unsafe { libc::free(c_tensors as *mut libc::c_void) }
+        Ok(r__)
+    }
+
+    pub fn f_internal_foreach_abs_<T: Borrow<Tensor>>(self_: &[T]) -> Result<(), TchError> {
+        unsafe_torch_err!(atg__foreach_abs_(ptr_list(self_).as_ptr(), self_.len() as i32));
+        Ok(())
+    }
+
+    pub fn f_internal_foreach_abs_out<T: Borrow<Tensor>>(
+        out: &[T],
+        self_: &[T],
+    ) -> Result<(), TchError> {
+        unsafe_torch_err!(atg__foreach_abs_out(
+            ptr_list(out).as_ptr(),
+            out.len() as i32,
+            ptr_list(self_).as_ptr(),
+            self_.len() as i32
+        ));
+        Ok(())
+    }
+
+    pub fn f_internal_foreach_acos<T: Borrow<Tensor>>(
+        self_: &[T],
+    ) -> Result<Vec<Tensor>, TchError> {
+        let c_tensors =
+            unsafe_torch_err!(atg__foreach_acos(ptr_list(self_).as_ptr(), self_.len() as i32));
+        let mut r__ = vec![];
+        let mut i = 0;
+        loop {
+            let c__ = unsafe { *c_tensors.add(i) };
+            if c__.is_null() {
+                break;
+            }
+            r__.push(Tensor { c_tensor: c__ });
+            i += 1;
+        }
+        unsafe { libc::free(c_tensors as *mut libc::c_void) }
+        Ok(r__)
+    }
+
+    pub fn f_internal_foreach_acos_<T: Borrow<Tensor>>(self_: &[T]) -> Result<(), TchError> {
+        unsafe_torch_err!(atg__foreach_acos_(ptr_list(self_).as_ptr(), self_.len() as i32));
+        Ok(())
+    }
+
+    pub fn f_internal_foreach_acos_out<T: Borrow<Tensor>>(
+        out: &[T],
+        self_: &[T],
+    ) -> Result<(), TchError> {
+        unsafe_torch_err!(atg__foreach_acos_out(
+            ptr_list(out).as_ptr(),
+            out.len() as i32,
+            ptr_list(self_).as_ptr(),
+            self_.len() as i32
+        ));
+        Ok(())
+    }
+
+    pub fn f_internal_foreach_add<T: Borrow<Tensor>, S: Into<Scalar>>(
+        self_: &[T],
+        scalar: S,
+    ) -> Result<Vec<Tensor>, TchError> {
+        let c_tensors = unsafe_torch_err!(atg__foreach_add(
+            ptr_list(self_).as_ptr(),
+            self_.len() as i32,
+            scalar.into().c_scalar
+        ));
+        let mut r__ = vec![];
+        let mut i = 0;
+        loop {
+            let c__ = unsafe { *c_tensors.add(i) };
+            if c__.is_null() {
+                break;
+            }
+            r__.push(Tensor { c_tensor: c__ });
+            i += 1;
+        }
+        unsafe { libc::free(c_tensors as *mut libc::c_void) }
+        Ok(r__)
+    }
+
+    pub fn f_internal_foreach_add_<T: Borrow<Tensor>, S: Into<Scalar>>(
+        self_: &[T],
+        scalar: S,
+    ) -> Result<(), TchError> {
+        unsafe_torch_err!(atg__foreach_add_(
+            ptr_list(self_).as_ptr(),
+            self_.len() as i32,
+            scalar.into().c_scalar
+        ));
+        Ok(())
+    }
+
+    pub fn f_internal_foreach_add_list<T: Borrow<Tensor>, S: Into<Scalar>>(
+        self_: &[T],
+        other: &[T],
+        alpha: S,
+    ) -> Result<Vec<Tensor>, TchError> {
+        let c_tensors = unsafe_torch_err!(atg__foreach_add_list(
+            ptr_list(self_).as_ptr(),
+            self_.len() as i32,
+            ptr_list(other).as_ptr(),
+            other.len() as i32,
+            alpha.into().c_scalar
+        ));
+        let mut r__ = vec![];
+        let mut i = 0;
+        loop {
+            let c__ = unsafe { *c_tensors.add(i) };
+            if c__.is_null() {
+                break;
+            }
+            r__.push(Tensor { c_tensor: c__ });
+            i += 1;
+        }
+        unsafe { libc::free(c_tensors as *mut libc::c_void) }
+        Ok(r__)
+    }
+
+    pub fn f_internal_foreach_add_list_<T: Borrow<Tensor>, S: Into<Scalar>>(
+        self_: &[T],
+        other: &[T],
+        alpha: S,
+    ) -> Result<(), TchError> {
+        unsafe_torch_err!(atg__foreach_add_list_(
+            ptr_list(self_).as_ptr(),
+            self_.len() as i32,
+            ptr_list(other).as_ptr(),
+            other.len() as i32,
+            alpha.into().c_scalar
+        ));
+        Ok(())
+    }
+
+    pub fn f_internal_foreach_add_list_out<T: Borrow<Tensor>, S: Into<Scalar>>(
+        out: &[T],
+        self_: &[T],
+        other: &[T],
+        alpha: S,
+    ) -> Result<(), TchError> {
+        unsafe_torch_err!(atg__foreach_add_list_out(
+            ptr_list(out).as_ptr(),
+            out.len() as i32,
+            ptr_list(self_).as_ptr(),
+            self_.len() as i32,
+            ptr_list(other).as_ptr(),
+            other.len() as i32,
+            alpha.into().c_scalar
+        ));
+        Ok(())
+    }
+
+    pub fn f_internal_foreach_add_scalar_out<T: Borrow<Tensor>, S: Into<Scalar>>(
+        out: &[T],
+        self_: &[T],
+        scalar: S,
+    ) -> Result<(), TchError> {
+        unsafe_torch_err!(atg__foreach_add_scalar_out(
+            ptr_list(out).as_ptr(),
+            out.len() as i32,
+            ptr_list(self_).as_ptr(),
+            self_.len() as i32,
+            scalar.into().c_scalar
+        ));
+        Ok(())
+    }
+
+    pub fn f_internal_foreach_add_tensor<T: Borrow<Tensor>, S: Into<Scalar>>(
+        self_: &[T],
+        other: &Tensor,
+        alpha: S,
+    ) -> Result<Vec<Tensor>, TchError> {
+        let c_tensors = unsafe_torch_err!(atg__foreach_add_tensor(
+            ptr_list(self_).as_ptr(),
+            self_.len() as i32,
+            other.c_tensor,
+            alpha.into().c_scalar
+        ));
+        let mut r__ = vec![];
+        let mut i = 0;
+        loop {
+            let c__ = unsafe { *c_tensors.add(i) };
+            if c__.is_null() {
+                break;
+            }
+            r__.push(Tensor { c_tensor: c__ });
+            i += 1;
+        }
+        unsafe { libc::free(c_tensors as *mut libc::c_void) }
+        Ok(r__)
+    }
+
+    pub fn f_internal_foreach_add_tensor_<T: Borrow<Tensor>, S: Into<Scalar>>(
+        self_: &[T],
+        other: &Tensor,
+        alpha: S,
+    ) -> Result<(), TchError> {
+        unsafe_torch_err!(atg__foreach_add_tensor_(
+            ptr_list(self_).as_ptr(),
+            self_.len() as i32,
+            other.c_tensor,
+            alpha.into().c_scalar
+        ));
+        Ok(())
+    }
+
+    pub fn f_internal_foreach_add_tensor_out<T: Borrow<Tensor>, S: Into<Scalar>>(
+        out: &[T],
+        self_: &[T],
+        other: &Tensor,
+        alpha: S,
+    ) -> Result<(), TchError> {
+        unsafe_torch_err!(atg__foreach_add_tensor_out(
+            ptr_list(out).as_ptr(),
+            out.len() as i32,
+            ptr_list(self_).as_ptr(),
+            self_.len() as i32,
+            other.c_tensor,
+            alpha.into().c_scalar
+        ));
+        Ok(())
+    }
+
+    pub fn f_internal_foreach_addcdiv<T: Borrow<Tensor>, S: Into<Scalar>>(
+        self_: &[T],
+        tensor1: &[T],
+        tensor2: &[T],
+        value: S,
+    ) -> Result<Vec<Tensor>, TchError> {
+        let c_tensors = unsafe_torch_err!(atg__foreach_addcdiv(
+            ptr_list(self_).as_ptr(),
+            self_.len() as i32,
+            ptr_list(tensor1).as_ptr(),
+            tensor1.len() as i32,
+            ptr_list(tensor2).as_ptr(),
+            tensor2.len() as i32,
+            value.into().c_scalar
+        ));
+        let mut r__ = vec![];
+        let mut i = 0;
+        loop {
+            let c__ = unsafe { *c_tensors.add(i) };
+            if c__.is_null() {
+                break;
+            }
+            r__.push(Tensor { c_tensor: c__ });
+            i += 1;
+        }
+        unsafe { libc::free(c_tensors as *mut libc::c_void) }
+        Ok(r__)
+    }
+
+    pub fn f_internal_foreach_addcdiv_<T: Borrow<Tensor>, S: Into<Scalar>>(
+        self_: &[T],
+        tensor1: &[T],
+        tensor2: &[T],
+        value: S,
+    ) -> Result<(), TchError> {
+        unsafe_torch_err!(atg__foreach_addcdiv_(
+            ptr_list(self_).as_ptr(),
+            self_.len() as i32,
+            ptr_list(tensor1).as_ptr(),
+            tensor1.len() as i32,
+            ptr_list(tensor2).as_ptr(),
+            tensor2.len() as i32,
+            value.into().c_scalar
+        ));
+        Ok(())
+    }
+
+    pub fn f_internal_foreach_addcdiv_scalar_out<T: Borrow<Tensor>, S: Into<Scalar>>(
+        out: &[T],
+        self_: &[T],
+        tensor1: &[T],
+        tensor2: &[T],
+        value: S,
+    ) -> Result<(), TchError> {
+        unsafe_torch_err!(atg__foreach_addcdiv_scalar_out(
+            ptr_list(out).as_ptr(),
+            out.len() as i32,
+            ptr_list(self_).as_ptr(),
+            self_.len() as i32,
+            ptr_list(tensor1).as_ptr(),
+            tensor1.len() as i32,
+            ptr_list(tensor2).as_ptr(),
+            tensor2.len() as i32,
+            value.into().c_scalar
+        ));
+        Ok(())
+    }
+
+    pub fn f_internal_foreach_addcdiv_tensor<T: Borrow<Tensor>>(
+        self_: &[T],
+        tensor1: &[T],
+        tensor2: &[T],
+        scalars: &Tensor,
+    ) -> Result<Vec<Tensor>, TchError> {
+        let c_tensors = unsafe_torch_err!(atg__foreach_addcdiv_tensor(
+            ptr_list(self_).as_ptr(),
+            self_.len() as i32,
+            ptr_list(tensor1).as_ptr(),
+            tensor1.len() as i32,
+            ptr_list(tensor2).as_ptr(),
+            tensor2.len() as i32,
+            scalars.c_tensor
+        ));
+        let mut r__ = vec![];
+        let mut i = 0;
+        loop {
+            let c__ = unsafe { *c_tensors.add(i) };
+            if c__.is_null() {
+                break;
+            }
+            r__.push(Tensor { c_tensor: c__ });
+            i += 1;
+        }
+        unsafe { libc::free(c_tensors as *mut libc::c_void) }
+        Ok(r__)
+    }
+
+    pub fn f_internal_foreach_addcdiv_tensor_<T: Borrow<Tensor>>(
+        self_: &[T],
+        tensor1: &[T],
+        tensor2: &[T],
+        scalars: &Tensor,
+    ) -> Result<(), TchError> {
+        unsafe_torch_err!(atg__foreach_addcdiv_tensor_(
+            ptr_list(self_).as_ptr(),
+            self_.len() as i32,
+            ptr_list(tensor1).as_ptr(),
+            tensor1.len() as i32,
+            ptr_list(tensor2).as_ptr(),
+            tensor2.len() as i32,
+            scalars.c_tensor
+        ));
+        Ok(())
+    }
+
+    pub fn f_internal_foreach_addcdiv_tensor_out<T: Borrow<Tensor>>(
+        out: &[T],
+        self_: &[T],
+        tensor1: &[T],
+        tensor2: &[T],
+        scalars: &Tensor,
+    ) -> Result<(), TchError> {
+        unsafe_torch_err!(atg__foreach_addcdiv_tensor_out(
+            ptr_list(out).as_ptr(),
+            out.len() as i32,
+            ptr_list(self_).as_ptr(),
+            self_.len() as i32,
+            ptr_list(tensor1).as_ptr(),
+            tensor1.len() as i32,
+            ptr_list(tensor2).as_ptr(),
+            tensor2.len() as i32,
+            scalars.c_tensor
+        ));
+        Ok(())
+    }
+
+    pub fn f_internal_foreach_addcmul<T: Borrow<Tensor>, S: Into<Scalar>>(
+        self_: &[T],
+        tensor1: &[T],
+        tensor2: &[T],
+        value: S,
+    ) -> Result<Vec<Tensor>, TchError> {
+        let c_tensors = unsafe_torch_err!(atg__foreach_addcmul(
+            ptr_list(self_).as_ptr(),
+            self_.len() as i32,
+            ptr_list(tensor1).as_ptr(),
+            tensor1.len() as i32,
+            ptr_list(tensor2).as_ptr(),
+            tensor2.len() as i32,
+            value.into().c_scalar
+        ));
+        let mut r__ = vec![];
+        let mut i = 0;
+        loop {
+            let c__ = unsafe { *c_tensors.add(i) };
+            if c__.is_null() {
+                break;
+            }
+            r__.push(Tensor { c_tensor: c__ });
+            i += 1;
+        }
+        unsafe { libc::free(c_tensors as *mut libc::c_void) }
+        Ok(r__)
+    }
+
+    pub fn f_internal_foreach_addcmul_<T: Borrow<Tensor>, S: Into<Scalar>>(
+        self_: &[T],
+        tensor1: &[T],
+        tensor2: &[T],
+        value: S,
+    ) -> Result<(), TchError> {
+        unsafe_torch_err!(atg__foreach_addcmul_(
+            ptr_list(self_).as_ptr(),
+            self_.len() as i32,
+            ptr_list(tensor1).as_ptr(),
+            tensor1.len() as i32,
+            ptr_list(tensor2).as_ptr(),
+            tensor2.len() as i32,
+            value.into().c_scalar
+        ));
+        Ok(())
+    }
+
+    pub fn f_internal_foreach_addcmul_scalar_out<T: Borrow<Tensor>, S: Into<Scalar>>(
+        out: &[T],
+        self_: &[T],
+        tensor1: &[T],
+        tensor2: &[T],
+        value: S,
+    ) -> Result<(), TchError> {
+        unsafe_torch_err!(atg__foreach_addcmul_scalar_out(
+            ptr_list(out).as_ptr(),
+            out.len() as i32,
+            ptr_list(self_).as_ptr(),
+            self_.len() as i32,
+            ptr_list(tensor1).as_ptr(),
+            tensor1.len() as i32,
+            ptr_list(tensor2).as_ptr(),
+            tensor2.len() as i32,
+            value.into().c_scalar
+        ));
+        Ok(())
+    }
+
+    pub fn f_internal_foreach_addcmul_tensor<T: Borrow<Tensor>>(
+        self_: &[T],
+        tensor1: &[T],
+        tensor2: &[T],
+        scalars: &Tensor,
+    ) -> Result<Vec<Tensor>, TchError> {
+        let c_tensors = unsafe_torch_err!(atg__foreach_addcmul_tensor(
+            ptr_list(self_).as_ptr(),
+            self_.len() as i32,
+            ptr_list(tensor1).as_ptr(),
+            tensor1.len() as i32,
+            ptr_list(tensor2).as_ptr(),
+            tensor2.len() as i32,
+            scalars.c_tensor
+        ));
+        let mut r__ = vec![];
+        let mut i = 0;
+        loop {
+            let c__ = unsafe { *c_tensors.add(i) };
+            if c__.is_null() {
+                break;
+            }
+            r__.push(Tensor { c_tensor: c__ });
+            i += 1;
+        }
+        unsafe { libc::free(c_tensors as *mut libc::c_void) }
+        Ok(r__)
+    }
+
+    pub fn f_internal_foreach_addcmul_tensor_<T: Borrow<Tensor>>(
+        self_: &[T],
+        tensor1: &[T],
+        tensor2: &[T],
+        scalars: &Tensor,
+    ) -> Result<(), TchError> {
+        unsafe_torch_err!(atg__foreach_addcmul_tensor_(
+            ptr_list(self_).as_ptr(),
+            self_.len() as i32,
+            ptr_list(tensor1).as_ptr(),
+            tensor1.len() as i32,
+            ptr_list(tensor2).as_ptr(),
+            tensor2.len() as i32,
+            scalars.c_tensor
+        ));
+        Ok(())
+    }
+
+    pub fn f_internal_foreach_addcmul_tensor_out<T: Borrow<Tensor>>(
+        out: &[T],
+        self_: &[T],
+        tensor1: &[T],
+        tensor2: &[T],
+        scalars: &Tensor,
+    ) -> Result<(), TchError> {
+        unsafe_torch_err!(atg__foreach_addcmul_tensor_out(
+            ptr_list(out).as_ptr(),
+            out.len() as i32,
+            ptr_list(self_).as_ptr(),
+            self_.len() as i32,
+            ptr_list(tensor1).as_ptr(),
+            tensor1.len() as i32,
+            ptr_list(tensor2).as_ptr(),
+            tensor2.len() as i32,
+            scalars.c_tensor
+        ));
+        Ok(())
+    }
+
+    pub fn f_internal_foreach_asin<T: Borrow<Tensor>>(
+        self_: &[T],
+    ) -> Result<Vec<Tensor>, TchError> {
+        let c_tensors =
+            unsafe_torch_err!(atg__foreach_asin(ptr_list(self_).as_ptr(), self_.len() as i32));
+        let mut r__ = vec![];
+        let mut i = 0;
+        loop {
+            let c__ = unsafe { *c_tensors.add(i) };
+            if c__.is_null() {
+                break;
+            }
+            r__.push(Tensor { c_tensor: c__ });
+            i += 1;
+        }
+        unsafe { libc::free(c_tensors as *mut libc::c_void) }
+        Ok(r__)
+    }
+
+    pub fn f_internal_foreach_asin_<T: Borrow<Tensor>>(self_: &[T]) -> Result<(), TchError> {
+        unsafe_torch_err!(atg__foreach_asin_(ptr_list(self_).as_ptr(), self_.len() as i32));
+        Ok(())
+    }
+
+    pub fn f_internal_foreach_asin_out<T: Borrow<Tensor>>(
+        out: &[T],
+        self_: &[T],
+    ) -> Result<(), TchError> {
+        unsafe_torch_err!(atg__foreach_asin_out(
+            ptr_list(out).as_ptr(),
+            out.len() as i32,
+            ptr_list(self_).as_ptr(),
+            self_.len() as i32
+        ));
+        Ok(())
+    }
+
+    pub fn f_internal_foreach_atan<T: Borrow<Tensor>>(
+        self_: &[T],
+    ) -> Result<Vec<Tensor>, TchError> {
+        let c_tensors =
+            unsafe_torch_err!(atg__foreach_atan(ptr_list(self_).as_ptr(), self_.len() as i32));
+        let mut r__ = vec![];
+        let mut i = 0;
+        loop {
+            let c__ = unsafe { *c_tensors.add(i) };
+            if c__.is_null() {
+                break;
+            }
+            r__.push(Tensor { c_tensor: c__ });
+            i += 1;
+        }
+        unsafe { libc::free(c_tensors as *mut libc::c_void) }
+        Ok(r__)
+    }
+
+    pub fn f_internal_foreach_atan_<T: Borrow<Tensor>>(self_: &[T]) -> Result<(), TchError> {
+        unsafe_torch_err!(atg__foreach_atan_(ptr_list(self_).as_ptr(), self_.len() as i32));
+        Ok(())
+    }
+
+    pub fn f_internal_foreach_atan_out<T: Borrow<Tensor>>(
+        out: &[T],
+        self_: &[T],
+    ) -> Result<(), TchError> {
+        unsafe_torch_err!(atg__foreach_atan_out(
+            ptr_list(out).as_ptr(),
+            out.len() as i32,
+            ptr_list(self_).as_ptr(),
+            self_.len() as i32
+        ));
+        Ok(())
+    }
+
+    pub fn f_internal_foreach_ceil<T: Borrow<Tensor>>(
+        self_: &[T],
+    ) -> Result<Vec<Tensor>, TchError> {
+        let c_tensors =
+            unsafe_torch_err!(atg__foreach_ceil(ptr_list(self_).as_ptr(), self_.len() as i32));
+        let mut r__ = vec![];
+        let mut i = 0;
+        loop {
+            let c__ = unsafe { *c_tensors.add(i) };
+            if c__.is_null() {
+                break;
+            }
+            r__.push(Tensor { c_tensor: c__ });
+            i += 1;
+        }
+        unsafe { libc::free(c_tensors as *mut libc::c_void) }
+        Ok(r__)
+    }
+
+    pub fn f_internal_foreach_ceil_<T: Borrow<Tensor>>(self_: &[T]) -> Result<(), TchError> {
+        unsafe_torch_err!(atg__foreach_ceil_(ptr_list(self_).as_ptr(), self_.len() as i32));
+        Ok(())
+    }
+
+    pub fn f_internal_foreach_ceil_out<T: Borrow<Tensor>>(
+        out: &[T],
+        self_: &[T],
+    ) -> Result<(), TchError> {
+        unsafe_torch_err!(atg__foreach_ceil_out(
+            ptr_list(out).as_ptr(),
+            out.len() as i32,
+            ptr_list(self_).as_ptr(),
+            self_.len() as i32
+        ));
+        Ok(())
+    }
+
+    pub fn f_internal_foreach_clamp_max<T: Borrow<Tensor>, S: Into<Scalar>>(
+        self_: &[T],
+        scalar: S,
+    ) -> Result<Vec<Tensor>, TchError> {
+        let c_tensors = unsafe_torch_err!(atg__foreach_clamp_max(
+            ptr_list(self_).as_ptr(),
+            self_.len() as i32,
+            scalar.into().c_scalar
+        ));
+        let mut r__ = vec![];
+        let mut i = 0;
+        loop {
+            let c__ = unsafe { *c_tensors.add(i) };
+            if c__.is_null() {
+                break;
+            }
+            r__.push(Tensor { c_tensor: c__ });
+            i += 1;
+        }
+        unsafe { libc::free(c_tensors as *mut libc::c_void) }
+        Ok(r__)
+    }
+
+    pub fn f_internal_foreach_clamp_max_<T: Borrow<Tensor>, S: Into<Scalar>>(
+        self_: &[T],
+        scalar: S,
+    ) -> Result<(), TchError> {
+        unsafe_torch_err!(atg__foreach_clamp_max_(
+            ptr_list(self_).as_ptr(),
+            self_.len() as i32,
+            scalar.into().c_scalar
+        ));
+        Ok(())
+    }
+
+    pub fn f_internal_foreach_clamp_max_list<T: Borrow<Tensor>>(
+        self_: &[T],
+        other: &[T],
+    ) -> Result<Vec<Tensor>, TchError> {
+        let c_tensors = unsafe_torch_err!(atg__foreach_clamp_max_list(
+            ptr_list(self_).as_ptr(),
+            self_.len() as i32,
+            ptr_list(other).as_ptr(),
+            other.len() as i32
+        ));
+        let mut r__ = vec![];
+        let mut i = 0;
+        loop {
+            let c__ = unsafe { *c_tensors.add(i) };
+            if c__.is_null() {
+                break;
+            }
+            r__.push(Tensor { c_tensor: c__ });
+            i += 1;
+        }
+        unsafe { libc::free(c_tensors as *mut libc::c_void) }
+        Ok(r__)
+    }
+
+    pub fn f_internal_foreach_clamp_max_list_<T: Borrow<Tensor>>(
+        self_: &[T],
+        other: &[T],
+    ) -> Result<(), TchError> {
+        unsafe_torch_err!(atg__foreach_clamp_max_list_(
+            ptr_list(self_).as_ptr(),
+            self_.len() as i32,
+            ptr_list(other).as_ptr(),
+            other.len() as i32
+        ));
+        Ok(())
+    }
+
+    pub fn f_internal_foreach_clamp_max_list_out<T: Borrow<Tensor>>(
+        out: &[T],
+        self_: &[T],
+        other: &[T],
+    ) -> Result<(), TchError> {
+        unsafe_torch_err!(atg__foreach_clamp_max_list_out(
+            ptr_list(out).as_ptr(),
+            out.len() as i32,
+            ptr_list(self_).as_ptr(),
+            self_.len() as i32,
+            ptr_list(other).as_ptr(),
+            other.len() as i32
+        ));
+        Ok(())
+    }
+
+    pub fn f_internal_foreach_clamp_max_scalar_out<T: Borrow<Tensor>, S: Into<Scalar>>(
+        out: &[T],
+        self_: &[T],
+        scalar: S,
+    ) -> Result<(), TchError> {
+        unsafe_torch_err!(atg__foreach_clamp_max_scalar_out(
+            ptr_list(out).as_ptr(),
+            out.len() as i32,
+            ptr_list(self_).as_ptr(),
+            self_.len() as i32,
+            scalar.into().c_scalar
+        ));
+        Ok(())
+    }
+
+    pub fn f_internal_foreach_clamp_min<T: Borrow<Tensor>, S: Into<Scalar>>(
+        self_: &[T],
+        scalar: S,
+    ) -> Result<Vec<Tensor>, TchError> {
+        let c_tensors = unsafe_torch_err!(atg__foreach_clamp_min(
+            ptr_list(self_).as_ptr(),
+            self_.len() as i32,
+            scalar.into().c_scalar
+        ));
+        let mut r__ = vec![];
+        let mut i = 0;
+        loop {
+            let c__ = unsafe { *c_tensors.add(i) };
+            if c__.is_null() {
+                break;
+            }
+            r__.push(Tensor { c_tensor: c__ });
+            i += 1;
+        }
+        unsafe { libc::free(c_tensors as *mut libc::c_void) }
+        Ok(r__)
+    }
+
+    pub fn f_internal_foreach_clamp_min_<T: Borrow<Tensor>, S: Into<Scalar>>(
+        self_: &[T],
+        scalar: S,
+    ) -> Result<(), TchError> {
+        unsafe_torch_err!(atg__foreach_clamp_min_(
+            ptr_list(self_).as_ptr(),
+            self_.len() as i32,
+            scalar.into().c_scalar
+        ));
+        Ok(())
+    }
+
+    pub fn f_internal_foreach_clamp_min_list<T: Borrow<Tensor>>(
+        self_: &[T],
+        other: &[T],
+    ) -> Result<Vec<Tensor>, TchError> {
+        let c_tensors = unsafe_torch_err!(atg__foreach_clamp_min_list(
+            ptr_list(self_).as_ptr(),
+            self_.len() as i32,
+            ptr_list(other).as_ptr(),
+            other.len() as i32
+        ));
+        let mut r__ = vec![];
+        let mut i = 0;
+        loop {
+            let c__ = unsafe { *c_tensors.add(i) };
+            if c__.is_null() {
+                break;
+            }
+            r__.push(Tensor { c_tensor: c__ });
+            i += 1;
+        }
+        unsafe { libc::free(c_tensors as *mut libc::c_void) }
+        Ok(r__)
+    }
+
+    pub fn f_internal_foreach_clamp_min_list_<T: Borrow<Tensor>>(
+        self_: &[T],
+        other: &[T],
+    ) -> Result<(), TchError> {
+        unsafe_torch_err!(atg__foreach_clamp_min_list_(
+            ptr_list(self_).as_ptr(),
+            self_.len() as i32,
+            ptr_list(other).as_ptr(),
+            other.len() as i32
+        ));
+        Ok(())
+    }
+
+    pub fn f_internal_foreach_clamp_min_list_out<T: Borrow<Tensor>>(
+        out: &[T],
+        self_: &[T],
+        other: &[T],
+    ) -> Result<(), TchError> {
+        unsafe_torch_err!(atg__foreach_clamp_min_list_out(
+            ptr_list(out).as_ptr(),
+            out.len() as i32,
+            ptr_list(self_).as_ptr(),
+            self_.len() as i32,
+            ptr_list(other).as_ptr(),
+            other.len() as i32
+        ));
+        Ok(())
+    }
+
+    pub fn f_internal_foreach_clamp_min_scalar_out<T: Borrow<Tensor>, S: Into<Scalar>>(
+        out: &[T],
+        self_: &[T],
+        scalar: S,
+    ) -> Result<(), TchError> {
+        unsafe_torch_err!(atg__foreach_clamp_min_scalar_out(
+            ptr_list(out).as_ptr(),
+            out.len() as i32,
+            ptr_list(self_).as_ptr(),
+            self_.len() as i32,
+            scalar.into().c_scalar
+        ));
+        Ok(())
+    }
+
+    pub fn f_internal_foreach_copy<T: Borrow<Tensor>>(
+        self_: &[T],
+        src: &[T],
+        non_blocking: bool,
+    ) -> Result<Vec<Tensor>, TchError> {
+        let c_tensors = unsafe_torch_err!(atg__foreach_copy(
+            ptr_list(self_).as_ptr(),
+            self_.len() as i32,
+            ptr_list(src).as_ptr(),
+            src.len() as i32,
+            if non_blocking { 1 } else { 0 }
+        ));
+        let mut r__ = vec![];
+        let mut i = 0;
+        loop {
+            let c__ = unsafe { *c_tensors.add(i) };
+            if c__.is_null() {
+                break;
+            }
+            r__.push(Tensor { c_tensor: c__ });
+            i += 1;
+        }
+        unsafe { libc::free(c_tensors as *mut libc::c_void) }
+        Ok(r__)
+    }
+
+    pub fn f_internal_foreach_copy_<T: Borrow<Tensor>>(
+        self_: &[T],
+        src: &[T],
+        non_blocking: bool,
+    ) -> Result<(), TchError> {
+        unsafe_torch_err!(atg__foreach_copy_(
+            ptr_list(self_).as_ptr(),
+            self_.len() as i32,
+            ptr_list(src).as_ptr(),
+            src.len() as i32,
+            if non_blocking { 1 } else { 0 }
+        ));
+        Ok(())
+    }
+
+    pub fn f_internal_foreach_copy_out<T: Borrow<Tensor>>(
+        out: &[T],
+        self_: &[T],
+        src: &[T],
+        non_blocking: bool,
+    ) -> Result<(), TchError> {
+        unsafe_torch_err!(atg__foreach_copy_out(
+            ptr_list(out).as_ptr(),
+            out.len() as i32,
+            ptr_list(self_).as_ptr(),
+            self_.len() as i32,
+            ptr_list(src).as_ptr(),
+            src.len() as i32,
+            if non_blocking { 1 } else { 0 }
+        ));
+        Ok(())
+    }
+
+    pub fn f_internal_foreach_cos<T: Borrow<Tensor>>(self_: &[T]) -> Result<Vec<Tensor>, TchError> {
+        let c_tensors =
+            unsafe_torch_err!(atg__foreach_cos(ptr_list(self_).as_ptr(), self_.len() as i32));
+        let mut r__ = vec![];
+        let mut i = 0;
+        loop {
+            let c__ = unsafe { *c_tensors.add(i) };
+            if c__.is_null() {
+                break;
+            }
+            r__.push(Tensor { c_tensor: c__ });
+            i += 1;
+        }
+        unsafe { libc::free(c_tensors as *mut libc::c_void) }
+        Ok(r__)
+    }
+
+    pub fn f_internal_foreach_cos_<T: Borrow<Tensor>>(self_: &[T]) -> Result<(), TchError> {
+        unsafe_torch_err!(atg__foreach_cos_(ptr_list(self_).as_ptr(), self_.len() as i32));
+        Ok(())
+    }
+
+    pub fn f_internal_foreach_cos_out<T: Borrow<Tensor>>(
+        out: &[T],
+        self_: &[T],
+    ) -> Result<(), TchError> {
+        unsafe_torch_err!(atg__foreach_cos_out(
+            ptr_list(out).as_ptr(),
+            out.len() as i32,
+            ptr_list(self_).as_ptr(),
+            self_.len() as i32
+        ));
+        Ok(())
+    }
+
+    pub fn f_internal_foreach_cosh<T: Borrow<Tensor>>(
+        self_: &[T],
+    ) -> Result<Vec<Tensor>, TchError> {
+        let c_tensors =
+            unsafe_torch_err!(atg__foreach_cosh(ptr_list(self_).as_ptr(), self_.len() as i32));
+        let mut r__ = vec![];
+        let mut i = 0;
+        loop {
+            let c__ = unsafe { *c_tensors.add(i) };
+            if c__.is_null() {
+                break;
+            }
+            r__.push(Tensor { c_tensor: c__ });
+            i += 1;
+        }
+        unsafe { libc::free(c_tensors as *mut libc::c_void) }
+        Ok(r__)
+    }
+
+    pub fn f_internal_foreach_cosh_<T: Borrow<Tensor>>(self_: &[T]) -> Result<(), TchError> {
+        unsafe_torch_err!(atg__foreach_cosh_(ptr_list(self_).as_ptr(), self_.len() as i32));
+        Ok(())
+    }
+
+    pub fn f_internal_foreach_cosh_out<T: Borrow<Tensor>>(
+        out: &[T],
+        self_: &[T],
+    ) -> Result<(), TchError> {
+        unsafe_torch_err!(atg__foreach_cosh_out(
+            ptr_list(out).as_ptr(),
+            out.len() as i32,
+            ptr_list(self_).as_ptr(),
+            self_.len() as i32
+        ));
+        Ok(())
+    }
+
+    pub fn f_internal_foreach_div<T: Borrow<Tensor>, S: Into<Scalar>>(
+        self_: &[T],
+        scalar: S,
+    ) -> Result<Vec<Tensor>, TchError> {
+        let c_tensors = unsafe_torch_err!(atg__foreach_div(
+            ptr_list(self_).as_ptr(),
+            self_.len() as i32,
+            scalar.into().c_scalar
+        ));
+        let mut r__ = vec![];
+        let mut i = 0;
+        loop {
+            let c__ = unsafe { *c_tensors.add(i) };
+            if c__.is_null() {
+                break;
+            }
+            r__.push(Tensor { c_tensor: c__ });
+            i += 1;
+        }
+        unsafe { libc::free(c_tensors as *mut libc::c_void) }
+        Ok(r__)
+    }
+
+    pub fn f_internal_foreach_div_<T: Borrow<Tensor>, S: Into<Scalar>>(
+        self_: &[T],
+        scalar: S,
+    ) -> Result<(), TchError> {
+        unsafe_torch_err!(atg__foreach_div_(
+            ptr_list(self_).as_ptr(),
+            self_.len() as i32,
+            scalar.into().c_scalar
+        ));
+        Ok(())
+    }
+
+    pub fn f_internal_foreach_div_list<T: Borrow<Tensor>>(
+        self_: &[T],
+        other: &[T],
+    ) -> Result<Vec<Tensor>, TchError> {
+        let c_tensors = unsafe_torch_err!(atg__foreach_div_list(
+            ptr_list(self_).as_ptr(),
+            self_.len() as i32,
+            ptr_list(other).as_ptr(),
+            other.len() as i32
+        ));
+        let mut r__ = vec![];
+        let mut i = 0;
+        loop {
+            let c__ = unsafe { *c_tensors.add(i) };
+            if c__.is_null() {
+                break;
+            }
+            r__.push(Tensor { c_tensor: c__ });
+            i += 1;
+        }
+        unsafe { libc::free(c_tensors as *mut libc::c_void) }
+        Ok(r__)
+    }
+
+    pub fn f_internal_foreach_div_list_<T: Borrow<Tensor>>(
+        self_: &[T],
+        other: &[T],
+    ) -> Result<(), TchError> {
+        unsafe_torch_err!(atg__foreach_div_list_(
+            ptr_list(self_).as_ptr(),
+            self_.len() as i32,
+            ptr_list(other).as_ptr(),
+            other.len() as i32
+        ));
+        Ok(())
+    }
+
+    pub fn f_internal_foreach_div_list_out<T: Borrow<Tensor>>(
+        out: &[T],
+        self_: &[T],
+        other: &[T],
+    ) -> Result<(), TchError> {
+        unsafe_torch_err!(atg__foreach_div_list_out(
+            ptr_list(out).as_ptr(),
+            out.len() as i32,
+            ptr_list(self_).as_ptr(),
+            self_.len() as i32,
+            ptr_list(other).as_ptr(),
+            other.len() as i32
+        ));
+        Ok(())
+    }
+
+    pub fn f_internal_foreach_div_scalar_out<T: Borrow<Tensor>, S: Into<Scalar>>(
+        out: &[T],
+        self_: &[T],
+        scalar: S,
+    ) -> Result<(), TchError> {
+        unsafe_torch_err!(atg__foreach_div_scalar_out(
+            ptr_list(out).as_ptr(),
+            out.len() as i32,
+            ptr_list(self_).as_ptr(),
+            self_.len() as i32,
+            scalar.into().c_scalar
+        ));
+        Ok(())
+    }
+
+    pub fn f_internal_foreach_div_tensor<T: Borrow<Tensor>>(
+        self_: &[T],
+        other: &Tensor,
+    ) -> Result<Vec<Tensor>, TchError> {
+        let c_tensors = unsafe_torch_err!(atg__foreach_div_tensor(
+            ptr_list(self_).as_ptr(),
+            self_.len() as i32,
+            other.c_tensor
+        ));
+        let mut r__ = vec![];
+        let mut i = 0;
+        loop {
+            let c__ = unsafe { *c_tensors.add(i) };
+            if c__.is_null() {
+                break;
+            }
+            r__.push(Tensor { c_tensor: c__ });
+            i += 1;
+        }
+        unsafe { libc::free(c_tensors as *mut libc::c_void) }
+        Ok(r__)
+    }
+
+    pub fn f_internal_foreach_div_tensor_<T: Borrow<Tensor>>(
+        self_: &[T],
+        other: &Tensor,
+    ) -> Result<(), TchError> {
+        unsafe_torch_err!(atg__foreach_div_tensor_(
+            ptr_list(self_).as_ptr(),
+            self_.len() as i32,
+            other.c_tensor
+        ));
+        Ok(())
+    }
+
+    pub fn f_internal_foreach_div_tensor_out<T: Borrow<Tensor>>(
+        out: &[T],
+        self_: &[T],
+        other: &Tensor,
+    ) -> Result<(), TchError> {
+        unsafe_torch_err!(atg__foreach_div_tensor_out(
+            ptr_list(out).as_ptr(),
+            out.len() as i32,
+            ptr_list(self_).as_ptr(),
+            self_.len() as i32,
+            other.c_tensor
+        ));
+        Ok(())
+    }
+
+    pub fn f_internal_foreach_erf<T: Borrow<Tensor>>(self_: &[T]) -> Result<Vec<Tensor>, TchError> {
+        let c_tensors =
+            unsafe_torch_err!(atg__foreach_erf(ptr_list(self_).as_ptr(), self_.len() as i32));
+        let mut r__ = vec![];
+        let mut i = 0;
+        loop {
+            let c__ = unsafe { *c_tensors.add(i) };
+            if c__.is_null() {
+                break;
+            }
+            r__.push(Tensor { c_tensor: c__ });
+            i += 1;
+        }
+        unsafe { libc::free(c_tensors as *mut libc::c_void) }
+        Ok(r__)
+    }
+
+    pub fn f_internal_foreach_erf_<T: Borrow<Tensor>>(self_: &[T]) -> Result<(), TchError> {
+        unsafe_torch_err!(atg__foreach_erf_(ptr_list(self_).as_ptr(), self_.len() as i32));
+        Ok(())
+    }
+
+    pub fn f_internal_foreach_erf_out<T: Borrow<Tensor>>(
+        out: &[T],
+        self_: &[T],
+    ) -> Result<(), TchError> {
+        unsafe_torch_err!(atg__foreach_erf_out(
+            ptr_list(out).as_ptr(),
+            out.len() as i32,
+            ptr_list(self_).as_ptr(),
+            self_.len() as i32
+        ));
+        Ok(())
+    }
+
+    pub fn f_internal_foreach_erfc<T: Borrow<Tensor>>(
+        self_: &[T],
+    ) -> Result<Vec<Tensor>, TchError> {
+        let c_tensors =
+            unsafe_torch_err!(atg__foreach_erfc(ptr_list(self_).as_ptr(), self_.len() as i32));
+        let mut r__ = vec![];
+        let mut i = 0;
+        loop {
+            let c__ = unsafe { *c_tensors.add(i) };
+            if c__.is_null() {
+                break;
+            }
+            r__.push(Tensor { c_tensor: c__ });
+            i += 1;
+        }
+        unsafe { libc::free(c_tensors as *mut libc::c_void) }
+        Ok(r__)
+    }
+
+    pub fn f_internal_foreach_erfc_<T: Borrow<Tensor>>(self_: &[T]) -> Result<(), TchError> {
+        unsafe_torch_err!(atg__foreach_erfc_(ptr_list(self_).as_ptr(), self_.len() as i32));
+        Ok(())
+    }
+
+    pub fn f_internal_foreach_erfc_out<T: Borrow<Tensor>>(
+        out: &[T],
+        self_: &[T],
+    ) -> Result<(), TchError> {
+        unsafe_torch_err!(atg__foreach_erfc_out(
+            ptr_list(out).as_ptr(),
+            out.len() as i32,
+            ptr_list(self_).as_ptr(),
+            self_.len() as i32
+        ));
+        Ok(())
+    }
+
+    pub fn f_internal_foreach_exp<T: Borrow<Tensor>>(self_: &[T]) -> Result<Vec<Tensor>, TchError> {
+        let c_tensors =
+            unsafe_torch_err!(atg__foreach_exp(ptr_list(self_).as_ptr(), self_.len() as i32));
+        let mut r__ = vec![];
+        let mut i = 0;
+        loop {
+            let c__ = unsafe { *c_tensors.add(i) };
+            if c__.is_null() {
+                break;
+            }
+            r__.push(Tensor { c_tensor: c__ });
+            i += 1;
+        }
+        unsafe { libc::free(c_tensors as *mut libc::c_void) }
+        Ok(r__)
+    }
+
+    pub fn f_internal_foreach_exp_<T: Borrow<Tensor>>(self_: &[T]) -> Result<(), TchError> {
+        unsafe_torch_err!(atg__foreach_exp_(ptr_list(self_).as_ptr(), self_.len() as i32));
+        Ok(())
+    }
+
+    pub fn f_internal_foreach_exp_out<T: Borrow<Tensor>>(
+        out: &[T],
+        self_: &[T],
+    ) -> Result<(), TchError> {
+        unsafe_torch_err!(atg__foreach_exp_out(
+            ptr_list(out).as_ptr(),
+            out.len() as i32,
+            ptr_list(self_).as_ptr(),
+            self_.len() as i32
+        ));
+        Ok(())
+    }
+
+    pub fn f_internal_foreach_expm1<T: Borrow<Tensor>>(
+        self_: &[T],
+    ) -> Result<Vec<Tensor>, TchError> {
+        let c_tensors =
+            unsafe_torch_err!(atg__foreach_expm1(ptr_list(self_).as_ptr(), self_.len() as i32));
+        let mut r__ = vec![];
+        let mut i = 0;
+        loop {
+            let c__ = unsafe { *c_tensors.add(i) };
+            if c__.is_null() {
+                break;
+            }
+            r__.push(Tensor { c_tensor: c__ });
+            i += 1;
+        }
+        unsafe { libc::free(c_tensors as *mut libc::c_void) }
+        Ok(r__)
+    }
+
+    pub fn f_internal_foreach_expm1_<T: Borrow<Tensor>>(self_: &[T]) -> Result<(), TchError> {
+        unsafe_torch_err!(atg__foreach_expm1_(ptr_list(self_).as_ptr(), self_.len() as i32));
+        Ok(())
+    }
+
+    pub fn f_internal_foreach_expm1_out<T: Borrow<Tensor>>(
+        out: &[T],
+        self_: &[T],
+    ) -> Result<(), TchError> {
+        unsafe_torch_err!(atg__foreach_expm1_out(
+            ptr_list(out).as_ptr(),
+            out.len() as i32,
+            ptr_list(self_).as_ptr(),
+            self_.len() as i32
+        ));
+        Ok(())
+    }
+
+    pub fn f_internal_foreach_floor<T: Borrow<Tensor>>(
+        self_: &[T],
+    ) -> Result<Vec<Tensor>, TchError> {
+        let c_tensors =
+            unsafe_torch_err!(atg__foreach_floor(ptr_list(self_).as_ptr(), self_.len() as i32));
+        let mut r__ = vec![];
+        let mut i = 0;
+        loop {
+            let c__ = unsafe { *c_tensors.add(i) };
+            if c__.is_null() {
+                break;
+            }
+            r__.push(Tensor { c_tensor: c__ });
+            i += 1;
+        }
+        unsafe { libc::free(c_tensors as *mut libc::c_void) }
+        Ok(r__)
+    }
+
+    pub fn f_internal_foreach_floor_<T: Borrow<Tensor>>(self_: &[T]) -> Result<(), TchError> {
+        unsafe_torch_err!(atg__foreach_floor_(ptr_list(self_).as_ptr(), self_.len() as i32));
+        Ok(())
+    }
+
+    pub fn f_internal_foreach_floor_out<T: Borrow<Tensor>>(
+        out: &[T],
+        self_: &[T],
+    ) -> Result<(), TchError> {
+        unsafe_torch_err!(atg__foreach_floor_out(
+            ptr_list(out).as_ptr(),
+            out.len() as i32,
+            ptr_list(self_).as_ptr(),
+            self_.len() as i32
+        ));
+        Ok(())
+    }
+
+    pub fn f_internal_foreach_frac<T: Borrow<Tensor>>(
+        self_: &[T],
+    ) -> Result<Vec<Tensor>, TchError> {
+        let c_tensors =
+            unsafe_torch_err!(atg__foreach_frac(ptr_list(self_).as_ptr(), self_.len() as i32));
+        let mut r__ = vec![];
+        let mut i = 0;
+        loop {
+            let c__ = unsafe { *c_tensors.add(i) };
+            if c__.is_null() {
+                break;
+            }
+            r__.push(Tensor { c_tensor: c__ });
+            i += 1;
+        }
+        unsafe { libc::free(c_tensors as *mut libc::c_void) }
+        Ok(r__)
+    }
+
+    pub fn f_internal_foreach_frac_<T: Borrow<Tensor>>(self_: &[T]) -> Result<(), TchError> {
+        unsafe_torch_err!(atg__foreach_frac_(ptr_list(self_).as_ptr(), self_.len() as i32));
+        Ok(())
+    }
+
+    pub fn f_internal_foreach_frac_out<T: Borrow<Tensor>>(
+        out: &[T],
+        self_: &[T],
+    ) -> Result<(), TchError> {
+        unsafe_torch_err!(atg__foreach_frac_out(
+            ptr_list(out).as_ptr(),
+            out.len() as i32,
+            ptr_list(self_).as_ptr(),
+            self_.len() as i32
+        ));
+        Ok(())
+    }
+
+    pub fn f_internal_foreach_lerp<T: Borrow<Tensor>>(
+        self_: &[T],
+        tensors1: &[T],
+        weights: &[T],
+    ) -> Result<Vec<Tensor>, TchError> {
+        let c_tensors = unsafe_torch_err!(atg__foreach_lerp(
+            ptr_list(self_).as_ptr(),
+            self_.len() as i32,
+            ptr_list(tensors1).as_ptr(),
+            tensors1.len() as i32,
+            ptr_list(weights).as_ptr(),
+            weights.len() as i32
+        ));
+        let mut r__ = vec![];
+        let mut i = 0;
+        loop {
+            let c__ = unsafe { *c_tensors.add(i) };
+            if c__.is_null() {
+                break;
+            }
+            r__.push(Tensor { c_tensor: c__ });
+            i += 1;
+        }
+        unsafe { libc::free(c_tensors as *mut libc::c_void) }
+        Ok(r__)
+    }
+
+    pub fn f_internal_foreach_lerp_<T: Borrow<Tensor>>(
+        self_: &[T],
+        tensors1: &[T],
+        weights: &[T],
+    ) -> Result<(), TchError> {
+        unsafe_torch_err!(atg__foreach_lerp_(
+            ptr_list(self_).as_ptr(),
+            self_.len() as i32,
+            ptr_list(tensors1).as_ptr(),
+            tensors1.len() as i32,
+            ptr_list(weights).as_ptr(),
+            weights.len() as i32
+        ));
+        Ok(())
+    }
+
+    pub fn f_internal_foreach_lerp_list_out<T: Borrow<Tensor>>(
+        out: &[T],
+        self_: &[T],
+        tensors1: &[T],
+        weights: &[T],
+    ) -> Result<(), TchError> {
+        unsafe_torch_err!(atg__foreach_lerp_list_out(
+            ptr_list(out).as_ptr(),
+            out.len() as i32,
+            ptr_list(self_).as_ptr(),
+            self_.len() as i32,
+            ptr_list(tensors1).as_ptr(),
+            tensors1.len() as i32,
+            ptr_list(weights).as_ptr(),
+            weights.len() as i32
+        ));
+        Ok(())
+    }
+
+    pub fn f_internal_foreach_lerp_scalar<T: Borrow<Tensor>, S: Into<Scalar>>(
+        self_: &[T],
+        tensors1: &[T],
+        weight: S,
+    ) -> Result<Vec<Tensor>, TchError> {
+        let c_tensors = unsafe_torch_err!(atg__foreach_lerp_scalar(
+            ptr_list(self_).as_ptr(),
+            self_.len() as i32,
+            ptr_list(tensors1).as_ptr(),
+            tensors1.len() as i32,
+            weight.into().c_scalar
+        ));
+        let mut r__ = vec![];
+        let mut i = 0;
+        loop {
+            let c__ = unsafe { *c_tensors.add(i) };
+            if c__.is_null() {
+                break;
+            }
+            r__.push(Tensor { c_tensor: c__ });
+            i += 1;
+        }
+        unsafe { libc::free(c_tensors as *mut libc::c_void) }
+        Ok(r__)
+    }
+
+    pub fn f_internal_foreach_lerp_scalar_<T: Borrow<Tensor>, S: Into<Scalar>>(
+        self_: &[T],
+        tensors1: &[T],
+        weight: S,
+    ) -> Result<(), TchError> {
+        unsafe_torch_err!(atg__foreach_lerp_scalar_(
+            ptr_list(self_).as_ptr(),
+            self_.len() as i32,
+            ptr_list(tensors1).as_ptr(),
+            tensors1.len() as i32,
+            weight.into().c_scalar
+        ));
+        Ok(())
+    }
+
+    pub fn f_internal_foreach_lerp_scalar_out<T: Borrow<Tensor>, S: Into<Scalar>>(
+        out: &[T],
+        self_: &[T],
+        tensors1: &[T],
+        weight: S,
+    ) -> Result<(), TchError> {
+        unsafe_torch_err!(atg__foreach_lerp_scalar_out(
+            ptr_list(out).as_ptr(),
+            out.len() as i32,
+            ptr_list(self_).as_ptr(),
+            self_.len() as i32,
+            ptr_list(tensors1).as_ptr(),
+            tensors1.len() as i32,
+            weight.into().c_scalar
+        ));
+        Ok(())
+    }
+
+    pub fn f_internal_foreach_lgamma<T: Borrow<Tensor>>(
+        self_: &[T],
+    ) -> Result<Vec<Tensor>, TchError> {
+        let c_tensors =
+            unsafe_torch_err!(atg__foreach_lgamma(ptr_list(self_).as_ptr(), self_.len() as i32));
+        let mut r__ = vec![];
+        let mut i = 0;
+        loop {
+            let c__ = unsafe { *c_tensors.add(i) };
+            if c__.is_null() {
+                break;
+            }
+            r__.push(Tensor { c_tensor: c__ });
+            i += 1;
+        }
+        unsafe { libc::free(c_tensors as *mut libc::c_void) }
+        Ok(r__)
+    }
+
+    pub fn f_internal_foreach_lgamma_<T: Borrow<Tensor>>(self_: &[T]) -> Result<(), TchError> {
+        unsafe_torch_err!(atg__foreach_lgamma_(ptr_list(self_).as_ptr(), self_.len() as i32));
+        Ok(())
+    }
+
+    pub fn f_internal_foreach_lgamma_out<T: Borrow<Tensor>>(
+        out: &[T],
+        self_: &[T],
+    ) -> Result<(), TchError> {
+        unsafe_torch_err!(atg__foreach_lgamma_out(
+            ptr_list(out).as_ptr(),
+            out.len() as i32,
+            ptr_list(self_).as_ptr(),
+            self_.len() as i32
+        ));
+        Ok(())
+    }
+
+    pub fn f_internal_foreach_log<T: Borrow<Tensor>>(self_: &[T]) -> Result<Vec<Tensor>, TchError> {
+        let c_tensors =
+            unsafe_torch_err!(atg__foreach_log(ptr_list(self_).as_ptr(), self_.len() as i32));
+        let mut r__ = vec![];
+        let mut i = 0;
+        loop {
+            let c__ = unsafe { *c_tensors.add(i) };
+            if c__.is_null() {
+                break;
+            }
+            r__.push(Tensor { c_tensor: c__ });
+            i += 1;
+        }
+        unsafe { libc::free(c_tensors as *mut libc::c_void) }
+        Ok(r__)
+    }
+
+    pub fn f_internal_foreach_log10<T: Borrow<Tensor>>(
+        self_: &[T],
+    ) -> Result<Vec<Tensor>, TchError> {
+        let c_tensors =
+            unsafe_torch_err!(atg__foreach_log10(ptr_list(self_).as_ptr(), self_.len() as i32));
+        let mut r__ = vec![];
+        let mut i = 0;
+        loop {
+            let c__ = unsafe { *c_tensors.add(i) };
+            if c__.is_null() {
+                break;
+            }
+            r__.push(Tensor { c_tensor: c__ });
+            i += 1;
+        }
+        unsafe { libc::free(c_tensors as *mut libc::c_void) }
+        Ok(r__)
+    }
+
+    pub fn f_internal_foreach_log10_<T: Borrow<Tensor>>(self_: &[T]) -> Result<(), TchError> {
+        unsafe_torch_err!(atg__foreach_log10_(ptr_list(self_).as_ptr(), self_.len() as i32));
+        Ok(())
+    }
+
+    pub fn f_internal_foreach_log10_out<T: Borrow<Tensor>>(
+        out: &[T],
+        self_: &[T],
+    ) -> Result<(), TchError> {
+        unsafe_torch_err!(atg__foreach_log10_out(
+            ptr_list(out).as_ptr(),
+            out.len() as i32,
+            ptr_list(self_).as_ptr(),
+            self_.len() as i32
+        ));
+        Ok(())
+    }
+
+    pub fn f_internal_foreach_log1p<T: Borrow<Tensor>>(
+        self_: &[T],
+    ) -> Result<Vec<Tensor>, TchError> {
+        let c_tensors =
+            unsafe_torch_err!(atg__foreach_log1p(ptr_list(self_).as_ptr(), self_.len() as i32));
+        let mut r__ = vec![];
+        let mut i = 0;
+        loop {
+            let c__ = unsafe { *c_tensors.add(i) };
+            if c__.is_null() {
+                break;
+            }
+            r__.push(Tensor { c_tensor: c__ });
+            i += 1;
+        }
+        unsafe { libc::free(c_tensors as *mut libc::c_void) }
+        Ok(r__)
+    }
+
+    pub fn f_internal_foreach_log1p_<T: Borrow<Tensor>>(self_: &[T]) -> Result<(), TchError> {
+        unsafe_torch_err!(atg__foreach_log1p_(ptr_list(self_).as_ptr(), self_.len() as i32));
+        Ok(())
+    }
+
+    pub fn f_internal_foreach_log1p_out<T: Borrow<Tensor>>(
+        out: &[T],
+        self_: &[T],
+    ) -> Result<(), TchError> {
+        unsafe_torch_err!(atg__foreach_log1p_out(
+            ptr_list(out).as_ptr(),
+            out.len() as i32,
+            ptr_list(self_).as_ptr(),
+            self_.len() as i32
+        ));
+        Ok(())
+    }
+
+    pub fn f_internal_foreach_log2<T: Borrow<Tensor>>(
+        self_: &[T],
+    ) -> Result<Vec<Tensor>, TchError> {
+        let c_tensors =
+            unsafe_torch_err!(atg__foreach_log2(ptr_list(self_).as_ptr(), self_.len() as i32));
+        let mut r__ = vec![];
+        let mut i = 0;
+        loop {
+            let c__ = unsafe { *c_tensors.add(i) };
+            if c__.is_null() {
+                break;
+            }
+            r__.push(Tensor { c_tensor: c__ });
+            i += 1;
+        }
+        unsafe { libc::free(c_tensors as *mut libc::c_void) }
+        Ok(r__)
+    }
+
+    pub fn f_internal_foreach_log2_<T: Borrow<Tensor>>(self_: &[T]) -> Result<(), TchError> {
+        unsafe_torch_err!(atg__foreach_log2_(ptr_list(self_).as_ptr(), self_.len() as i32));
+        Ok(())
+    }
+
+    pub fn f_internal_foreach_log2_out<T: Borrow<Tensor>>(
+        out: &[T],
+        self_: &[T],
+    ) -> Result<(), TchError> {
+        unsafe_torch_err!(atg__foreach_log2_out(
+            ptr_list(out).as_ptr(),
+            out.len() as i32,
+            ptr_list(self_).as_ptr(),
+            self_.len() as i32
+        ));
+        Ok(())
+    }
+
+    pub fn f_internal_foreach_log_<T: Borrow<Tensor>>(self_: &[T]) -> Result<(), TchError> {
+        unsafe_torch_err!(atg__foreach_log_(ptr_list(self_).as_ptr(), self_.len() as i32));
+        Ok(())
+    }
+
+    pub fn f_internal_foreach_log_out<T: Borrow<Tensor>>(
+        out: &[T],
+        self_: &[T],
+    ) -> Result<(), TchError> {
+        unsafe_torch_err!(atg__foreach_log_out(
+            ptr_list(out).as_ptr(),
+            out.len() as i32,
+            ptr_list(self_).as_ptr(),
+            self_.len() as i32
+        ));
+        Ok(())
+    }
+
+    pub fn f_internal_foreach_max<T: Borrow<Tensor>>(self_: &[T]) -> Result<Vec<Tensor>, TchError> {
+        let c_tensors =
+            unsafe_torch_err!(atg__foreach_max(ptr_list(self_).as_ptr(), self_.len() as i32));
+        let mut r__ = vec![];
+        let mut i = 0;
+        loop {
+            let c__ = unsafe { *c_tensors.add(i) };
+            if c__.is_null() {
+                break;
+            }
+            r__.push(Tensor { c_tensor: c__ });
+            i += 1;
+        }
+        unsafe { libc::free(c_tensors as *mut libc::c_void) }
+        Ok(r__)
+    }
+
+    pub fn f_internal_foreach_max_out<T: Borrow<Tensor>>(
+        out: &[T],
+        self_: &[T],
+    ) -> Result<(), TchError> {
+        unsafe_torch_err!(atg__foreach_max_out(
+            ptr_list(out).as_ptr(),
+            out.len() as i32,
+            ptr_list(self_).as_ptr(),
+            self_.len() as i32
+        ));
+        Ok(())
+    }
+
+    pub fn f_internal_foreach_maximum<T: Borrow<Tensor>, S: Into<Scalar>>(
+        self_: &[T],
+        scalar: S,
+    ) -> Result<Vec<Tensor>, TchError> {
+        let c_tensors = unsafe_torch_err!(atg__foreach_maximum(
+            ptr_list(self_).as_ptr(),
+            self_.len() as i32,
+            scalar.into().c_scalar
+        ));
+        let mut r__ = vec![];
+        let mut i = 0;
+        loop {
+            let c__ = unsafe { *c_tensors.add(i) };
+            if c__.is_null() {
+                break;
+            }
+            r__.push(Tensor { c_tensor: c__ });
+            i += 1;
+        }
+        unsafe { libc::free(c_tensors as *mut libc::c_void) }
+        Ok(r__)
+    }
+
+    pub fn f_internal_foreach_maximum_<T: Borrow<Tensor>, S: Into<Scalar>>(
+        self_: &[T],
+        scalar: S,
+    ) -> Result<(), TchError> {
+        unsafe_torch_err!(atg__foreach_maximum_(
+            ptr_list(self_).as_ptr(),
+            self_.len() as i32,
+            scalar.into().c_scalar
+        ));
+        Ok(())
+    }
+
+    pub fn f_internal_foreach_maximum_list<T: Borrow<Tensor>>(
+        self_: &[T],
+        other: &[T],
+    ) -> Result<Vec<Tensor>, TchError> {
+        let c_tensors = unsafe_torch_err!(atg__foreach_maximum_list(
+            ptr_list(self_).as_ptr(),
+            self_.len() as i32,
+            ptr_list(other).as_ptr(),
+            other.len() as i32
+        ));
+        let mut r__ = vec![];
+        let mut i = 0;
+        loop {
+            let c__ = unsafe { *c_tensors.add(i) };
+            if c__.is_null() {
+                break;
+            }
+            r__.push(Tensor { c_tensor: c__ });
+            i += 1;
+        }
+        unsafe { libc::free(c_tensors as *mut libc::c_void) }
+        Ok(r__)
+    }
+
+    pub fn f_internal_foreach_maximum_list_<T: Borrow<Tensor>>(
+        self_: &[T],
+        other: &[T],
+    ) -> Result<(), TchError> {
+        unsafe_torch_err!(atg__foreach_maximum_list_(
+            ptr_list(self_).as_ptr(),
+            self_.len() as i32,
+            ptr_list(other).as_ptr(),
+            other.len() as i32
+        ));
+        Ok(())
+    }
+
+    pub fn f_internal_foreach_maximum_list_out<T: Borrow<Tensor>>(
+        out: &[T],
+        self_: &[T],
+        other: &[T],
+    ) -> Result<(), TchError> {
+        unsafe_torch_err!(atg__foreach_maximum_list_out(
+            ptr_list(out).as_ptr(),
+            out.len() as i32,
+            ptr_list(self_).as_ptr(),
+            self_.len() as i32,
+            ptr_list(other).as_ptr(),
+            other.len() as i32
+        ));
+        Ok(())
+    }
+
+    pub fn f_internal_foreach_maximum_scalar_out<T: Borrow<Tensor>, S: Into<Scalar>>(
+        out: &[T],
+        self_: &[T],
+        scalar: S,
+    ) -> Result<(), TchError> {
+        unsafe_torch_err!(atg__foreach_maximum_scalar_out(
+            ptr_list(out).as_ptr(),
+            out.len() as i32,
+            ptr_list(self_).as_ptr(),
+            self_.len() as i32,
+            scalar.into().c_scalar
+        ));
+        Ok(())
+    }
+
+    pub fn f_internal_foreach_minimum<T: Borrow<Tensor>, S: Into<Scalar>>(
+        self_: &[T],
+        scalar: S,
+    ) -> Result<Vec<Tensor>, TchError> {
+        let c_tensors = unsafe_torch_err!(atg__foreach_minimum(
+            ptr_list(self_).as_ptr(),
+            self_.len() as i32,
+            scalar.into().c_scalar
+        ));
+        let mut r__ = vec![];
+        let mut i = 0;
+        loop {
+            let c__ = unsafe { *c_tensors.add(i) };
+            if c__.is_null() {
+                break;
+            }
+            r__.push(Tensor { c_tensor: c__ });
+            i += 1;
+        }
+        unsafe { libc::free(c_tensors as *mut libc::c_void) }
+        Ok(r__)
+    }
+
+    pub fn f_internal_foreach_minimum_<T: Borrow<Tensor>, S: Into<Scalar>>(
+        self_: &[T],
+        scalar: S,
+    ) -> Result<(), TchError> {
+        unsafe_torch_err!(atg__foreach_minimum_(
+            ptr_list(self_).as_ptr(),
+            self_.len() as i32,
+            scalar.into().c_scalar
+        ));
+        Ok(())
+    }
+
+    pub fn f_internal_foreach_minimum_list<T: Borrow<Tensor>>(
+        self_: &[T],
+        other: &[T],
+    ) -> Result<Vec<Tensor>, TchError> {
+        let c_tensors = unsafe_torch_err!(atg__foreach_minimum_list(
+            ptr_list(self_).as_ptr(),
+            self_.len() as i32,
+            ptr_list(other).as_ptr(),
+            other.len() as i32
+        ));
+        let mut r__ = vec![];
+        let mut i = 0;
+        loop {
+            let c__ = unsafe { *c_tensors.add(i) };
+            if c__.is_null() {
+                break;
+            }
+            r__.push(Tensor { c_tensor: c__ });
+            i += 1;
+        }
+        unsafe { libc::free(c_tensors as *mut libc::c_void) }
+        Ok(r__)
+    }
+
+    pub fn f_internal_foreach_minimum_list_<T: Borrow<Tensor>>(
+        self_: &[T],
+        other: &[T],
+    ) -> Result<(), TchError> {
+        unsafe_torch_err!(atg__foreach_minimum_list_(
+            ptr_list(self_).as_ptr(),
+            self_.len() as i32,
+            ptr_list(other).as_ptr(),
+            other.len() as i32
+        ));
+        Ok(())
+    }
+
+    pub fn f_internal_foreach_minimum_list_out<T: Borrow<Tensor>>(
+        out: &[T],
+        self_: &[T],
+        other: &[T],
+    ) -> Result<(), TchError> {
+        unsafe_torch_err!(atg__foreach_minimum_list_out(
+            ptr_list(out).as_ptr(),
+            out.len() as i32,
+            ptr_list(self_).as_ptr(),
+            self_.len() as i32,
+            ptr_list(other).as_ptr(),
+            other.len() as i32
+        ));
+        Ok(())
+    }
+
+    pub fn f_internal_foreach_minimum_scalar_out<T: Borrow<Tensor>, S: Into<Scalar>>(
+        out: &[T],
+        self_: &[T],
+        scalar: S,
+    ) -> Result<(), TchError> {
+        unsafe_torch_err!(atg__foreach_minimum_scalar_out(
+            ptr_list(out).as_ptr(),
+            out.len() as i32,
+            ptr_list(self_).as_ptr(),
+            self_.len() as i32,
+            scalar.into().c_scalar
+        ));
+        Ok(())
+    }
+
+    pub fn f_internal_foreach_mul<T: Borrow<Tensor>, S: Into<Scalar>>(
+        self_: &[T],
+        scalar: S,
+    ) -> Result<Vec<Tensor>, TchError> {
+        let c_tensors = unsafe_torch_err!(atg__foreach_mul(
+            ptr_list(self_).as_ptr(),
+            self_.len() as i32,
+            scalar.into().c_scalar
+        ));
+        let mut r__ = vec![];
+        let mut i = 0;
+        loop {
+            let c__ = unsafe { *c_tensors.add(i) };
+            if c__.is_null() {
+                break;
+            }
+            r__.push(Tensor { c_tensor: c__ });
+            i += 1;
+        }
+        unsafe { libc::free(c_tensors as *mut libc::c_void) }
+        Ok(r__)
+    }
+
+    pub fn f_internal_foreach_mul_<T: Borrow<Tensor>, S: Into<Scalar>>(
+        self_: &[T],
+        scalar: S,
+    ) -> Result<(), TchError> {
+        unsafe_torch_err!(atg__foreach_mul_(
+            ptr_list(self_).as_ptr(),
+            self_.len() as i32,
+            scalar.into().c_scalar
+        ));
+        Ok(())
+    }
+
+    pub fn f_internal_foreach_mul_list<T: Borrow<Tensor>>(
+        self_: &[T],
+        other: &[T],
+    ) -> Result<Vec<Tensor>, TchError> {
+        let c_tensors = unsafe_torch_err!(atg__foreach_mul_list(
+            ptr_list(self_).as_ptr(),
+            self_.len() as i32,
+            ptr_list(other).as_ptr(),
+            other.len() as i32
+        ));
+        let mut r__ = vec![];
+        let mut i = 0;
+        loop {
+            let c__ = unsafe { *c_tensors.add(i) };
+            if c__.is_null() {
+                break;
+            }
+            r__.push(Tensor { c_tensor: c__ });
+            i += 1;
+        }
+        unsafe { libc::free(c_tensors as *mut libc::c_void) }
+        Ok(r__)
+    }
+
+    pub fn f_internal_foreach_mul_list_<T: Borrow<Tensor>>(
+        self_: &[T],
+        other: &[T],
+    ) -> Result<(), TchError> {
+        unsafe_torch_err!(atg__foreach_mul_list_(
+            ptr_list(self_).as_ptr(),
+            self_.len() as i32,
+            ptr_list(other).as_ptr(),
+            other.len() as i32
+        ));
+        Ok(())
+    }
+
+    pub fn f_internal_foreach_mul_list_out<T: Borrow<Tensor>>(
+        out: &[T],
+        self_: &[T],
+        other: &[T],
+    ) -> Result<(), TchError> {
+        unsafe_torch_err!(atg__foreach_mul_list_out(
+            ptr_list(out).as_ptr(),
+            out.len() as i32,
+            ptr_list(self_).as_ptr(),
+            self_.len() as i32,
+            ptr_list(other).as_ptr(),
+            other.len() as i32
+        ));
+        Ok(())
+    }
+
+    pub fn f_internal_foreach_mul_scalar_out<T: Borrow<Tensor>, S: Into<Scalar>>(
+        out: &[T],
+        self_: &[T],
+        scalar: S,
+    ) -> Result<(), TchError> {
+        unsafe_torch_err!(atg__foreach_mul_scalar_out(
+            ptr_list(out).as_ptr(),
+            out.len() as i32,
+            ptr_list(self_).as_ptr(),
+            self_.len() as i32,
+            scalar.into().c_scalar
+        ));
+        Ok(())
+    }
+
+    pub fn f_internal_foreach_mul_tensor<T: Borrow<Tensor>>(
+        self_: &[T],
+        other: &Tensor,
+    ) -> Result<Vec<Tensor>, TchError> {
+        let c_tensors = unsafe_torch_err!(atg__foreach_mul_tensor(
+            ptr_list(self_).as_ptr(),
+            self_.len() as i32,
+            other.c_tensor
+        ));
+        let mut r__ = vec![];
+        let mut i = 0;
+        loop {
+            let c__ = unsafe { *c_tensors.add(i) };
+            if c__.is_null() {
+                break;
+            }
+            r__.push(Tensor { c_tensor: c__ });
+            i += 1;
+        }
+        unsafe { libc::free(c_tensors as *mut libc::c_void) }
+        Ok(r__)
+    }
+
+    pub fn f_internal_foreach_mul_tensor_<T: Borrow<Tensor>>(
+        self_: &[T],
+        other: &Tensor,
+    ) -> Result<(), TchError> {
+        unsafe_torch_err!(atg__foreach_mul_tensor_(
+            ptr_list(self_).as_ptr(),
+            self_.len() as i32,
+            other.c_tensor
+        ));
+        Ok(())
+    }
+
+    pub fn f_internal_foreach_mul_tensor_out<T: Borrow<Tensor>>(
+        out: &[T],
+        self_: &[T],
+        other: &Tensor,
+    ) -> Result<(), TchError> {
+        unsafe_torch_err!(atg__foreach_mul_tensor_out(
+            ptr_list(out).as_ptr(),
+            out.len() as i32,
+            ptr_list(self_).as_ptr(),
+            self_.len() as i32,
+            other.c_tensor
+        ));
+        Ok(())
+    }
+
+    pub fn f_internal_foreach_neg<T: Borrow<Tensor>>(self_: &[T]) -> Result<Vec<Tensor>, TchError> {
+        let c_tensors =
+            unsafe_torch_err!(atg__foreach_neg(ptr_list(self_).as_ptr(), self_.len() as i32));
+        let mut r__ = vec![];
+        let mut i = 0;
+        loop {
+            let c__ = unsafe { *c_tensors.add(i) };
+            if c__.is_null() {
+                break;
+            }
+            r__.push(Tensor { c_tensor: c__ });
+            i += 1;
+        }
+        unsafe { libc::free(c_tensors as *mut libc::c_void) }
+        Ok(r__)
+    }
+
+    pub fn f_internal_foreach_neg_<T: Borrow<Tensor>>(self_: &[T]) -> Result<(), TchError> {
+        unsafe_torch_err!(atg__foreach_neg_(ptr_list(self_).as_ptr(), self_.len() as i32));
+        Ok(())
+    }
+
+    pub fn f_internal_foreach_neg_out<T: Borrow<Tensor>>(
+        out: &[T],
+        self_: &[T],
+    ) -> Result<(), TchError> {
+        unsafe_torch_err!(atg__foreach_neg_out(
+            ptr_list(out).as_ptr(),
+            out.len() as i32,
+            ptr_list(self_).as_ptr(),
+            self_.len() as i32
+        ));
+        Ok(())
+    }
+
+    pub fn f_internal_foreach_norm<T: Borrow<Tensor>, S: Into<Scalar>>(
+        self_: &[T],
+        ord: S,
+        dtype: impl Into<Option<Kind>>,
+    ) -> Result<Vec<Tensor>, TchError> {
+        let c_tensors = unsafe_torch_err!(atg__foreach_norm(
+            ptr_list(self_).as_ptr(),
+            self_.len() as i32,
+            ord.into().c_scalar,
+            dtype.into().map_or(-1, |s| s.c_int())
+        ));
+        let mut r__ = vec![];
+        let mut i = 0;
+        loop {
+            let c__ = unsafe { *c_tensors.add(i) };
+            if c__.is_null() {
+                break;
+            }
+            r__.push(Tensor { c_tensor: c__ });
+            i += 1;
+        }
+        unsafe { libc::free(c_tensors as *mut libc::c_void) }
+        Ok(r__)
+    }
+
+    pub fn f_internal_foreach_norm_scalar_out<T: Borrow<Tensor>, S: Into<Scalar>>(
+        out: &[T],
+        self_: &[T],
+        ord: S,
+        dtype: impl Into<Option<Kind>>,
+    ) -> Result<(), TchError> {
+        unsafe_torch_err!(atg__foreach_norm_scalar_out(
+            ptr_list(out).as_ptr(),
+            out.len() as i32,
+            ptr_list(self_).as_ptr(),
+            self_.len() as i32,
+            ord.into().c_scalar,
+            dtype.into().map_or(-1, |s| s.c_int())
+        ));
+        Ok(())
+    }
+
+    pub fn f_internal_foreach_pow<T: Borrow<Tensor>>(
+        self_: &[T],
+        exponent: &[T],
+    ) -> Result<Vec<Tensor>, TchError> {
+        let c_tensors = unsafe_torch_err!(atg__foreach_pow(
+            ptr_list(self_).as_ptr(),
+            self_.len() as i32,
+            ptr_list(exponent).as_ptr(),
+            exponent.len() as i32
+        ));
+        let mut r__ = vec![];
+        let mut i = 0;
+        loop {
+            let c__ = unsafe { *c_tensors.add(i) };
+            if c__.is_null() {
+                break;
+            }
+            r__.push(Tensor { c_tensor: c__ });
+            i += 1;
+        }
+        unsafe { libc::free(c_tensors as *mut libc::c_void) }
+        Ok(r__)
+    }
+
+    pub fn f_internal_foreach_pow_<T: Borrow<Tensor>>(
+        self_: &[T],
+        exponent: &[T],
+    ) -> Result<(), TchError> {
+        unsafe_torch_err!(atg__foreach_pow_(
+            ptr_list(self_).as_ptr(),
+            self_.len() as i32,
+            ptr_list(exponent).as_ptr(),
+            exponent.len() as i32
+        ));
+        Ok(())
+    }
+
+    pub fn f_internal_foreach_pow_list_out<T: Borrow<Tensor>>(
+        out: &[T],
+        self_: &[T],
+        exponent: &[T],
+    ) -> Result<(), TchError> {
+        unsafe_torch_err!(atg__foreach_pow_list_out(
+            ptr_list(out).as_ptr(),
+            out.len() as i32,
+            ptr_list(self_).as_ptr(),
+            self_.len() as i32,
+            ptr_list(exponent).as_ptr(),
+            exponent.len() as i32
+        ));
+        Ok(())
+    }
+
+    pub fn f_internal_foreach_pow_scalar<T: Borrow<Tensor>, S: Into<Scalar>>(
+        self_: &[T],
+        exponent: S,
+    ) -> Result<Vec<Tensor>, TchError> {
+        let c_tensors = unsafe_torch_err!(atg__foreach_pow_scalar(
+            ptr_list(self_).as_ptr(),
+            self_.len() as i32,
+            exponent.into().c_scalar
+        ));
+        let mut r__ = vec![];
+        let mut i = 0;
+        loop {
+            let c__ = unsafe { *c_tensors.add(i) };
+            if c__.is_null() {
+                break;
+            }
+            r__.push(Tensor { c_tensor: c__ });
+            i += 1;
+        }
+        unsafe { libc::free(c_tensors as *mut libc::c_void) }
+        Ok(r__)
+    }
+
+    pub fn f_internal_foreach_pow_scalar_<T: Borrow<Tensor>, S: Into<Scalar>>(
+        self_: &[T],
+        exponent: S,
+    ) -> Result<(), TchError> {
+        unsafe_torch_err!(atg__foreach_pow_scalar_(
+            ptr_list(self_).as_ptr(),
+            self_.len() as i32,
+            exponent.into().c_scalar
+        ));
+        Ok(())
+    }
+
+    pub fn f_internal_foreach_pow_scalar_out<T: Borrow<Tensor>, S: Into<Scalar>>(
+        out: &[T],
+        self_: &[T],
+        exponent: S,
+    ) -> Result<(), TchError> {
+        unsafe_torch_err!(atg__foreach_pow_scalar_out(
+            ptr_list(out).as_ptr(),
+            out.len() as i32,
+            ptr_list(self_).as_ptr(),
+            self_.len() as i32,
+            exponent.into().c_scalar
+        ));
+        Ok(())
+    }
+
+    pub fn f_internal_foreach_pow_scalarandtensor<T: Borrow<Tensor>, S: Into<Scalar>>(
+        self_scalar: S,
+        exponent: &[T],
+    ) -> Result<Vec<Tensor>, TchError> {
+        let c_tensors = unsafe_torch_err!(atg__foreach_pow_scalarandtensor(
+            self_scalar.into().c_scalar,
+            ptr_list(exponent).as_ptr(),
+            exponent.len() as i32
+        ));
+        let mut r__ = vec![];
+        let mut i = 0;
+        loop {
+            let c__ = unsafe { *c_tensors.add(i) };
+            if c__.is_null() {
+                break;
+            }
+            r__.push(Tensor { c_tensor: c__ });
+            i += 1;
+        }
+        unsafe { libc::free(c_tensors as *mut libc::c_void) }
+        Ok(r__)
+    }
+
+    pub fn f_internal_foreach_reciprocal<T: Borrow<Tensor>>(
+        self_: &[T],
+    ) -> Result<Vec<Tensor>, TchError> {
+        let c_tensors = unsafe_torch_err!(atg__foreach_reciprocal(
+            ptr_list(self_).as_ptr(),
+            self_.len() as i32
+        ));
+        let mut r__ = vec![];
+        let mut i = 0;
+        loop {
+            let c__ = unsafe { *c_tensors.add(i) };
+            if c__.is_null() {
+                break;
+            }
+            r__.push(Tensor { c_tensor: c__ });
+            i += 1;
+        }
+        unsafe { libc::free(c_tensors as *mut libc::c_void) }
+        Ok(r__)
+    }
+
+    pub fn f_internal_foreach_reciprocal_<T: Borrow<Tensor>>(self_: &[T]) -> Result<(), TchError> {
+        unsafe_torch_err!(atg__foreach_reciprocal_(ptr_list(self_).as_ptr(), self_.len() as i32));
+        Ok(())
+    }
+
+    pub fn f_internal_foreach_reciprocal_out<T: Borrow<Tensor>>(
+        out: &[T],
+        self_: &[T],
+    ) -> Result<(), TchError> {
+        unsafe_torch_err!(atg__foreach_reciprocal_out(
+            ptr_list(out).as_ptr(),
+            out.len() as i32,
+            ptr_list(self_).as_ptr(),
+            self_.len() as i32
+        ));
+        Ok(())
+    }
+
+    pub fn f_internal_foreach_round<T: Borrow<Tensor>>(
+        self_: &[T],
+    ) -> Result<Vec<Tensor>, TchError> {
+        let c_tensors =
+            unsafe_torch_err!(atg__foreach_round(ptr_list(self_).as_ptr(), self_.len() as i32));
+        let mut r__ = vec![];
+        let mut i = 0;
+        loop {
+            let c__ = unsafe { *c_tensors.add(i) };
+            if c__.is_null() {
+                break;
+            }
+            r__.push(Tensor { c_tensor: c__ });
+            i += 1;
+        }
+        unsafe { libc::free(c_tensors as *mut libc::c_void) }
+        Ok(r__)
+    }
+
+    pub fn f_internal_foreach_round_<T: Borrow<Tensor>>(self_: &[T]) -> Result<(), TchError> {
+        unsafe_torch_err!(atg__foreach_round_(ptr_list(self_).as_ptr(), self_.len() as i32));
+        Ok(())
+    }
+
+    pub fn f_internal_foreach_round_out<T: Borrow<Tensor>>(
+        out: &[T],
+        self_: &[T],
+    ) -> Result<(), TchError> {
+        unsafe_torch_err!(atg__foreach_round_out(
+            ptr_list(out).as_ptr(),
+            out.len() as i32,
+            ptr_list(self_).as_ptr(),
+            self_.len() as i32
+        ));
+        Ok(())
+    }
+
+    pub fn f_internal_foreach_sigmoid<T: Borrow<Tensor>>(
+        self_: &[T],
+    ) -> Result<Vec<Tensor>, TchError> {
+        let c_tensors =
+            unsafe_torch_err!(atg__foreach_sigmoid(ptr_list(self_).as_ptr(), self_.len() as i32));
+        let mut r__ = vec![];
+        let mut i = 0;
+        loop {
+            let c__ = unsafe { *c_tensors.add(i) };
+            if c__.is_null() {
+                break;
+            }
+            r__.push(Tensor { c_tensor: c__ });
+            i += 1;
+        }
+        unsafe { libc::free(c_tensors as *mut libc::c_void) }
+        Ok(r__)
+    }
+
+    pub fn f_internal_foreach_sigmoid_<T: Borrow<Tensor>>(self_: &[T]) -> Result<(), TchError> {
+        unsafe_torch_err!(atg__foreach_sigmoid_(ptr_list(self_).as_ptr(), self_.len() as i32));
+        Ok(())
+    }
+
+    pub fn f_internal_foreach_sigmoid_out<T: Borrow<Tensor>>(
+        out: &[T],
+        self_: &[T],
+    ) -> Result<(), TchError> {
+        unsafe_torch_err!(atg__foreach_sigmoid_out(
+            ptr_list(out).as_ptr(),
+            out.len() as i32,
+            ptr_list(self_).as_ptr(),
+            self_.len() as i32
+        ));
+        Ok(())
+    }
+
+    pub fn f_internal_foreach_sign<T: Borrow<Tensor>>(
+        self_: &[T],
+    ) -> Result<Vec<Tensor>, TchError> {
+        let c_tensors =
+            unsafe_torch_err!(atg__foreach_sign(ptr_list(self_).as_ptr(), self_.len() as i32));
+        let mut r__ = vec![];
+        let mut i = 0;
+        loop {
+            let c__ = unsafe { *c_tensors.add(i) };
+            if c__.is_null() {
+                break;
+            }
+            r__.push(Tensor { c_tensor: c__ });
+            i += 1;
+        }
+        unsafe { libc::free(c_tensors as *mut libc::c_void) }
+        Ok(r__)
+    }
+
+    pub fn f_internal_foreach_sign_<T: Borrow<Tensor>>(self_: &[T]) -> Result<(), TchError> {
+        unsafe_torch_err!(atg__foreach_sign_(ptr_list(self_).as_ptr(), self_.len() as i32));
+        Ok(())
+    }
+
+    pub fn f_internal_foreach_sign_out<T: Borrow<Tensor>>(
+        out: &[T],
+        self_: &[T],
+    ) -> Result<(), TchError> {
+        unsafe_torch_err!(atg__foreach_sign_out(
+            ptr_list(out).as_ptr(),
+            out.len() as i32,
+            ptr_list(self_).as_ptr(),
+            self_.len() as i32
+        ));
+        Ok(())
+    }
+
+    pub fn f_internal_foreach_sin<T: Borrow<Tensor>>(self_: &[T]) -> Result<Vec<Tensor>, TchError> {
+        let c_tensors =
+            unsafe_torch_err!(atg__foreach_sin(ptr_list(self_).as_ptr(), self_.len() as i32));
+        let mut r__ = vec![];
+        let mut i = 0;
+        loop {
+            let c__ = unsafe { *c_tensors.add(i) };
+            if c__.is_null() {
+                break;
+            }
+            r__.push(Tensor { c_tensor: c__ });
+            i += 1;
+        }
+        unsafe { libc::free(c_tensors as *mut libc::c_void) }
+        Ok(r__)
+    }
+
+    pub fn f_internal_foreach_sin_<T: Borrow<Tensor>>(self_: &[T]) -> Result<(), TchError> {
+        unsafe_torch_err!(atg__foreach_sin_(ptr_list(self_).as_ptr(), self_.len() as i32));
+        Ok(())
+    }
+
+    pub fn f_internal_foreach_sin_out<T: Borrow<Tensor>>(
+        out: &[T],
+        self_: &[T],
+    ) -> Result<(), TchError> {
+        unsafe_torch_err!(atg__foreach_sin_out(
+            ptr_list(out).as_ptr(),
+            out.len() as i32,
+            ptr_list(self_).as_ptr(),
+            self_.len() as i32
+        ));
+        Ok(())
+    }
+
+    pub fn f_internal_foreach_sinh<T: Borrow<Tensor>>(
+        self_: &[T],
+    ) -> Result<Vec<Tensor>, TchError> {
+        let c_tensors =
+            unsafe_torch_err!(atg__foreach_sinh(ptr_list(self_).as_ptr(), self_.len() as i32));
+        let mut r__ = vec![];
+        let mut i = 0;
+        loop {
+            let c__ = unsafe { *c_tensors.add(i) };
+            if c__.is_null() {
+                break;
+            }
+            r__.push(Tensor { c_tensor: c__ });
+            i += 1;
+        }
+        unsafe { libc::free(c_tensors as *mut libc::c_void) }
+        Ok(r__)
+    }
+
+    pub fn f_internal_foreach_sinh_<T: Borrow<Tensor>>(self_: &[T]) -> Result<(), TchError> {
+        unsafe_torch_err!(atg__foreach_sinh_(ptr_list(self_).as_ptr(), self_.len() as i32));
+        Ok(())
+    }
+
+    pub fn f_internal_foreach_sinh_out<T: Borrow<Tensor>>(
+        out: &[T],
+        self_: &[T],
+    ) -> Result<(), TchError> {
+        unsafe_torch_err!(atg__foreach_sinh_out(
+            ptr_list(out).as_ptr(),
+            out.len() as i32,
+            ptr_list(self_).as_ptr(),
+            self_.len() as i32
+        ));
+        Ok(())
+    }
+
+    pub fn f_internal_foreach_sqrt<T: Borrow<Tensor>>(
+        self_: &[T],
+    ) -> Result<Vec<Tensor>, TchError> {
+        let c_tensors =
+            unsafe_torch_err!(atg__foreach_sqrt(ptr_list(self_).as_ptr(), self_.len() as i32));
+        let mut r__ = vec![];
+        let mut i = 0;
+        loop {
+            let c__ = unsafe { *c_tensors.add(i) };
+            if c__.is_null() {
+                break;
+            }
+            r__.push(Tensor { c_tensor: c__ });
+            i += 1;
+        }
+        unsafe { libc::free(c_tensors as *mut libc::c_void) }
+        Ok(r__)
+    }
+
+    pub fn f_internal_foreach_sqrt_<T: Borrow<Tensor>>(self_: &[T]) -> Result<(), TchError> {
+        unsafe_torch_err!(atg__foreach_sqrt_(ptr_list(self_).as_ptr(), self_.len() as i32));
+        Ok(())
+    }
+
+    pub fn f_internal_foreach_sqrt_out<T: Borrow<Tensor>>(
+        out: &[T],
+        self_: &[T],
+    ) -> Result<(), TchError> {
+        unsafe_torch_err!(atg__foreach_sqrt_out(
+            ptr_list(out).as_ptr(),
+            out.len() as i32,
+            ptr_list(self_).as_ptr(),
+            self_.len() as i32
+        ));
+        Ok(())
+    }
+
+    pub fn f_internal_foreach_sub<T: Borrow<Tensor>, S: Into<Scalar>>(
+        self_: &[T],
+        scalar: S,
+    ) -> Result<Vec<Tensor>, TchError> {
+        let c_tensors = unsafe_torch_err!(atg__foreach_sub(
+            ptr_list(self_).as_ptr(),
+            self_.len() as i32,
+            scalar.into().c_scalar
+        ));
+        let mut r__ = vec![];
+        let mut i = 0;
+        loop {
+            let c__ = unsafe { *c_tensors.add(i) };
+            if c__.is_null() {
+                break;
+            }
+            r__.push(Tensor { c_tensor: c__ });
+            i += 1;
+        }
+        unsafe { libc::free(c_tensors as *mut libc::c_void) }
+        Ok(r__)
+    }
+
+    pub fn f_internal_foreach_sub_<T: Borrow<Tensor>, S: Into<Scalar>>(
+        self_: &[T],
+        scalar: S,
+    ) -> Result<(), TchError> {
+        unsafe_torch_err!(atg__foreach_sub_(
+            ptr_list(self_).as_ptr(),
+            self_.len() as i32,
+            scalar.into().c_scalar
+        ));
+        Ok(())
+    }
+
+    pub fn f_internal_foreach_sub_list<T: Borrow<Tensor>, S: Into<Scalar>>(
+        self_: &[T],
+        other: &[T],
+        alpha: S,
+    ) -> Result<Vec<Tensor>, TchError> {
+        let c_tensors = unsafe_torch_err!(atg__foreach_sub_list(
+            ptr_list(self_).as_ptr(),
+            self_.len() as i32,
+            ptr_list(other).as_ptr(),
+            other.len() as i32,
+            alpha.into().c_scalar
+        ));
+        let mut r__ = vec![];
+        let mut i = 0;
+        loop {
+            let c__ = unsafe { *c_tensors.add(i) };
+            if c__.is_null() {
+                break;
+            }
+            r__.push(Tensor { c_tensor: c__ });
+            i += 1;
+        }
+        unsafe { libc::free(c_tensors as *mut libc::c_void) }
+        Ok(r__)
+    }
+
+    pub fn f_internal_foreach_sub_list_<T: Borrow<Tensor>, S: Into<Scalar>>(
+        self_: &[T],
+        other: &[T],
+        alpha: S,
+    ) -> Result<(), TchError> {
+        unsafe_torch_err!(atg__foreach_sub_list_(
+            ptr_list(self_).as_ptr(),
+            self_.len() as i32,
+            ptr_list(other).as_ptr(),
+            other.len() as i32,
+            alpha.into().c_scalar
+        ));
+        Ok(())
+    }
+
+    pub fn f_internal_foreach_sub_list_out<T: Borrow<Tensor>, S: Into<Scalar>>(
+        out: &[T],
+        self_: &[T],
+        other: &[T],
+        alpha: S,
+    ) -> Result<(), TchError> {
+        unsafe_torch_err!(atg__foreach_sub_list_out(
+            ptr_list(out).as_ptr(),
+            out.len() as i32,
+            ptr_list(self_).as_ptr(),
+            self_.len() as i32,
+            ptr_list(other).as_ptr(),
+            other.len() as i32,
+            alpha.into().c_scalar
+        ));
+        Ok(())
+    }
+
+    pub fn f_internal_foreach_sub_scalar_out<T: Borrow<Tensor>, S: Into<Scalar>>(
+        out: &[T],
+        self_: &[T],
+        scalar: S,
+    ) -> Result<(), TchError> {
+        unsafe_torch_err!(atg__foreach_sub_scalar_out(
+            ptr_list(out).as_ptr(),
+            out.len() as i32,
+            ptr_list(self_).as_ptr(),
+            self_.len() as i32,
+            scalar.into().c_scalar
+        ));
+        Ok(())
+    }
+
+    pub fn f_internal_foreach_tan<T: Borrow<Tensor>>(self_: &[T]) -> Result<Vec<Tensor>, TchError> {
+        let c_tensors =
+            unsafe_torch_err!(atg__foreach_tan(ptr_list(self_).as_ptr(), self_.len() as i32));
+        let mut r__ = vec![];
+        let mut i = 0;
+        loop {
+            let c__ = unsafe { *c_tensors.add(i) };
+            if c__.is_null() {
+                break;
+            }
+            r__.push(Tensor { c_tensor: c__ });
+            i += 1;
+        }
+        unsafe { libc::free(c_tensors as *mut libc::c_void) }
+        Ok(r__)
+    }
+
+    pub fn f_internal_foreach_tan_<T: Borrow<Tensor>>(self_: &[T]) -> Result<(), TchError> {
+        unsafe_torch_err!(atg__foreach_tan_(ptr_list(self_).as_ptr(), self_.len() as i32));
+        Ok(())
+    }
+
+    pub fn f_internal_foreach_tan_out<T: Borrow<Tensor>>(
+        out: &[T],
+        self_: &[T],
+    ) -> Result<(), TchError> {
+        unsafe_torch_err!(atg__foreach_tan_out(
+            ptr_list(out).as_ptr(),
+            out.len() as i32,
+            ptr_list(self_).as_ptr(),
+            self_.len() as i32
+        ));
+        Ok(())
+    }
+
+    pub fn f_internal_foreach_tanh<T: Borrow<Tensor>>(
+        self_: &[T],
+    ) -> Result<Vec<Tensor>, TchError> {
+        let c_tensors =
+            unsafe_torch_err!(atg__foreach_tanh(ptr_list(self_).as_ptr(), self_.len() as i32));
+        let mut r__ = vec![];
+        let mut i = 0;
+        loop {
+            let c__ = unsafe { *c_tensors.add(i) };
+            if c__.is_null() {
+                break;
+            }
+            r__.push(Tensor { c_tensor: c__ });
+            i += 1;
+        }
+        unsafe { libc::free(c_tensors as *mut libc::c_void) }
+        Ok(r__)
+    }
+
+    pub fn f_internal_foreach_tanh_<T: Borrow<Tensor>>(self_: &[T]) -> Result<(), TchError> {
+        unsafe_torch_err!(atg__foreach_tanh_(ptr_list(self_).as_ptr(), self_.len() as i32));
+        Ok(())
+    }
+
+    pub fn f_internal_foreach_tanh_out<T: Borrow<Tensor>>(
+        out: &[T],
+        self_: &[T],
+    ) -> Result<(), TchError> {
+        unsafe_torch_err!(atg__foreach_tanh_out(
+            ptr_list(out).as_ptr(),
+            out.len() as i32,
+            ptr_list(self_).as_ptr(),
+            self_.len() as i32
+        ));
+        Ok(())
+    }
+
+    pub fn f_internal_foreach_trunc<T: Borrow<Tensor>>(
+        self_: &[T],
+    ) -> Result<Vec<Tensor>, TchError> {
+        let c_tensors =
+            unsafe_torch_err!(atg__foreach_trunc(ptr_list(self_).as_ptr(), self_.len() as i32));
+        let mut r__ = vec![];
+        let mut i = 0;
+        loop {
+            let c__ = unsafe { *c_tensors.add(i) };
+            if c__.is_null() {
+                break;
+            }
+            r__.push(Tensor { c_tensor: c__ });
+            i += 1;
+        }
+        unsafe { libc::free(c_tensors as *mut libc::c_void) }
+        Ok(r__)
+    }
+
+    pub fn f_internal_foreach_trunc_<T: Borrow<Tensor>>(self_: &[T]) -> Result<(), TchError> {
+        unsafe_torch_err!(atg__foreach_trunc_(ptr_list(self_).as_ptr(), self_.len() as i32));
+        Ok(())
+    }
+
+    pub fn f_internal_foreach_trunc_out<T: Borrow<Tensor>>(
+        out: &[T],
+        self_: &[T],
+    ) -> Result<(), TchError> {
+        unsafe_torch_err!(atg__foreach_trunc_out(
+            ptr_list(out).as_ptr(),
+            out.len() as i32,
+            ptr_list(self_).as_ptr(),
+            self_.len() as i32
+        ));
+        Ok(())
+    }
+
+    pub fn f_internal_foreach_zero<T: Borrow<Tensor>>(
+        self_: &[T],
+    ) -> Result<Vec<Tensor>, TchError> {
+        let c_tensors =
+            unsafe_torch_err!(atg__foreach_zero(ptr_list(self_).as_ptr(), self_.len() as i32));
+        let mut r__ = vec![];
+        let mut i = 0;
+        loop {
+            let c__ = unsafe { *c_tensors.add(i) };
+            if c__.is_null() {
+                break;
+            }
+            r__.push(Tensor { c_tensor: c__ });
+            i += 1;
+        }
+        unsafe { libc::free(c_tensors as *mut libc::c_void) }
+        Ok(r__)
+    }
+
+    pub fn f_internal_foreach_zero_<T: Borrow<Tensor>>(self_: &[T]) -> Result<(), TchError> {
+        unsafe_torch_err!(atg__foreach_zero_(ptr_list(self_).as_ptr(), self_.len() as i32));
+        Ok(())
+    }
+
+    pub fn f_internal_foreach_zero_out<T: Borrow<Tensor>>(
+        out: &[T],
+        self_: &[T],
+    ) -> Result<(), TchError> {
+        unsafe_torch_err!(atg__foreach_zero_out(
+            ptr_list(out).as_ptr(),
+            out.len() as i32,
+            ptr_list(self_).as_ptr(),
+            self_.len() as i32
+        ));
+        Ok(())
+    }
+
     pub fn f_internal_functional_assert_async(
         &self,
         assert_msg: &str,
