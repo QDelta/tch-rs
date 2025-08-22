@@ -16,7 +16,14 @@ impl BasicKind {
         match t.f_kind() {
             Err(_) => BasicKind::Complex,
             Ok(kind) => match kind {
-                Kind::Int | Kind::Int8 | Kind::Uint8 | Kind::Int16 | Kind::Int64 => BasicKind::Int,
+                Kind::Int
+                | Kind::UInt32
+                | Kind::Int8
+                | Kind::Uint8
+                | Kind::Int16
+                | Kind::UInt16
+                | Kind::Int64
+                | Kind::UInt64 => BasicKind::Int,
                 Kind::BFloat16
                 | Kind::QInt8
                 | Kind::QUInt8
@@ -27,7 +34,8 @@ impl BasicKind {
                 | Kind::Float8e5m2
                 | Kind::Float8e4m3fn
                 | Kind::Float8e5m2fnuz
-                | Kind::Float8e4m3fnuz => BasicKind::Float,
+                | Kind::Float8e4m3fnuz
+                | Kind::Float8e8m0fnu => BasicKind::Float,
                 Kind::Bool => BasicKind::Bool,
                 Kind::ComplexHalf | Kind::ComplexFloat | Kind::ComplexDouble => BasicKind::Complex,
             },
@@ -49,9 +57,14 @@ impl std::fmt::Debug for Tensor {
                 Err(err) => write!(f, "Tensor[{:?}, {:?}]", self.size(), err),
                 Ok(kind) => {
                     let (is_int, is_float) = match kind {
-                        Kind::Int | Kind::Int8 | Kind::Uint8 | Kind::Int16 | Kind::Int64 => {
-                            (true, false)
-                        }
+                        Kind::Int
+                        | Kind::Int8
+                        | Kind::Uint8
+                        | Kind::Int16
+                        | Kind::Int64
+                        | Kind::UInt16
+                        | Kind::UInt32
+                        | Kind::UInt64 => (true, false),
                         Kind::BFloat16
                         | Kind::QInt8
                         | Kind::QUInt8
@@ -62,7 +75,8 @@ impl std::fmt::Debug for Tensor {
                         | Kind::Float8e5m2
                         | Kind::Float8e4m3fn
                         | Kind::Float8e5m2fnuz
-                        | Kind::Float8e4m3fnuz => (false, true),
+                        | Kind::Float8e4m3fnuz
+                        | Kind::Float8e8m0fnu => (false, true),
                         Kind::Bool
                         | Kind::ComplexHalf
                         | Kind::ComplexFloat

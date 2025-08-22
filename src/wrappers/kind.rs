@@ -27,6 +27,10 @@ pub enum Kind {
     Float8e4m3fn,
     Float8e5m2fnuz,
     Float8e4m3fnuz,
+    UInt16,
+    UInt32,
+    UInt64,
+    Float8e8m0fnu,
 }
 
 impl Kind {
@@ -54,6 +58,10 @@ impl Kind {
             Kind::Float8e4m3fn => 24,
             Kind::Float8e5m2fnuz => 25,
             Kind::Float8e4m3fnuz => 26,
+            Kind::UInt16 => 27,
+            Kind::UInt32 => 28,
+            Kind::UInt64 => 29,
+            Kind::Float8e8m0fnu => 44,
         }
     }
 
@@ -79,6 +87,10 @@ impl Kind {
             24 => Ok(Kind::Float8e4m3fn),
             25 => Ok(Kind::Float8e5m2fnuz),
             26 => Ok(Kind::Float8e4m3fnuz),
+            27 => Ok(Kind::UInt16),
+            28 => Ok(Kind::UInt32),
+            29 => Ok(Kind::UInt64),
+            44 => Ok(Kind::Float8e8m0fnu),
             _ => Err(crate::TchError::UnknownKind(v)),
         }
     }
@@ -105,6 +117,10 @@ impl Kind {
             Kind::Float8e4m3fn => 1,
             Kind::Float8e5m2fnuz => 1,
             Kind::Float8e4m3fnuz => 1,
+            Kind::UInt16 => 2,
+            Kind::UInt32 => 4,
+            Kind::UInt64 => 8,
+            Kind::Float8e8m0fnu => 1,
         }
     }
 }
@@ -136,13 +152,28 @@ unsafe impl Element for i8 {
     const ZERO: Self = 0;
 }
 
+unsafe impl Element for u16 {
+    const KIND: Kind = Kind::UInt16;
+    const ZERO: Self = 0;
+}
+
 unsafe impl Element for i16 {
     const KIND: Kind = Kind::Int16;
     const ZERO: Self = 0;
 }
 
+unsafe impl Element for u32 {
+    const KIND: Kind = Kind::UInt32;
+    const ZERO: Self = 0;
+}
+
 unsafe impl Element for i32 {
     const KIND: Kind = Kind::Int;
+    const ZERO: Self = 0;
+}
+
+unsafe impl Element for u64 {
+    const KIND: Kind = Kind::UInt64;
     const ZERO: Self = 0;
 }
 
