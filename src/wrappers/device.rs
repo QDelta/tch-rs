@@ -1,7 +1,9 @@
 //! Devices on which tensor computations are run.
 
+use serde::{Deserialize, Serialize};
+
 /// A torch device.
-#[derive(Debug, Copy, Clone, PartialEq, Eq, Hash)]
+#[derive(Debug, Copy, Clone, PartialEq, Eq, Hash, Serialize, Deserialize)]
 pub enum Device {
     /// The main CPU device.
     Cpu,
