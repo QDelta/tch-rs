@@ -83,13 +83,13 @@ let prefixed_functions =
    Adding function name [foo] in [with_optional_scalar_args] results in having
    explicit scalar arguments even if a default is present. *)
 let with_optional_scalar_args = Set.of_list (module String) [ "arange"; "baddbmm" ]
+let with_optional_scalar_args_prefixes = [ "_foreach" ]
 
 let excluded_prefixes =
   [ "_thnn_"
   ; "_th_"
   ; "thnn_"
   ; "th_"
-  ; "_foreach"
   ; "_amp_foreach"
   ; "_nested_tensor"
   ; "_fused_adam"
@@ -566,6 +566,8 @@ let read_yaml filename =
                    let arg_name =
                      match arg_name, arg_type with
                      | "self", Scalar -> "self_scalar"
+                     | "self", Tensor -> "self"
+                     | "self", _ -> "self_"
                      | _, _ -> arg_name
                    in
                    Some { Func.arg_name; arg_type; default_value }
@@ -573,7 +575,7 @@ let read_yaml filename =
                    if Option.is_some default_value then None else raise Not_a_simple_arg)
              in
              let args =
-               args ~with_optional_scalar_args:(Set.mem with_optional_scalar_args name)
+               args ~with_optional_scalar_args:(Set.mem with_optional_scalar_args name || List.exists with_optional_scalar_args_prefixes ~f:(fun prefix -> String.is_prefix name ~prefix))
              in
              Some [ { Func.name; operator_name; overload_name; args; returns; kind } ]
            with
