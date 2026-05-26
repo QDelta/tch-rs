@@ -50,6 +50,42 @@ let excluded_functions =
     ; "arange_out"
     ]
 
+(* Generated bindings (final, overload-disambiguated names) to drop. Unlike
+   [excluded_functions], which keys on the operator name and therefore removes
+   every overload, this set keys on the emitted binding name so a single
+   overload (e.g. "mm_dtype") can be dropped while the base op ("mm") is kept.
+
+   These are 2.9-era ops / overloads whose signatures the Declarations yaml and
+   the libtorch Phantora links against (2.9.1, built from source) disagree on,
+   or that are absent from that build. Excluding them keeps regeneration a pure
+   `make gen` step instead of hand-editing the generated files afterwards. If a
+   future libtorch resolves the mismatch, delete the relevant entry and regen. *)
+let excluded_bindings =
+  Set.of_list
+    (module String)
+    [ "_cudnn_attention_backward"
+    ; "_fused_rms_norm"
+    ; "_grouped_mm"
+    ; "_validate_sparse_bsc_tensor_args"
+    ; "_validate_sparse_bsr_tensor_args"
+    ; "_validate_sparse_compressed_tensor_args"
+    ; "_validate_sparse_csc_tensor_args"
+    ; "_validate_sparse_csr_tensor_args"
+    ; "_weight_int4pack_mm_with_scales_and_zeros"
+    ; "addmm_dtype"
+    ; "addmm_dtype_out"
+    ; "baddbmm_dtype"
+    ; "baddbmm_dtype_out"
+    ; "bmm_dtype"
+    ; "bmm_dtype_out"
+    ; "hash_tensor"
+    ; "hash_tensor_out"
+    ; "mm_dtype"
+    ; "mm_dtype_out"
+    ; "randint_like_tensor"
+    ; "randint_like_tensor_out"
+    ]
+
 let no_tensor_options =
   Set.of_list
     (module String)
@@ -879,6 +915,7 @@ let run
                 name, func))
     |> Map.of_alist_exn (module String)
   in
+  let funcs = Map.filter_keys funcs ~f:(fun name -> not (Set.mem excluded_bindings name)) in
   write_cpp funcs cpp_filename;
   write_ffi funcs ffi_filename;
   write_wrapper funcs wrapper_filename;

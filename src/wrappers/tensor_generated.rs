@@ -979,45 +979,6 @@ impl Tensor {
         .unwrap()
     }
 
-    pub fn internal_cudnn_attention_backward(
-        grad_out: &Tensor,
-        query: &Tensor,
-        key: &Tensor,
-        value: &Tensor,
-        out: &Tensor,
-        logsumexp: &Tensor,
-        philox_seed: &Tensor,
-        philox_offset: &Tensor,
-        attn_bias: &Tensor,
-        cum_seq_q: &Tensor,
-        cum_seq_k: &Tensor,
-        max_q: i64,
-        max_k: i64,
-        dropout_p: f64,
-        is_causal: bool,
-        scale: impl Into<Option<f64>>,
-    ) -> (Tensor, Tensor, Tensor) {
-        Tensor::f_internal_cudnn_attention_backward(
-            grad_out,
-            query,
-            key,
-            value,
-            out,
-            logsumexp,
-            philox_seed,
-            philox_offset,
-            attn_bias,
-            cum_seq_q,
-            cum_seq_k,
-            max_q,
-            max_k,
-            dropout_p,
-            is_causal,
-            scale,
-        )
-        .unwrap()
-    }
-
     pub fn internal_cudnn_ctc_loss(
         log_probs: &Tensor,
         targets: &Tensor,
@@ -1967,6 +1928,994 @@ impl Tensor {
         self.f_internal_foobar_out(out, arg1, arg2, arg3).unwrap()
     }
 
+    pub fn internal_foreach_abs<T: Borrow<Tensor>>(self_: &[T]) -> Vec<Tensor> {
+        Tensor::f_internal_foreach_abs(self_).unwrap()
+    }
+
+    pub fn internal_foreach_abs_<T: Borrow<Tensor>>(self_: &[T]) {
+        Tensor::f_internal_foreach_abs_(self_).unwrap()
+    }
+
+    pub fn internal_foreach_abs_out<T: Borrow<Tensor>>(out: &[T], self_: &[T]) {
+        Tensor::f_internal_foreach_abs_out(out, self_).unwrap()
+    }
+
+    pub fn internal_foreach_acos<T: Borrow<Tensor>>(self_: &[T]) -> Vec<Tensor> {
+        Tensor::f_internal_foreach_acos(self_).unwrap()
+    }
+
+    pub fn internal_foreach_acos_<T: Borrow<Tensor>>(self_: &[T]) {
+        Tensor::f_internal_foreach_acos_(self_).unwrap()
+    }
+
+    pub fn internal_foreach_acos_out<T: Borrow<Tensor>>(out: &[T], self_: &[T]) {
+        Tensor::f_internal_foreach_acos_out(out, self_).unwrap()
+    }
+
+    pub fn internal_foreach_add<T: Borrow<Tensor>, S: Into<Scalar>>(
+        self_: &[T],
+        scalar: S,
+    ) -> Vec<Tensor> {
+        Tensor::f_internal_foreach_add(self_, scalar).unwrap()
+    }
+
+    pub fn internal_foreach_add_<T: Borrow<Tensor>, S: Into<Scalar>>(self_: &[T], scalar: S) {
+        Tensor::f_internal_foreach_add_(self_, scalar).unwrap()
+    }
+
+    pub fn internal_foreach_add_list<T: Borrow<Tensor>, S: Into<Scalar>>(
+        self_: &[T],
+        other: &[T],
+        alpha: S,
+    ) -> Vec<Tensor> {
+        Tensor::f_internal_foreach_add_list(self_, other, alpha).unwrap()
+    }
+
+    pub fn internal_foreach_add_list_<T: Borrow<Tensor>, S: Into<Scalar>>(
+        self_: &[T],
+        other: &[T],
+        alpha: S,
+    ) {
+        Tensor::f_internal_foreach_add_list_(self_, other, alpha).unwrap()
+    }
+
+    pub fn internal_foreach_add_list_out<T: Borrow<Tensor>, S: Into<Scalar>>(
+        out: &[T],
+        self_: &[T],
+        other: &[T],
+        alpha: S,
+    ) {
+        Tensor::f_internal_foreach_add_list_out(out, self_, other, alpha).unwrap()
+    }
+
+    pub fn internal_foreach_add_scalar_out<T: Borrow<Tensor>, S: Into<Scalar>>(
+        out: &[T],
+        self_: &[T],
+        scalar: S,
+    ) {
+        Tensor::f_internal_foreach_add_scalar_out(out, self_, scalar).unwrap()
+    }
+
+    pub fn internal_foreach_add_tensor<T: Borrow<Tensor>, S: Into<Scalar>>(
+        self_: &[T],
+        other: &Tensor,
+        alpha: S,
+    ) -> Vec<Tensor> {
+        Tensor::f_internal_foreach_add_tensor(self_, other, alpha).unwrap()
+    }
+
+    pub fn internal_foreach_add_tensor_<T: Borrow<Tensor>, S: Into<Scalar>>(
+        self_: &[T],
+        other: &Tensor,
+        alpha: S,
+    ) {
+        Tensor::f_internal_foreach_add_tensor_(self_, other, alpha).unwrap()
+    }
+
+    pub fn internal_foreach_add_tensor_out<T: Borrow<Tensor>, S: Into<Scalar>>(
+        out: &[T],
+        self_: &[T],
+        other: &Tensor,
+        alpha: S,
+    ) {
+        Tensor::f_internal_foreach_add_tensor_out(out, self_, other, alpha).unwrap()
+    }
+
+    pub fn internal_foreach_addcdiv<T: Borrow<Tensor>, S: Into<Scalar>>(
+        self_: &[T],
+        tensor1: &[T],
+        tensor2: &[T],
+        value: S,
+    ) -> Vec<Tensor> {
+        Tensor::f_internal_foreach_addcdiv(self_, tensor1, tensor2, value).unwrap()
+    }
+
+    pub fn internal_foreach_addcdiv_<T: Borrow<Tensor>, S: Into<Scalar>>(
+        self_: &[T],
+        tensor1: &[T],
+        tensor2: &[T],
+        value: S,
+    ) {
+        Tensor::f_internal_foreach_addcdiv_(self_, tensor1, tensor2, value).unwrap()
+    }
+
+    pub fn internal_foreach_addcdiv_scalar_out<T: Borrow<Tensor>, S: Into<Scalar>>(
+        out: &[T],
+        self_: &[T],
+        tensor1: &[T],
+        tensor2: &[T],
+        value: S,
+    ) {
+        Tensor::f_internal_foreach_addcdiv_scalar_out(out, self_, tensor1, tensor2, value).unwrap()
+    }
+
+    pub fn internal_foreach_addcdiv_tensor<T: Borrow<Tensor>>(
+        self_: &[T],
+        tensor1: &[T],
+        tensor2: &[T],
+        scalars: &Tensor,
+    ) -> Vec<Tensor> {
+        Tensor::f_internal_foreach_addcdiv_tensor(self_, tensor1, tensor2, scalars).unwrap()
+    }
+
+    pub fn internal_foreach_addcdiv_tensor_<T: Borrow<Tensor>>(
+        self_: &[T],
+        tensor1: &[T],
+        tensor2: &[T],
+        scalars: &Tensor,
+    ) {
+        Tensor::f_internal_foreach_addcdiv_tensor_(self_, tensor1, tensor2, scalars).unwrap()
+    }
+
+    pub fn internal_foreach_addcdiv_tensor_out<T: Borrow<Tensor>>(
+        out: &[T],
+        self_: &[T],
+        tensor1: &[T],
+        tensor2: &[T],
+        scalars: &Tensor,
+    ) {
+        Tensor::f_internal_foreach_addcdiv_tensor_out(out, self_, tensor1, tensor2, scalars)
+            .unwrap()
+    }
+
+    pub fn internal_foreach_addcmul<T: Borrow<Tensor>, S: Into<Scalar>>(
+        self_: &[T],
+        tensor1: &[T],
+        tensor2: &[T],
+        value: S,
+    ) -> Vec<Tensor> {
+        Tensor::f_internal_foreach_addcmul(self_, tensor1, tensor2, value).unwrap()
+    }
+
+    pub fn internal_foreach_addcmul_<T: Borrow<Tensor>, S: Into<Scalar>>(
+        self_: &[T],
+        tensor1: &[T],
+        tensor2: &[T],
+        value: S,
+    ) {
+        Tensor::f_internal_foreach_addcmul_(self_, tensor1, tensor2, value).unwrap()
+    }
+
+    pub fn internal_foreach_addcmul_scalar_out<T: Borrow<Tensor>, S: Into<Scalar>>(
+        out: &[T],
+        self_: &[T],
+        tensor1: &[T],
+        tensor2: &[T],
+        value: S,
+    ) {
+        Tensor::f_internal_foreach_addcmul_scalar_out(out, self_, tensor1, tensor2, value).unwrap()
+    }
+
+    pub fn internal_foreach_addcmul_tensor<T: Borrow<Tensor>>(
+        self_: &[T],
+        tensor1: &[T],
+        tensor2: &[T],
+        scalars: &Tensor,
+    ) -> Vec<Tensor> {
+        Tensor::f_internal_foreach_addcmul_tensor(self_, tensor1, tensor2, scalars).unwrap()
+    }
+
+    pub fn internal_foreach_addcmul_tensor_<T: Borrow<Tensor>>(
+        self_: &[T],
+        tensor1: &[T],
+        tensor2: &[T],
+        scalars: &Tensor,
+    ) {
+        Tensor::f_internal_foreach_addcmul_tensor_(self_, tensor1, tensor2, scalars).unwrap()
+    }
+
+    pub fn internal_foreach_addcmul_tensor_out<T: Borrow<Tensor>>(
+        out: &[T],
+        self_: &[T],
+        tensor1: &[T],
+        tensor2: &[T],
+        scalars: &Tensor,
+    ) {
+        Tensor::f_internal_foreach_addcmul_tensor_out(out, self_, tensor1, tensor2, scalars)
+            .unwrap()
+    }
+
+    pub fn internal_foreach_asin<T: Borrow<Tensor>>(self_: &[T]) -> Vec<Tensor> {
+        Tensor::f_internal_foreach_asin(self_).unwrap()
+    }
+
+    pub fn internal_foreach_asin_<T: Borrow<Tensor>>(self_: &[T]) {
+        Tensor::f_internal_foreach_asin_(self_).unwrap()
+    }
+
+    pub fn internal_foreach_asin_out<T: Borrow<Tensor>>(out: &[T], self_: &[T]) {
+        Tensor::f_internal_foreach_asin_out(out, self_).unwrap()
+    }
+
+    pub fn internal_foreach_atan<T: Borrow<Tensor>>(self_: &[T]) -> Vec<Tensor> {
+        Tensor::f_internal_foreach_atan(self_).unwrap()
+    }
+
+    pub fn internal_foreach_atan_<T: Borrow<Tensor>>(self_: &[T]) {
+        Tensor::f_internal_foreach_atan_(self_).unwrap()
+    }
+
+    pub fn internal_foreach_atan_out<T: Borrow<Tensor>>(out: &[T], self_: &[T]) {
+        Tensor::f_internal_foreach_atan_out(out, self_).unwrap()
+    }
+
+    pub fn internal_foreach_ceil<T: Borrow<Tensor>>(self_: &[T]) -> Vec<Tensor> {
+        Tensor::f_internal_foreach_ceil(self_).unwrap()
+    }
+
+    pub fn internal_foreach_ceil_<T: Borrow<Tensor>>(self_: &[T]) {
+        Tensor::f_internal_foreach_ceil_(self_).unwrap()
+    }
+
+    pub fn internal_foreach_ceil_out<T: Borrow<Tensor>>(out: &[T], self_: &[T]) {
+        Tensor::f_internal_foreach_ceil_out(out, self_).unwrap()
+    }
+
+    pub fn internal_foreach_clamp_max<T: Borrow<Tensor>, S: Into<Scalar>>(
+        self_: &[T],
+        scalar: S,
+    ) -> Vec<Tensor> {
+        Tensor::f_internal_foreach_clamp_max(self_, scalar).unwrap()
+    }
+
+    pub fn internal_foreach_clamp_max_<T: Borrow<Tensor>, S: Into<Scalar>>(self_: &[T], scalar: S) {
+        Tensor::f_internal_foreach_clamp_max_(self_, scalar).unwrap()
+    }
+
+    pub fn internal_foreach_clamp_max_list<T: Borrow<Tensor>>(
+        self_: &[T],
+        other: &[T],
+    ) -> Vec<Tensor> {
+        Tensor::f_internal_foreach_clamp_max_list(self_, other).unwrap()
+    }
+
+    pub fn internal_foreach_clamp_max_list_<T: Borrow<Tensor>>(self_: &[T], other: &[T]) {
+        Tensor::f_internal_foreach_clamp_max_list_(self_, other).unwrap()
+    }
+
+    pub fn internal_foreach_clamp_max_list_out<T: Borrow<Tensor>>(
+        out: &[T],
+        self_: &[T],
+        other: &[T],
+    ) {
+        Tensor::f_internal_foreach_clamp_max_list_out(out, self_, other).unwrap()
+    }
+
+    pub fn internal_foreach_clamp_max_scalar_out<T: Borrow<Tensor>, S: Into<Scalar>>(
+        out: &[T],
+        self_: &[T],
+        scalar: S,
+    ) {
+        Tensor::f_internal_foreach_clamp_max_scalar_out(out, self_, scalar).unwrap()
+    }
+
+    pub fn internal_foreach_clamp_min<T: Borrow<Tensor>, S: Into<Scalar>>(
+        self_: &[T],
+        scalar: S,
+    ) -> Vec<Tensor> {
+        Tensor::f_internal_foreach_clamp_min(self_, scalar).unwrap()
+    }
+
+    pub fn internal_foreach_clamp_min_<T: Borrow<Tensor>, S: Into<Scalar>>(self_: &[T], scalar: S) {
+        Tensor::f_internal_foreach_clamp_min_(self_, scalar).unwrap()
+    }
+
+    pub fn internal_foreach_clamp_min_list<T: Borrow<Tensor>>(
+        self_: &[T],
+        other: &[T],
+    ) -> Vec<Tensor> {
+        Tensor::f_internal_foreach_clamp_min_list(self_, other).unwrap()
+    }
+
+    pub fn internal_foreach_clamp_min_list_<T: Borrow<Tensor>>(self_: &[T], other: &[T]) {
+        Tensor::f_internal_foreach_clamp_min_list_(self_, other).unwrap()
+    }
+
+    pub fn internal_foreach_clamp_min_list_out<T: Borrow<Tensor>>(
+        out: &[T],
+        self_: &[T],
+        other: &[T],
+    ) {
+        Tensor::f_internal_foreach_clamp_min_list_out(out, self_, other).unwrap()
+    }
+
+    pub fn internal_foreach_clamp_min_scalar_out<T: Borrow<Tensor>, S: Into<Scalar>>(
+        out: &[T],
+        self_: &[T],
+        scalar: S,
+    ) {
+        Tensor::f_internal_foreach_clamp_min_scalar_out(out, self_, scalar).unwrap()
+    }
+
+    pub fn internal_foreach_copy<T: Borrow<Tensor>>(
+        self_: &[T],
+        src: &[T],
+        non_blocking: bool,
+    ) -> Vec<Tensor> {
+        Tensor::f_internal_foreach_copy(self_, src, non_blocking).unwrap()
+    }
+
+    pub fn internal_foreach_copy_<T: Borrow<Tensor>>(self_: &[T], src: &[T], non_blocking: bool) {
+        Tensor::f_internal_foreach_copy_(self_, src, non_blocking).unwrap()
+    }
+
+    pub fn internal_foreach_copy_out<T: Borrow<Tensor>>(
+        out: &[T],
+        self_: &[T],
+        src: &[T],
+        non_blocking: bool,
+    ) {
+        Tensor::f_internal_foreach_copy_out(out, self_, src, non_blocking).unwrap()
+    }
+
+    pub fn internal_foreach_cos<T: Borrow<Tensor>>(self_: &[T]) -> Vec<Tensor> {
+        Tensor::f_internal_foreach_cos(self_).unwrap()
+    }
+
+    pub fn internal_foreach_cos_<T: Borrow<Tensor>>(self_: &[T]) {
+        Tensor::f_internal_foreach_cos_(self_).unwrap()
+    }
+
+    pub fn internal_foreach_cos_out<T: Borrow<Tensor>>(out: &[T], self_: &[T]) {
+        Tensor::f_internal_foreach_cos_out(out, self_).unwrap()
+    }
+
+    pub fn internal_foreach_cosh<T: Borrow<Tensor>>(self_: &[T]) -> Vec<Tensor> {
+        Tensor::f_internal_foreach_cosh(self_).unwrap()
+    }
+
+    pub fn internal_foreach_cosh_<T: Borrow<Tensor>>(self_: &[T]) {
+        Tensor::f_internal_foreach_cosh_(self_).unwrap()
+    }
+
+    pub fn internal_foreach_cosh_out<T: Borrow<Tensor>>(out: &[T], self_: &[T]) {
+        Tensor::f_internal_foreach_cosh_out(out, self_).unwrap()
+    }
+
+    pub fn internal_foreach_div<T: Borrow<Tensor>, S: Into<Scalar>>(
+        self_: &[T],
+        scalar: S,
+    ) -> Vec<Tensor> {
+        Tensor::f_internal_foreach_div(self_, scalar).unwrap()
+    }
+
+    pub fn internal_foreach_div_<T: Borrow<Tensor>, S: Into<Scalar>>(self_: &[T], scalar: S) {
+        Tensor::f_internal_foreach_div_(self_, scalar).unwrap()
+    }
+
+    pub fn internal_foreach_div_list<T: Borrow<Tensor>>(self_: &[T], other: &[T]) -> Vec<Tensor> {
+        Tensor::f_internal_foreach_div_list(self_, other).unwrap()
+    }
+
+    pub fn internal_foreach_div_list_<T: Borrow<Tensor>>(self_: &[T], other: &[T]) {
+        Tensor::f_internal_foreach_div_list_(self_, other).unwrap()
+    }
+
+    pub fn internal_foreach_div_list_out<T: Borrow<Tensor>>(out: &[T], self_: &[T], other: &[T]) {
+        Tensor::f_internal_foreach_div_list_out(out, self_, other).unwrap()
+    }
+
+    pub fn internal_foreach_div_scalar_out<T: Borrow<Tensor>, S: Into<Scalar>>(
+        out: &[T],
+        self_: &[T],
+        scalar: S,
+    ) {
+        Tensor::f_internal_foreach_div_scalar_out(out, self_, scalar).unwrap()
+    }
+
+    pub fn internal_foreach_div_tensor<T: Borrow<Tensor>>(
+        self_: &[T],
+        other: &Tensor,
+    ) -> Vec<Tensor> {
+        Tensor::f_internal_foreach_div_tensor(self_, other).unwrap()
+    }
+
+    pub fn internal_foreach_div_tensor_<T: Borrow<Tensor>>(self_: &[T], other: &Tensor) {
+        Tensor::f_internal_foreach_div_tensor_(self_, other).unwrap()
+    }
+
+    pub fn internal_foreach_div_tensor_out<T: Borrow<Tensor>>(
+        out: &[T],
+        self_: &[T],
+        other: &Tensor,
+    ) {
+        Tensor::f_internal_foreach_div_tensor_out(out, self_, other).unwrap()
+    }
+
+    pub fn internal_foreach_erf<T: Borrow<Tensor>>(self_: &[T]) -> Vec<Tensor> {
+        Tensor::f_internal_foreach_erf(self_).unwrap()
+    }
+
+    pub fn internal_foreach_erf_<T: Borrow<Tensor>>(self_: &[T]) {
+        Tensor::f_internal_foreach_erf_(self_).unwrap()
+    }
+
+    pub fn internal_foreach_erf_out<T: Borrow<Tensor>>(out: &[T], self_: &[T]) {
+        Tensor::f_internal_foreach_erf_out(out, self_).unwrap()
+    }
+
+    pub fn internal_foreach_erfc<T: Borrow<Tensor>>(self_: &[T]) -> Vec<Tensor> {
+        Tensor::f_internal_foreach_erfc(self_).unwrap()
+    }
+
+    pub fn internal_foreach_erfc_<T: Borrow<Tensor>>(self_: &[T]) {
+        Tensor::f_internal_foreach_erfc_(self_).unwrap()
+    }
+
+    pub fn internal_foreach_erfc_out<T: Borrow<Tensor>>(out: &[T], self_: &[T]) {
+        Tensor::f_internal_foreach_erfc_out(out, self_).unwrap()
+    }
+
+    pub fn internal_foreach_exp<T: Borrow<Tensor>>(self_: &[T]) -> Vec<Tensor> {
+        Tensor::f_internal_foreach_exp(self_).unwrap()
+    }
+
+    pub fn internal_foreach_exp_<T: Borrow<Tensor>>(self_: &[T]) {
+        Tensor::f_internal_foreach_exp_(self_).unwrap()
+    }
+
+    pub fn internal_foreach_exp_out<T: Borrow<Tensor>>(out: &[T], self_: &[T]) {
+        Tensor::f_internal_foreach_exp_out(out, self_).unwrap()
+    }
+
+    pub fn internal_foreach_expm1<T: Borrow<Tensor>>(self_: &[T]) -> Vec<Tensor> {
+        Tensor::f_internal_foreach_expm1(self_).unwrap()
+    }
+
+    pub fn internal_foreach_expm1_<T: Borrow<Tensor>>(self_: &[T]) {
+        Tensor::f_internal_foreach_expm1_(self_).unwrap()
+    }
+
+    pub fn internal_foreach_expm1_out<T: Borrow<Tensor>>(out: &[T], self_: &[T]) {
+        Tensor::f_internal_foreach_expm1_out(out, self_).unwrap()
+    }
+
+    pub fn internal_foreach_floor<T: Borrow<Tensor>>(self_: &[T]) -> Vec<Tensor> {
+        Tensor::f_internal_foreach_floor(self_).unwrap()
+    }
+
+    pub fn internal_foreach_floor_<T: Borrow<Tensor>>(self_: &[T]) {
+        Tensor::f_internal_foreach_floor_(self_).unwrap()
+    }
+
+    pub fn internal_foreach_floor_out<T: Borrow<Tensor>>(out: &[T], self_: &[T]) {
+        Tensor::f_internal_foreach_floor_out(out, self_).unwrap()
+    }
+
+    pub fn internal_foreach_frac<T: Borrow<Tensor>>(self_: &[T]) -> Vec<Tensor> {
+        Tensor::f_internal_foreach_frac(self_).unwrap()
+    }
+
+    pub fn internal_foreach_frac_<T: Borrow<Tensor>>(self_: &[T]) {
+        Tensor::f_internal_foreach_frac_(self_).unwrap()
+    }
+
+    pub fn internal_foreach_frac_out<T: Borrow<Tensor>>(out: &[T], self_: &[T]) {
+        Tensor::f_internal_foreach_frac_out(out, self_).unwrap()
+    }
+
+    pub fn internal_foreach_lerp<T: Borrow<Tensor>>(
+        self_: &[T],
+        tensors1: &[T],
+        weights: &[T],
+    ) -> Vec<Tensor> {
+        Tensor::f_internal_foreach_lerp(self_, tensors1, weights).unwrap()
+    }
+
+    pub fn internal_foreach_lerp_<T: Borrow<Tensor>>(self_: &[T], tensors1: &[T], weights: &[T]) {
+        Tensor::f_internal_foreach_lerp_(self_, tensors1, weights).unwrap()
+    }
+
+    pub fn internal_foreach_lerp_list_out<T: Borrow<Tensor>>(
+        out: &[T],
+        self_: &[T],
+        tensors1: &[T],
+        weights: &[T],
+    ) {
+        Tensor::f_internal_foreach_lerp_list_out(out, self_, tensors1, weights).unwrap()
+    }
+
+    pub fn internal_foreach_lerp_scalar<T: Borrow<Tensor>, S: Into<Scalar>>(
+        self_: &[T],
+        tensors1: &[T],
+        weight: S,
+    ) -> Vec<Tensor> {
+        Tensor::f_internal_foreach_lerp_scalar(self_, tensors1, weight).unwrap()
+    }
+
+    pub fn internal_foreach_lerp_scalar_<T: Borrow<Tensor>, S: Into<Scalar>>(
+        self_: &[T],
+        tensors1: &[T],
+        weight: S,
+    ) {
+        Tensor::f_internal_foreach_lerp_scalar_(self_, tensors1, weight).unwrap()
+    }
+
+    pub fn internal_foreach_lerp_scalar_out<T: Borrow<Tensor>, S: Into<Scalar>>(
+        out: &[T],
+        self_: &[T],
+        tensors1: &[T],
+        weight: S,
+    ) {
+        Tensor::f_internal_foreach_lerp_scalar_out(out, self_, tensors1, weight).unwrap()
+    }
+
+    pub fn internal_foreach_lgamma<T: Borrow<Tensor>>(self_: &[T]) -> Vec<Tensor> {
+        Tensor::f_internal_foreach_lgamma(self_).unwrap()
+    }
+
+    pub fn internal_foreach_lgamma_<T: Borrow<Tensor>>(self_: &[T]) {
+        Tensor::f_internal_foreach_lgamma_(self_).unwrap()
+    }
+
+    pub fn internal_foreach_lgamma_out<T: Borrow<Tensor>>(out: &[T], self_: &[T]) {
+        Tensor::f_internal_foreach_lgamma_out(out, self_).unwrap()
+    }
+
+    pub fn internal_foreach_log<T: Borrow<Tensor>>(self_: &[T]) -> Vec<Tensor> {
+        Tensor::f_internal_foreach_log(self_).unwrap()
+    }
+
+    pub fn internal_foreach_log10<T: Borrow<Tensor>>(self_: &[T]) -> Vec<Tensor> {
+        Tensor::f_internal_foreach_log10(self_).unwrap()
+    }
+
+    pub fn internal_foreach_log10_<T: Borrow<Tensor>>(self_: &[T]) {
+        Tensor::f_internal_foreach_log10_(self_).unwrap()
+    }
+
+    pub fn internal_foreach_log10_out<T: Borrow<Tensor>>(out: &[T], self_: &[T]) {
+        Tensor::f_internal_foreach_log10_out(out, self_).unwrap()
+    }
+
+    pub fn internal_foreach_log1p<T: Borrow<Tensor>>(self_: &[T]) -> Vec<Tensor> {
+        Tensor::f_internal_foreach_log1p(self_).unwrap()
+    }
+
+    pub fn internal_foreach_log1p_<T: Borrow<Tensor>>(self_: &[T]) {
+        Tensor::f_internal_foreach_log1p_(self_).unwrap()
+    }
+
+    pub fn internal_foreach_log1p_out<T: Borrow<Tensor>>(out: &[T], self_: &[T]) {
+        Tensor::f_internal_foreach_log1p_out(out, self_).unwrap()
+    }
+
+    pub fn internal_foreach_log2<T: Borrow<Tensor>>(self_: &[T]) -> Vec<Tensor> {
+        Tensor::f_internal_foreach_log2(self_).unwrap()
+    }
+
+    pub fn internal_foreach_log2_<T: Borrow<Tensor>>(self_: &[T]) {
+        Tensor::f_internal_foreach_log2_(self_).unwrap()
+    }
+
+    pub fn internal_foreach_log2_out<T: Borrow<Tensor>>(out: &[T], self_: &[T]) {
+        Tensor::f_internal_foreach_log2_out(out, self_).unwrap()
+    }
+
+    pub fn internal_foreach_log_<T: Borrow<Tensor>>(self_: &[T]) {
+        Tensor::f_internal_foreach_log_(self_).unwrap()
+    }
+
+    pub fn internal_foreach_log_out<T: Borrow<Tensor>>(out: &[T], self_: &[T]) {
+        Tensor::f_internal_foreach_log_out(out, self_).unwrap()
+    }
+
+    pub fn internal_foreach_max<T: Borrow<Tensor>>(self_: &[T]) -> Vec<Tensor> {
+        Tensor::f_internal_foreach_max(self_).unwrap()
+    }
+
+    pub fn internal_foreach_max_out<T: Borrow<Tensor>>(out: &[T], self_: &[T]) {
+        Tensor::f_internal_foreach_max_out(out, self_).unwrap()
+    }
+
+    pub fn internal_foreach_maximum<T: Borrow<Tensor>, S: Into<Scalar>>(
+        self_: &[T],
+        scalar: S,
+    ) -> Vec<Tensor> {
+        Tensor::f_internal_foreach_maximum(self_, scalar).unwrap()
+    }
+
+    pub fn internal_foreach_maximum_<T: Borrow<Tensor>, S: Into<Scalar>>(self_: &[T], scalar: S) {
+        Tensor::f_internal_foreach_maximum_(self_, scalar).unwrap()
+    }
+
+    pub fn internal_foreach_maximum_list<T: Borrow<Tensor>>(
+        self_: &[T],
+        other: &[T],
+    ) -> Vec<Tensor> {
+        Tensor::f_internal_foreach_maximum_list(self_, other).unwrap()
+    }
+
+    pub fn internal_foreach_maximum_list_<T: Borrow<Tensor>>(self_: &[T], other: &[T]) {
+        Tensor::f_internal_foreach_maximum_list_(self_, other).unwrap()
+    }
+
+    pub fn internal_foreach_maximum_list_out<T: Borrow<Tensor>>(
+        out: &[T],
+        self_: &[T],
+        other: &[T],
+    ) {
+        Tensor::f_internal_foreach_maximum_list_out(out, self_, other).unwrap()
+    }
+
+    pub fn internal_foreach_maximum_scalar_out<T: Borrow<Tensor>, S: Into<Scalar>>(
+        out: &[T],
+        self_: &[T],
+        scalar: S,
+    ) {
+        Tensor::f_internal_foreach_maximum_scalar_out(out, self_, scalar).unwrap()
+    }
+
+    pub fn internal_foreach_minimum<T: Borrow<Tensor>, S: Into<Scalar>>(
+        self_: &[T],
+        scalar: S,
+    ) -> Vec<Tensor> {
+        Tensor::f_internal_foreach_minimum(self_, scalar).unwrap()
+    }
+
+    pub fn internal_foreach_minimum_<T: Borrow<Tensor>, S: Into<Scalar>>(self_: &[T], scalar: S) {
+        Tensor::f_internal_foreach_minimum_(self_, scalar).unwrap()
+    }
+
+    pub fn internal_foreach_minimum_list<T: Borrow<Tensor>>(
+        self_: &[T],
+        other: &[T],
+    ) -> Vec<Tensor> {
+        Tensor::f_internal_foreach_minimum_list(self_, other).unwrap()
+    }
+
+    pub fn internal_foreach_minimum_list_<T: Borrow<Tensor>>(self_: &[T], other: &[T]) {
+        Tensor::f_internal_foreach_minimum_list_(self_, other).unwrap()
+    }
+
+    pub fn internal_foreach_minimum_list_out<T: Borrow<Tensor>>(
+        out: &[T],
+        self_: &[T],
+        other: &[T],
+    ) {
+        Tensor::f_internal_foreach_minimum_list_out(out, self_, other).unwrap()
+    }
+
+    pub fn internal_foreach_minimum_scalar_out<T: Borrow<Tensor>, S: Into<Scalar>>(
+        out: &[T],
+        self_: &[T],
+        scalar: S,
+    ) {
+        Tensor::f_internal_foreach_minimum_scalar_out(out, self_, scalar).unwrap()
+    }
+
+    pub fn internal_foreach_mul<T: Borrow<Tensor>, S: Into<Scalar>>(
+        self_: &[T],
+        scalar: S,
+    ) -> Vec<Tensor> {
+        Tensor::f_internal_foreach_mul(self_, scalar).unwrap()
+    }
+
+    pub fn internal_foreach_mul_<T: Borrow<Tensor>, S: Into<Scalar>>(self_: &[T], scalar: S) {
+        Tensor::f_internal_foreach_mul_(self_, scalar).unwrap()
+    }
+
+    pub fn internal_foreach_mul_list<T: Borrow<Tensor>>(self_: &[T], other: &[T]) -> Vec<Tensor> {
+        Tensor::f_internal_foreach_mul_list(self_, other).unwrap()
+    }
+
+    pub fn internal_foreach_mul_list_<T: Borrow<Tensor>>(self_: &[T], other: &[T]) {
+        Tensor::f_internal_foreach_mul_list_(self_, other).unwrap()
+    }
+
+    pub fn internal_foreach_mul_list_out<T: Borrow<Tensor>>(out: &[T], self_: &[T], other: &[T]) {
+        Tensor::f_internal_foreach_mul_list_out(out, self_, other).unwrap()
+    }
+
+    pub fn internal_foreach_mul_scalar_out<T: Borrow<Tensor>, S: Into<Scalar>>(
+        out: &[T],
+        self_: &[T],
+        scalar: S,
+    ) {
+        Tensor::f_internal_foreach_mul_scalar_out(out, self_, scalar).unwrap()
+    }
+
+    pub fn internal_foreach_mul_tensor<T: Borrow<Tensor>>(
+        self_: &[T],
+        other: &Tensor,
+    ) -> Vec<Tensor> {
+        Tensor::f_internal_foreach_mul_tensor(self_, other).unwrap()
+    }
+
+    pub fn internal_foreach_mul_tensor_<T: Borrow<Tensor>>(self_: &[T], other: &Tensor) {
+        Tensor::f_internal_foreach_mul_tensor_(self_, other).unwrap()
+    }
+
+    pub fn internal_foreach_mul_tensor_out<T: Borrow<Tensor>>(
+        out: &[T],
+        self_: &[T],
+        other: &Tensor,
+    ) {
+        Tensor::f_internal_foreach_mul_tensor_out(out, self_, other).unwrap()
+    }
+
+    pub fn internal_foreach_neg<T: Borrow<Tensor>>(self_: &[T]) -> Vec<Tensor> {
+        Tensor::f_internal_foreach_neg(self_).unwrap()
+    }
+
+    pub fn internal_foreach_neg_<T: Borrow<Tensor>>(self_: &[T]) {
+        Tensor::f_internal_foreach_neg_(self_).unwrap()
+    }
+
+    pub fn internal_foreach_neg_out<T: Borrow<Tensor>>(out: &[T], self_: &[T]) {
+        Tensor::f_internal_foreach_neg_out(out, self_).unwrap()
+    }
+
+    pub fn internal_foreach_norm<T: Borrow<Tensor>, S: Into<Scalar>>(
+        self_: &[T],
+        ord: S,
+        dtype: impl Into<Option<Kind>>,
+    ) -> Vec<Tensor> {
+        Tensor::f_internal_foreach_norm(self_, ord, dtype).unwrap()
+    }
+
+    pub fn internal_foreach_norm_scalar_out<T: Borrow<Tensor>, S: Into<Scalar>>(
+        out: &[T],
+        self_: &[T],
+        ord: S,
+        dtype: impl Into<Option<Kind>>,
+    ) {
+        Tensor::f_internal_foreach_norm_scalar_out(out, self_, ord, dtype).unwrap()
+    }
+
+    pub fn internal_foreach_pow<T: Borrow<Tensor>>(self_: &[T], exponent: &[T]) -> Vec<Tensor> {
+        Tensor::f_internal_foreach_pow(self_, exponent).unwrap()
+    }
+
+    pub fn internal_foreach_pow_<T: Borrow<Tensor>>(self_: &[T], exponent: &[T]) {
+        Tensor::f_internal_foreach_pow_(self_, exponent).unwrap()
+    }
+
+    pub fn internal_foreach_pow_list_out<T: Borrow<Tensor>>(
+        out: &[T],
+        self_: &[T],
+        exponent: &[T],
+    ) {
+        Tensor::f_internal_foreach_pow_list_out(out, self_, exponent).unwrap()
+    }
+
+    pub fn internal_foreach_pow_scalar<T: Borrow<Tensor>, S: Into<Scalar>>(
+        self_: &[T],
+        exponent: S,
+    ) -> Vec<Tensor> {
+        Tensor::f_internal_foreach_pow_scalar(self_, exponent).unwrap()
+    }
+
+    pub fn internal_foreach_pow_scalar_<T: Borrow<Tensor>, S: Into<Scalar>>(
+        self_: &[T],
+        exponent: S,
+    ) {
+        Tensor::f_internal_foreach_pow_scalar_(self_, exponent).unwrap()
+    }
+
+    pub fn internal_foreach_pow_scalar_out<T: Borrow<Tensor>, S: Into<Scalar>>(
+        out: &[T],
+        self_: &[T],
+        exponent: S,
+    ) {
+        Tensor::f_internal_foreach_pow_scalar_out(out, self_, exponent).unwrap()
+    }
+
+    pub fn internal_foreach_pow_scalarandtensor<T: Borrow<Tensor>, S: Into<Scalar>>(
+        self_scalar: S,
+        exponent: &[T],
+    ) -> Vec<Tensor> {
+        Tensor::f_internal_foreach_pow_scalarandtensor(self_scalar, exponent).unwrap()
+    }
+
+    pub fn internal_foreach_reciprocal<T: Borrow<Tensor>>(self_: &[T]) -> Vec<Tensor> {
+        Tensor::f_internal_foreach_reciprocal(self_).unwrap()
+    }
+
+    pub fn internal_foreach_reciprocal_<T: Borrow<Tensor>>(self_: &[T]) {
+        Tensor::f_internal_foreach_reciprocal_(self_).unwrap()
+    }
+
+    pub fn internal_foreach_reciprocal_out<T: Borrow<Tensor>>(out: &[T], self_: &[T]) {
+        Tensor::f_internal_foreach_reciprocal_out(out, self_).unwrap()
+    }
+
+    pub fn internal_foreach_round<T: Borrow<Tensor>>(self_: &[T]) -> Vec<Tensor> {
+        Tensor::f_internal_foreach_round(self_).unwrap()
+    }
+
+    pub fn internal_foreach_round_<T: Borrow<Tensor>>(self_: &[T]) {
+        Tensor::f_internal_foreach_round_(self_).unwrap()
+    }
+
+    pub fn internal_foreach_round_out<T: Borrow<Tensor>>(out: &[T], self_: &[T]) {
+        Tensor::f_internal_foreach_round_out(out, self_).unwrap()
+    }
+
+    pub fn internal_foreach_rsqrt<T: Borrow<Tensor>>(self_: &[T]) -> Vec<Tensor> {
+        Tensor::f_internal_foreach_rsqrt(self_).unwrap()
+    }
+
+    pub fn internal_foreach_rsqrt_<T: Borrow<Tensor>>(self_: &[T]) {
+        Tensor::f_internal_foreach_rsqrt_(self_).unwrap()
+    }
+
+    pub fn internal_foreach_rsqrt_out<T: Borrow<Tensor>>(out: &[T], self_: &[T]) {
+        Tensor::f_internal_foreach_rsqrt_out(out, self_).unwrap()
+    }
+
+    pub fn internal_foreach_sigmoid<T: Borrow<Tensor>>(self_: &[T]) -> Vec<Tensor> {
+        Tensor::f_internal_foreach_sigmoid(self_).unwrap()
+    }
+
+    pub fn internal_foreach_sigmoid_<T: Borrow<Tensor>>(self_: &[T]) {
+        Tensor::f_internal_foreach_sigmoid_(self_).unwrap()
+    }
+
+    pub fn internal_foreach_sigmoid_out<T: Borrow<Tensor>>(out: &[T], self_: &[T]) {
+        Tensor::f_internal_foreach_sigmoid_out(out, self_).unwrap()
+    }
+
+    pub fn internal_foreach_sign<T: Borrow<Tensor>>(self_: &[T]) -> Vec<Tensor> {
+        Tensor::f_internal_foreach_sign(self_).unwrap()
+    }
+
+    pub fn internal_foreach_sign_<T: Borrow<Tensor>>(self_: &[T]) {
+        Tensor::f_internal_foreach_sign_(self_).unwrap()
+    }
+
+    pub fn internal_foreach_sign_out<T: Borrow<Tensor>>(out: &[T], self_: &[T]) {
+        Tensor::f_internal_foreach_sign_out(out, self_).unwrap()
+    }
+
+    pub fn internal_foreach_sin<T: Borrow<Tensor>>(self_: &[T]) -> Vec<Tensor> {
+        Tensor::f_internal_foreach_sin(self_).unwrap()
+    }
+
+    pub fn internal_foreach_sin_<T: Borrow<Tensor>>(self_: &[T]) {
+        Tensor::f_internal_foreach_sin_(self_).unwrap()
+    }
+
+    pub fn internal_foreach_sin_out<T: Borrow<Tensor>>(out: &[T], self_: &[T]) {
+        Tensor::f_internal_foreach_sin_out(out, self_).unwrap()
+    }
+
+    pub fn internal_foreach_sinh<T: Borrow<Tensor>>(self_: &[T]) -> Vec<Tensor> {
+        Tensor::f_internal_foreach_sinh(self_).unwrap()
+    }
+
+    pub fn internal_foreach_sinh_<T: Borrow<Tensor>>(self_: &[T]) {
+        Tensor::f_internal_foreach_sinh_(self_).unwrap()
+    }
+
+    pub fn internal_foreach_sinh_out<T: Borrow<Tensor>>(out: &[T], self_: &[T]) {
+        Tensor::f_internal_foreach_sinh_out(out, self_).unwrap()
+    }
+
+    pub fn internal_foreach_sqrt<T: Borrow<Tensor>>(self_: &[T]) -> Vec<Tensor> {
+        Tensor::f_internal_foreach_sqrt(self_).unwrap()
+    }
+
+    pub fn internal_foreach_sqrt_<T: Borrow<Tensor>>(self_: &[T]) {
+        Tensor::f_internal_foreach_sqrt_(self_).unwrap()
+    }
+
+    pub fn internal_foreach_sqrt_out<T: Borrow<Tensor>>(out: &[T], self_: &[T]) {
+        Tensor::f_internal_foreach_sqrt_out(out, self_).unwrap()
+    }
+
+    pub fn internal_foreach_sub<T: Borrow<Tensor>, S: Into<Scalar>>(
+        self_: &[T],
+        scalar: S,
+    ) -> Vec<Tensor> {
+        Tensor::f_internal_foreach_sub(self_, scalar).unwrap()
+    }
+
+    pub fn internal_foreach_sub_<T: Borrow<Tensor>, S: Into<Scalar>>(self_: &[T], scalar: S) {
+        Tensor::f_internal_foreach_sub_(self_, scalar).unwrap()
+    }
+
+    pub fn internal_foreach_sub_list<T: Borrow<Tensor>, S: Into<Scalar>>(
+        self_: &[T],
+        other: &[T],
+        alpha: S,
+    ) -> Vec<Tensor> {
+        Tensor::f_internal_foreach_sub_list(self_, other, alpha).unwrap()
+    }
+
+    pub fn internal_foreach_sub_list_<T: Borrow<Tensor>, S: Into<Scalar>>(
+        self_: &[T],
+        other: &[T],
+        alpha: S,
+    ) {
+        Tensor::f_internal_foreach_sub_list_(self_, other, alpha).unwrap()
+    }
+
+    pub fn internal_foreach_sub_list_out<T: Borrow<Tensor>, S: Into<Scalar>>(
+        out: &[T],
+        self_: &[T],
+        other: &[T],
+        alpha: S,
+    ) {
+        Tensor::f_internal_foreach_sub_list_out(out, self_, other, alpha).unwrap()
+    }
+
+    pub fn internal_foreach_sub_scalar_out<T: Borrow<Tensor>, S: Into<Scalar>>(
+        out: &[T],
+        self_: &[T],
+        scalar: S,
+    ) {
+        Tensor::f_internal_foreach_sub_scalar_out(out, self_, scalar).unwrap()
+    }
+
+    pub fn internal_foreach_tan<T: Borrow<Tensor>>(self_: &[T]) -> Vec<Tensor> {
+        Tensor::f_internal_foreach_tan(self_).unwrap()
+    }
+
+    pub fn internal_foreach_tan_<T: Borrow<Tensor>>(self_: &[T]) {
+        Tensor::f_internal_foreach_tan_(self_).unwrap()
+    }
+
+    pub fn internal_foreach_tan_out<T: Borrow<Tensor>>(out: &[T], self_: &[T]) {
+        Tensor::f_internal_foreach_tan_out(out, self_).unwrap()
+    }
+
+    pub fn internal_foreach_tanh<T: Borrow<Tensor>>(self_: &[T]) -> Vec<Tensor> {
+        Tensor::f_internal_foreach_tanh(self_).unwrap()
+    }
+
+    pub fn internal_foreach_tanh_<T: Borrow<Tensor>>(self_: &[T]) {
+        Tensor::f_internal_foreach_tanh_(self_).unwrap()
+    }
+
+    pub fn internal_foreach_tanh_out<T: Borrow<Tensor>>(out: &[T], self_: &[T]) {
+        Tensor::f_internal_foreach_tanh_out(out, self_).unwrap()
+    }
+
+    pub fn internal_foreach_trunc<T: Borrow<Tensor>>(self_: &[T]) -> Vec<Tensor> {
+        Tensor::f_internal_foreach_trunc(self_).unwrap()
+    }
+
+    pub fn internal_foreach_trunc_<T: Borrow<Tensor>>(self_: &[T]) {
+        Tensor::f_internal_foreach_trunc_(self_).unwrap()
+    }
+
+    pub fn internal_foreach_trunc_out<T: Borrow<Tensor>>(out: &[T], self_: &[T]) {
+        Tensor::f_internal_foreach_trunc_out(out, self_).unwrap()
+    }
+
+    pub fn internal_foreach_zero<T: Borrow<Tensor>>(self_: &[T]) -> Vec<Tensor> {
+        Tensor::f_internal_foreach_zero(self_).unwrap()
+    }
+
+    pub fn internal_foreach_zero_<T: Borrow<Tensor>>(self_: &[T]) {
+        Tensor::f_internal_foreach_zero_(self_).unwrap()
+    }
+
+    pub fn internal_foreach_zero_out<T: Borrow<Tensor>>(out: &[T], self_: &[T]) {
+        Tensor::f_internal_foreach_zero_out(out, self_).unwrap()
+    }
+
     pub fn internal_functional_assert_async(&self, assert_msg: &str, dep_token: &Tensor) -> Tensor {
         self.f_internal_functional_assert_async(assert_msg, dep_token).unwrap()
     }
@@ -2111,15 +3060,6 @@ impl Tensor {
         .unwrap()
     }
 
-    pub fn internal_fused_rms_norm<T: Borrow<Tensor>>(
-        &self,
-        normalized_shape: impl IntList,
-        weight: Option<T>,
-        eps: impl Into<Option<f64>>,
-    ) -> (Tensor, Tensor) {
-        self.f_internal_fused_rms_norm(normalized_shape, weight, eps).unwrap()
-    }
-
     pub fn internal_fused_sdp_choice<T: Borrow<Tensor>>(
         query: &Tensor,
         key: &Tensor,
@@ -2207,16 +3147,6 @@ impl Tensor {
             align_corners,
         )
         .unwrap()
-    }
-
-    pub fn internal_grouped_mm<T: Borrow<Tensor>>(
-        &self,
-        mat2: &Tensor,
-        offs: Option<T>,
-        bias: Option<T>,
-        out_dtype: impl Into<Option<Kind>>,
-    ) -> Tensor {
-        self.f_internal_grouped_mm(mat2, offs, bias, out_dtype).unwrap()
     }
 
     pub fn internal_has_compatible_shallow_copy_type(&self, from: &Tensor) -> bool {
@@ -5212,93 +6142,6 @@ impl Tensor {
         .unwrap()
     }
 
-    pub fn internal_validate_sparse_bsc_tensor_args(
-        ccol_indices: &Tensor,
-        row_indices: &Tensor,
-        values: &Tensor,
-        size: impl IntList,
-        check_pinning: bool,
-    ) {
-        Tensor::f_internal_validate_sparse_bsc_tensor_args(
-            ccol_indices,
-            row_indices,
-            values,
-            size,
-            check_pinning,
-        )
-        .unwrap()
-    }
-
-    pub fn internal_validate_sparse_bsr_tensor_args(
-        crow_indices: &Tensor,
-        col_indices: &Tensor,
-        values: &Tensor,
-        size: impl IntList,
-        check_pinning: bool,
-    ) {
-        Tensor::f_internal_validate_sparse_bsr_tensor_args(
-            crow_indices,
-            col_indices,
-            values,
-            size,
-            check_pinning,
-        )
-        .unwrap()
-    }
-
-    pub fn internal_validate_sparse_compressed_tensor_args(
-        compressed_indices: &Tensor,
-        plain_indices: &Tensor,
-        values: &Tensor,
-        size: impl IntList,
-        layout: Layout,
-        check_pinning: bool,
-    ) {
-        Tensor::f_internal_validate_sparse_compressed_tensor_args(
-            compressed_indices,
-            plain_indices,
-            values,
-            size,
-            layout,
-            check_pinning,
-        )
-        .unwrap()
-    }
-
-    pub fn internal_validate_sparse_csc_tensor_args(
-        ccol_indices: &Tensor,
-        row_indices: &Tensor,
-        values: &Tensor,
-        size: impl IntList,
-        check_pinning: bool,
-    ) {
-        Tensor::f_internal_validate_sparse_csc_tensor_args(
-            ccol_indices,
-            row_indices,
-            values,
-            size,
-            check_pinning,
-        )
-        .unwrap()
-    }
-
-    pub fn internal_validate_sparse_csr_tensor_args(
-        crow_indices: &Tensor,
-        col_indices: &Tensor,
-        values: &Tensor,
-        size: impl IntList,
-        check_pinning: bool,
-    ) {
-        Tensor::f_internal_validate_sparse_csr_tensor_args(
-            crow_indices,
-            col_indices,
-            values,
-            size,
-            check_pinning,
-        )
-        .unwrap()
-    }
-
     pub fn internal_values(&self) -> Tensor {
         self.f_internal_values().unwrap()
     }
@@ -5331,17 +6174,6 @@ impl Tensor {
         qscaleandzeros: &Tensor,
     ) -> Tensor {
         self.f_internal_weight_int4pack_mm_for_cpu(mat2, qgroupsize, qscaleandzeros).unwrap()
-    }
-
-    pub fn internal_weight_int4pack_mm_with_scales_and_zeros(
-        &self,
-        mat2: &Tensor,
-        qgroupsize: i64,
-        qscale: &Tensor,
-        qzeros: &Tensor,
-    ) -> Tensor {
-        self.f_internal_weight_int4pack_mm_with_scales_and_zeros(mat2, qgroupsize, qscale, qzeros)
-            .unwrap()
     }
 
     pub fn internal_weight_int8pack_mm(&self, mat2: &Tensor, scales: &Tensor) -> Tensor {
@@ -5653,20 +6485,6 @@ impl Tensor {
 
     pub fn addmm_(&mut self, mat1: &Tensor, mat2: &Tensor) -> Tensor {
         self.f_addmm_(mat1, mat2).unwrap()
-    }
-
-    pub fn addmm_dtype(&self, mat1: &Tensor, mat2: &Tensor, out_dtype: Kind) -> Tensor {
-        self.f_addmm_dtype(mat1, mat2, out_dtype).unwrap()
-    }
-
-    pub fn addmm_dtype_out(
-        &self,
-        out: &Tensor,
-        mat1: &Tensor,
-        mat2: &Tensor,
-        out_dtype: Kind,
-    ) -> Tensor {
-        self.f_addmm_dtype_out(out, mat1, mat2, out_dtype).unwrap()
     }
 
     pub fn addmm_out(&self, out: &Tensor, mat1: &Tensor, mat2: &Tensor) -> Tensor {
@@ -6339,27 +7157,6 @@ impl Tensor {
         self.f_baddbmm_(batch1, batch2).unwrap()
     }
 
-    pub fn baddbmm_dtype<S: Into<Scalar>>(
-        &self,
-        batch1: &Tensor,
-        batch2: &Tensor,
-        out_dtype: Kind,
-        beta: S,
-        alpha: S,
-    ) -> Tensor {
-        self.f_baddbmm_dtype(batch1, batch2, out_dtype, beta, alpha).unwrap()
-    }
-
-    pub fn baddbmm_dtype_out(
-        &self,
-        out: &Tensor,
-        batch1: &Tensor,
-        batch2: &Tensor,
-        out_dtype: Kind,
-    ) -> Tensor {
-        self.f_baddbmm_dtype_out(out, batch1, batch2, out_dtype).unwrap()
-    }
-
     pub fn baddbmm_out(&self, out: &Tensor, batch1: &Tensor, batch2: &Tensor) -> Tensor {
         self.f_baddbmm_out(out, batch1, batch2).unwrap()
     }
@@ -6983,14 +7780,6 @@ impl Tensor {
 
     pub fn bmm(&self, mat2: &Tensor) -> Tensor {
         self.f_bmm(mat2).unwrap()
-    }
-
-    pub fn bmm_dtype(&self, mat2: &Tensor, out_dtype: Kind) -> Tensor {
-        self.f_bmm_dtype(mat2, out_dtype).unwrap()
-    }
-
-    pub fn bmm_dtype_out(&self, out: &Tensor, mat2: &Tensor, out_dtype: Kind) -> Tensor {
-        self.f_bmm_dtype_out(out, mat2, out_dtype).unwrap()
     }
 
     pub fn bmm_out(&self, out: &Tensor, mat2: &Tensor) -> Tensor {
@@ -10226,20 +11015,6 @@ impl Tensor {
 
     pub fn hardtanh_out(&self, out: &Tensor) -> Tensor {
         self.f_hardtanh_out(out).unwrap()
-    }
-
-    pub fn hash_tensor(&self, dim: impl IntList, keepdim: bool, mode: i64) -> Tensor {
-        self.f_hash_tensor(dim, keepdim, mode).unwrap()
-    }
-
-    pub fn hash_tensor_out(
-        &self,
-        out: &Tensor,
-        dim: impl IntList,
-        keepdim: bool,
-        mode: i64,
-    ) -> Tensor {
-        self.f_hash_tensor_out(out, dim, keepdim, mode).unwrap()
     }
 
     pub fn heaviside(&self, values: &Tensor) -> Tensor {
@@ -13586,14 +14361,6 @@ impl Tensor {
         self.f_mm(mat2).unwrap()
     }
 
-    pub fn mm_dtype(&self, mat2: &Tensor, out_dtype: Kind) -> Tensor {
-        self.f_mm_dtype(mat2, out_dtype).unwrap()
-    }
-
-    pub fn mm_dtype_out(&self, out: &Tensor, mat2: &Tensor, out_dtype: Kind) -> Tensor {
-        self.f_mm_dtype_out(out, mat2, out_dtype).unwrap()
-    }
-
     pub fn mm_out(&self, out: &Tensor, mat2: &Tensor) -> Tensor {
         self.f_mm_out(out, mat2).unwrap()
     }
@@ -15201,14 +15968,6 @@ impl Tensor {
 
     pub fn randint_like_out(&self, out: &Tensor, high: i64) -> Tensor {
         self.f_randint_like_out(out, high).unwrap()
-    }
-
-    pub fn randint_like_tensor(&self, high: &Tensor) -> Tensor {
-        self.f_randint_like_tensor(high).unwrap()
-    }
-
-    pub fn randint_like_tensor_out(&self, out: &Tensor, high: &Tensor) -> Tensor {
-        self.f_randint_like_tensor_out(out, high).unwrap()
     }
 
     pub fn randint_low(low: i64, high: i64, size: impl IntList, options: (Kind, Device)) -> Tensor {

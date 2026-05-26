@@ -788,15 +788,6 @@ void atg__ctc_loss_tensor_out(tensor *out__, tensor out0, tensor out1, tensor lo
   )
 }
 
-void atg__cudnn_attention_backward(tensor *out__, tensor grad_out, tensor query, tensor key, tensor value, tensor out, tensor logsumexp, tensor philox_seed, tensor philox_offset, tensor attn_bias, tensor cum_seq_q, tensor cum_seq_k, int64_t max_q, int64_t max_k, double dropout_p, int is_causal, double scale_v, uint8_t scale_null) {
-  PROTECT(
-    auto outputs__ = torch::_cudnn_attention_backward(*grad_out, *query, *key, *value, *out, *logsumexp, *philox_seed, *philox_offset, *attn_bias, *cum_seq_q, *cum_seq_k, max_q, max_k, dropout_p, (bool)is_causal, scale_null ? c10::nullopt : c10::optional<double>(scale_v));
-    out__[0] = new torch::Tensor(std::get<0>(outputs__));
-    out__[1] = new torch::Tensor(std::get<1>(outputs__));
-    out__[2] = new torch::Tensor(std::get<2>(outputs__));
-  )
-}
-
 void atg__cudnn_ctc_loss(tensor *out__, tensor log_probs, tensor targets, int64_t *input_lengths_data, int input_lengths_len, int64_t *target_lengths_data, int target_lengths_len, int64_t blank, int deterministic, int zero_infinity) {
   PROTECT(
     auto outputs__ = torch::_cudnn_ctc_loss(*log_probs, *targets, torch::IntArrayRef(input_lengths_data, input_lengths_len), torch::IntArrayRef(target_lengths_data, target_lengths_len), blank, (bool)deterministic, (bool)zero_infinity);
@@ -1209,6 +1200,1532 @@ void atg__foobar_out(tensor *out__, tensor out, tensor self, int arg1, int arg2,
   )
 }
 
+tensor *atg__foreach_abs(tensor *self__data, int self__len) {
+  PROTECT(
+    auto outputs__ = torch::_foreach_abs(of_carray_tensor(self__data, self__len));
+    int sz = outputs__.size();
+    torch::Tensor **out__ = (torch::Tensor**)malloc((sz + 1) * sizeof(torch::Tensor*));
+    for (int i = 0; i < sz; ++i)
+      out__[i] = new torch::Tensor(outputs__[i]);
+    out__[sz] = nullptr;
+    return out__;
+  )
+  return nullptr;
+}
+
+void atg__foreach_abs_(tensor *self__data, int self__len) {
+  PROTECT(
+    torch::_foreach_abs_(of_carray_tensor(self__data, self__len));
+  )
+}
+
+void atg__foreach_abs_out(tensor *out_data, int out_len, tensor *self__data, int self__len) {
+  PROTECT(
+    torch::_foreach_abs_out(of_carray_tensor(out_data, out_len), of_carray_tensor(self__data, self__len));
+  )
+}
+
+tensor *atg__foreach_acos(tensor *self__data, int self__len) {
+  PROTECT(
+    auto outputs__ = torch::_foreach_acos(of_carray_tensor(self__data, self__len));
+    int sz = outputs__.size();
+    torch::Tensor **out__ = (torch::Tensor**)malloc((sz + 1) * sizeof(torch::Tensor*));
+    for (int i = 0; i < sz; ++i)
+      out__[i] = new torch::Tensor(outputs__[i]);
+    out__[sz] = nullptr;
+    return out__;
+  )
+  return nullptr;
+}
+
+void atg__foreach_acos_(tensor *self__data, int self__len) {
+  PROTECT(
+    torch::_foreach_acos_(of_carray_tensor(self__data, self__len));
+  )
+}
+
+void atg__foreach_acos_out(tensor *out_data, int out_len, tensor *self__data, int self__len) {
+  PROTECT(
+    torch::_foreach_acos_out(of_carray_tensor(out_data, out_len), of_carray_tensor(self__data, self__len));
+  )
+}
+
+tensor *atg__foreach_add(tensor *self__data, int self__len, scalar scalar) {
+  PROTECT(
+    auto outputs__ = torch::_foreach_add(of_carray_tensor(self__data, self__len), *scalar);
+    int sz = outputs__.size();
+    torch::Tensor **out__ = (torch::Tensor**)malloc((sz + 1) * sizeof(torch::Tensor*));
+    for (int i = 0; i < sz; ++i)
+      out__[i] = new torch::Tensor(outputs__[i]);
+    out__[sz] = nullptr;
+    return out__;
+  )
+  return nullptr;
+}
+
+void atg__foreach_add_(tensor *self__data, int self__len, scalar scalar) {
+  PROTECT(
+    torch::_foreach_add_(of_carray_tensor(self__data, self__len), *scalar);
+  )
+}
+
+tensor *atg__foreach_add_list(tensor *self__data, int self__len, tensor *other_data, int other_len, scalar alpha) {
+  PROTECT(
+    auto outputs__ = torch::_foreach_add(of_carray_tensor(self__data, self__len), of_carray_tensor(other_data, other_len), *alpha);
+    int sz = outputs__.size();
+    torch::Tensor **out__ = (torch::Tensor**)malloc((sz + 1) * sizeof(torch::Tensor*));
+    for (int i = 0; i < sz; ++i)
+      out__[i] = new torch::Tensor(outputs__[i]);
+    out__[sz] = nullptr;
+    return out__;
+  )
+  return nullptr;
+}
+
+void atg__foreach_add_list_(tensor *self__data, int self__len, tensor *other_data, int other_len, scalar alpha) {
+  PROTECT(
+    torch::_foreach_add_(of_carray_tensor(self__data, self__len), of_carray_tensor(other_data, other_len), *alpha);
+  )
+}
+
+void atg__foreach_add_list_out(tensor *out_data, int out_len, tensor *self__data, int self__len, tensor *other_data, int other_len, scalar alpha) {
+  PROTECT(
+    torch::_foreach_add_out(of_carray_tensor(out_data, out_len), of_carray_tensor(self__data, self__len), of_carray_tensor(other_data, other_len), *alpha);
+  )
+}
+
+void atg__foreach_add_scalar_out(tensor *out_data, int out_len, tensor *self__data, int self__len, scalar scalar) {
+  PROTECT(
+    torch::_foreach_add_out(of_carray_tensor(out_data, out_len), of_carray_tensor(self__data, self__len), *scalar);
+  )
+}
+
+tensor *atg__foreach_add_tensor(tensor *self__data, int self__len, tensor other, scalar alpha) {
+  PROTECT(
+    auto outputs__ = torch::_foreach_add(of_carray_tensor(self__data, self__len), *other, *alpha);
+    int sz = outputs__.size();
+    torch::Tensor **out__ = (torch::Tensor**)malloc((sz + 1) * sizeof(torch::Tensor*));
+    for (int i = 0; i < sz; ++i)
+      out__[i] = new torch::Tensor(outputs__[i]);
+    out__[sz] = nullptr;
+    return out__;
+  )
+  return nullptr;
+}
+
+void atg__foreach_add_tensor_(tensor *self__data, int self__len, tensor other, scalar alpha) {
+  PROTECT(
+    torch::_foreach_add_(of_carray_tensor(self__data, self__len), *other, *alpha);
+  )
+}
+
+void atg__foreach_add_tensor_out(tensor *out_data, int out_len, tensor *self__data, int self__len, tensor other, scalar alpha) {
+  PROTECT(
+    torch::_foreach_add_out(of_carray_tensor(out_data, out_len), of_carray_tensor(self__data, self__len), *other, *alpha);
+  )
+}
+
+tensor *atg__foreach_addcdiv(tensor *self__data, int self__len, tensor *tensor1_data, int tensor1_len, tensor *tensor2_data, int tensor2_len, scalar value) {
+  PROTECT(
+    auto outputs__ = torch::_foreach_addcdiv(of_carray_tensor(self__data, self__len), of_carray_tensor(tensor1_data, tensor1_len), of_carray_tensor(tensor2_data, tensor2_len), *value);
+    int sz = outputs__.size();
+    torch::Tensor **out__ = (torch::Tensor**)malloc((sz + 1) * sizeof(torch::Tensor*));
+    for (int i = 0; i < sz; ++i)
+      out__[i] = new torch::Tensor(outputs__[i]);
+    out__[sz] = nullptr;
+    return out__;
+  )
+  return nullptr;
+}
+
+void atg__foreach_addcdiv_(tensor *self__data, int self__len, tensor *tensor1_data, int tensor1_len, tensor *tensor2_data, int tensor2_len, scalar value) {
+  PROTECT(
+    torch::_foreach_addcdiv_(of_carray_tensor(self__data, self__len), of_carray_tensor(tensor1_data, tensor1_len), of_carray_tensor(tensor2_data, tensor2_len), *value);
+  )
+}
+
+void atg__foreach_addcdiv_scalar_out(tensor *out_data, int out_len, tensor *self__data, int self__len, tensor *tensor1_data, int tensor1_len, tensor *tensor2_data, int tensor2_len, scalar value) {
+  PROTECT(
+    torch::_foreach_addcdiv_out(of_carray_tensor(out_data, out_len), of_carray_tensor(self__data, self__len), of_carray_tensor(tensor1_data, tensor1_len), of_carray_tensor(tensor2_data, tensor2_len), *value);
+  )
+}
+
+tensor *atg__foreach_addcdiv_tensor(tensor *self__data, int self__len, tensor *tensor1_data, int tensor1_len, tensor *tensor2_data, int tensor2_len, tensor scalars) {
+  PROTECT(
+    auto outputs__ = torch::_foreach_addcdiv(of_carray_tensor(self__data, self__len), of_carray_tensor(tensor1_data, tensor1_len), of_carray_tensor(tensor2_data, tensor2_len), *scalars);
+    int sz = outputs__.size();
+    torch::Tensor **out__ = (torch::Tensor**)malloc((sz + 1) * sizeof(torch::Tensor*));
+    for (int i = 0; i < sz; ++i)
+      out__[i] = new torch::Tensor(outputs__[i]);
+    out__[sz] = nullptr;
+    return out__;
+  )
+  return nullptr;
+}
+
+void atg__foreach_addcdiv_tensor_(tensor *self__data, int self__len, tensor *tensor1_data, int tensor1_len, tensor *tensor2_data, int tensor2_len, tensor scalars) {
+  PROTECT(
+    torch::_foreach_addcdiv_(of_carray_tensor(self__data, self__len), of_carray_tensor(tensor1_data, tensor1_len), of_carray_tensor(tensor2_data, tensor2_len), *scalars);
+  )
+}
+
+void atg__foreach_addcdiv_tensor_out(tensor *out_data, int out_len, tensor *self__data, int self__len, tensor *tensor1_data, int tensor1_len, tensor *tensor2_data, int tensor2_len, tensor scalars) {
+  PROTECT(
+    torch::_foreach_addcdiv_out(of_carray_tensor(out_data, out_len), of_carray_tensor(self__data, self__len), of_carray_tensor(tensor1_data, tensor1_len), of_carray_tensor(tensor2_data, tensor2_len), *scalars);
+  )
+}
+
+tensor *atg__foreach_addcmul(tensor *self__data, int self__len, tensor *tensor1_data, int tensor1_len, tensor *tensor2_data, int tensor2_len, scalar value) {
+  PROTECT(
+    auto outputs__ = torch::_foreach_addcmul(of_carray_tensor(self__data, self__len), of_carray_tensor(tensor1_data, tensor1_len), of_carray_tensor(tensor2_data, tensor2_len), *value);
+    int sz = outputs__.size();
+    torch::Tensor **out__ = (torch::Tensor**)malloc((sz + 1) * sizeof(torch::Tensor*));
+    for (int i = 0; i < sz; ++i)
+      out__[i] = new torch::Tensor(outputs__[i]);
+    out__[sz] = nullptr;
+    return out__;
+  )
+  return nullptr;
+}
+
+void atg__foreach_addcmul_(tensor *self__data, int self__len, tensor *tensor1_data, int tensor1_len, tensor *tensor2_data, int tensor2_len, scalar value) {
+  PROTECT(
+    torch::_foreach_addcmul_(of_carray_tensor(self__data, self__len), of_carray_tensor(tensor1_data, tensor1_len), of_carray_tensor(tensor2_data, tensor2_len), *value);
+  )
+}
+
+void atg__foreach_addcmul_scalar_out(tensor *out_data, int out_len, tensor *self__data, int self__len, tensor *tensor1_data, int tensor1_len, tensor *tensor2_data, int tensor2_len, scalar value) {
+  PROTECT(
+    torch::_foreach_addcmul_out(of_carray_tensor(out_data, out_len), of_carray_tensor(self__data, self__len), of_carray_tensor(tensor1_data, tensor1_len), of_carray_tensor(tensor2_data, tensor2_len), *value);
+  )
+}
+
+tensor *atg__foreach_addcmul_tensor(tensor *self__data, int self__len, tensor *tensor1_data, int tensor1_len, tensor *tensor2_data, int tensor2_len, tensor scalars) {
+  PROTECT(
+    auto outputs__ = torch::_foreach_addcmul(of_carray_tensor(self__data, self__len), of_carray_tensor(tensor1_data, tensor1_len), of_carray_tensor(tensor2_data, tensor2_len), *scalars);
+    int sz = outputs__.size();
+    torch::Tensor **out__ = (torch::Tensor**)malloc((sz + 1) * sizeof(torch::Tensor*));
+    for (int i = 0; i < sz; ++i)
+      out__[i] = new torch::Tensor(outputs__[i]);
+    out__[sz] = nullptr;
+    return out__;
+  )
+  return nullptr;
+}
+
+void atg__foreach_addcmul_tensor_(tensor *self__data, int self__len, tensor *tensor1_data, int tensor1_len, tensor *tensor2_data, int tensor2_len, tensor scalars) {
+  PROTECT(
+    torch::_foreach_addcmul_(of_carray_tensor(self__data, self__len), of_carray_tensor(tensor1_data, tensor1_len), of_carray_tensor(tensor2_data, tensor2_len), *scalars);
+  )
+}
+
+void atg__foreach_addcmul_tensor_out(tensor *out_data, int out_len, tensor *self__data, int self__len, tensor *tensor1_data, int tensor1_len, tensor *tensor2_data, int tensor2_len, tensor scalars) {
+  PROTECT(
+    torch::_foreach_addcmul_out(of_carray_tensor(out_data, out_len), of_carray_tensor(self__data, self__len), of_carray_tensor(tensor1_data, tensor1_len), of_carray_tensor(tensor2_data, tensor2_len), *scalars);
+  )
+}
+
+tensor *atg__foreach_asin(tensor *self__data, int self__len) {
+  PROTECT(
+    auto outputs__ = torch::_foreach_asin(of_carray_tensor(self__data, self__len));
+    int sz = outputs__.size();
+    torch::Tensor **out__ = (torch::Tensor**)malloc((sz + 1) * sizeof(torch::Tensor*));
+    for (int i = 0; i < sz; ++i)
+      out__[i] = new torch::Tensor(outputs__[i]);
+    out__[sz] = nullptr;
+    return out__;
+  )
+  return nullptr;
+}
+
+void atg__foreach_asin_(tensor *self__data, int self__len) {
+  PROTECT(
+    torch::_foreach_asin_(of_carray_tensor(self__data, self__len));
+  )
+}
+
+void atg__foreach_asin_out(tensor *out_data, int out_len, tensor *self__data, int self__len) {
+  PROTECT(
+    torch::_foreach_asin_out(of_carray_tensor(out_data, out_len), of_carray_tensor(self__data, self__len));
+  )
+}
+
+tensor *atg__foreach_atan(tensor *self__data, int self__len) {
+  PROTECT(
+    auto outputs__ = torch::_foreach_atan(of_carray_tensor(self__data, self__len));
+    int sz = outputs__.size();
+    torch::Tensor **out__ = (torch::Tensor**)malloc((sz + 1) * sizeof(torch::Tensor*));
+    for (int i = 0; i < sz; ++i)
+      out__[i] = new torch::Tensor(outputs__[i]);
+    out__[sz] = nullptr;
+    return out__;
+  )
+  return nullptr;
+}
+
+void atg__foreach_atan_(tensor *self__data, int self__len) {
+  PROTECT(
+    torch::_foreach_atan_(of_carray_tensor(self__data, self__len));
+  )
+}
+
+void atg__foreach_atan_out(tensor *out_data, int out_len, tensor *self__data, int self__len) {
+  PROTECT(
+    torch::_foreach_atan_out(of_carray_tensor(out_data, out_len), of_carray_tensor(self__data, self__len));
+  )
+}
+
+tensor *atg__foreach_ceil(tensor *self__data, int self__len) {
+  PROTECT(
+    auto outputs__ = torch::_foreach_ceil(of_carray_tensor(self__data, self__len));
+    int sz = outputs__.size();
+    torch::Tensor **out__ = (torch::Tensor**)malloc((sz + 1) * sizeof(torch::Tensor*));
+    for (int i = 0; i < sz; ++i)
+      out__[i] = new torch::Tensor(outputs__[i]);
+    out__[sz] = nullptr;
+    return out__;
+  )
+  return nullptr;
+}
+
+void atg__foreach_ceil_(tensor *self__data, int self__len) {
+  PROTECT(
+    torch::_foreach_ceil_(of_carray_tensor(self__data, self__len));
+  )
+}
+
+void atg__foreach_ceil_out(tensor *out_data, int out_len, tensor *self__data, int self__len) {
+  PROTECT(
+    torch::_foreach_ceil_out(of_carray_tensor(out_data, out_len), of_carray_tensor(self__data, self__len));
+  )
+}
+
+tensor *atg__foreach_clamp_max(tensor *self__data, int self__len, scalar scalar) {
+  PROTECT(
+    auto outputs__ = torch::_foreach_clamp_max(of_carray_tensor(self__data, self__len), *scalar);
+    int sz = outputs__.size();
+    torch::Tensor **out__ = (torch::Tensor**)malloc((sz + 1) * sizeof(torch::Tensor*));
+    for (int i = 0; i < sz; ++i)
+      out__[i] = new torch::Tensor(outputs__[i]);
+    out__[sz] = nullptr;
+    return out__;
+  )
+  return nullptr;
+}
+
+void atg__foreach_clamp_max_(tensor *self__data, int self__len, scalar scalar) {
+  PROTECT(
+    torch::_foreach_clamp_max_(of_carray_tensor(self__data, self__len), *scalar);
+  )
+}
+
+tensor *atg__foreach_clamp_max_list(tensor *self__data, int self__len, tensor *other_data, int other_len) {
+  PROTECT(
+    auto outputs__ = torch::_foreach_clamp_max(of_carray_tensor(self__data, self__len), of_carray_tensor(other_data, other_len));
+    int sz = outputs__.size();
+    torch::Tensor **out__ = (torch::Tensor**)malloc((sz + 1) * sizeof(torch::Tensor*));
+    for (int i = 0; i < sz; ++i)
+      out__[i] = new torch::Tensor(outputs__[i]);
+    out__[sz] = nullptr;
+    return out__;
+  )
+  return nullptr;
+}
+
+void atg__foreach_clamp_max_list_(tensor *self__data, int self__len, tensor *other_data, int other_len) {
+  PROTECT(
+    torch::_foreach_clamp_max_(of_carray_tensor(self__data, self__len), of_carray_tensor(other_data, other_len));
+  )
+}
+
+void atg__foreach_clamp_max_list_out(tensor *out_data, int out_len, tensor *self__data, int self__len, tensor *other_data, int other_len) {
+  PROTECT(
+    torch::_foreach_clamp_max_out(of_carray_tensor(out_data, out_len), of_carray_tensor(self__data, self__len), of_carray_tensor(other_data, other_len));
+  )
+}
+
+void atg__foreach_clamp_max_scalar_out(tensor *out_data, int out_len, tensor *self__data, int self__len, scalar scalar) {
+  PROTECT(
+    torch::_foreach_clamp_max_out(of_carray_tensor(out_data, out_len), of_carray_tensor(self__data, self__len), *scalar);
+  )
+}
+
+tensor *atg__foreach_clamp_min(tensor *self__data, int self__len, scalar scalar) {
+  PROTECT(
+    auto outputs__ = torch::_foreach_clamp_min(of_carray_tensor(self__data, self__len), *scalar);
+    int sz = outputs__.size();
+    torch::Tensor **out__ = (torch::Tensor**)malloc((sz + 1) * sizeof(torch::Tensor*));
+    for (int i = 0; i < sz; ++i)
+      out__[i] = new torch::Tensor(outputs__[i]);
+    out__[sz] = nullptr;
+    return out__;
+  )
+  return nullptr;
+}
+
+void atg__foreach_clamp_min_(tensor *self__data, int self__len, scalar scalar) {
+  PROTECT(
+    torch::_foreach_clamp_min_(of_carray_tensor(self__data, self__len), *scalar);
+  )
+}
+
+tensor *atg__foreach_clamp_min_list(tensor *self__data, int self__len, tensor *other_data, int other_len) {
+  PROTECT(
+    auto outputs__ = torch::_foreach_clamp_min(of_carray_tensor(self__data, self__len), of_carray_tensor(other_data, other_len));
+    int sz = outputs__.size();
+    torch::Tensor **out__ = (torch::Tensor**)malloc((sz + 1) * sizeof(torch::Tensor*));
+    for (int i = 0; i < sz; ++i)
+      out__[i] = new torch::Tensor(outputs__[i]);
+    out__[sz] = nullptr;
+    return out__;
+  )
+  return nullptr;
+}
+
+void atg__foreach_clamp_min_list_(tensor *self__data, int self__len, tensor *other_data, int other_len) {
+  PROTECT(
+    torch::_foreach_clamp_min_(of_carray_tensor(self__data, self__len), of_carray_tensor(other_data, other_len));
+  )
+}
+
+void atg__foreach_clamp_min_list_out(tensor *out_data, int out_len, tensor *self__data, int self__len, tensor *other_data, int other_len) {
+  PROTECT(
+    torch::_foreach_clamp_min_out(of_carray_tensor(out_data, out_len), of_carray_tensor(self__data, self__len), of_carray_tensor(other_data, other_len));
+  )
+}
+
+void atg__foreach_clamp_min_scalar_out(tensor *out_data, int out_len, tensor *self__data, int self__len, scalar scalar) {
+  PROTECT(
+    torch::_foreach_clamp_min_out(of_carray_tensor(out_data, out_len), of_carray_tensor(self__data, self__len), *scalar);
+  )
+}
+
+tensor *atg__foreach_copy(tensor *self__data, int self__len, tensor *src_data, int src_len, int non_blocking) {
+  PROTECT(
+    auto outputs__ = torch::_foreach_copy(of_carray_tensor(self__data, self__len), of_carray_tensor(src_data, src_len), (bool)non_blocking);
+    int sz = outputs__.size();
+    torch::Tensor **out__ = (torch::Tensor**)malloc((sz + 1) * sizeof(torch::Tensor*));
+    for (int i = 0; i < sz; ++i)
+      out__[i] = new torch::Tensor(outputs__[i]);
+    out__[sz] = nullptr;
+    return out__;
+  )
+  return nullptr;
+}
+
+void atg__foreach_copy_(tensor *self__data, int self__len, tensor *src_data, int src_len, int non_blocking) {
+  PROTECT(
+    torch::_foreach_copy_(of_carray_tensor(self__data, self__len), of_carray_tensor(src_data, src_len), (bool)non_blocking);
+  )
+}
+
+void atg__foreach_copy_out(tensor *out_data, int out_len, tensor *self__data, int self__len, tensor *src_data, int src_len, int non_blocking) {
+  PROTECT(
+    torch::_foreach_copy_out(of_carray_tensor(out_data, out_len), of_carray_tensor(self__data, self__len), of_carray_tensor(src_data, src_len), (bool)non_blocking);
+  )
+}
+
+tensor *atg__foreach_cos(tensor *self__data, int self__len) {
+  PROTECT(
+    auto outputs__ = torch::_foreach_cos(of_carray_tensor(self__data, self__len));
+    int sz = outputs__.size();
+    torch::Tensor **out__ = (torch::Tensor**)malloc((sz + 1) * sizeof(torch::Tensor*));
+    for (int i = 0; i < sz; ++i)
+      out__[i] = new torch::Tensor(outputs__[i]);
+    out__[sz] = nullptr;
+    return out__;
+  )
+  return nullptr;
+}
+
+void atg__foreach_cos_(tensor *self__data, int self__len) {
+  PROTECT(
+    torch::_foreach_cos_(of_carray_tensor(self__data, self__len));
+  )
+}
+
+void atg__foreach_cos_out(tensor *out_data, int out_len, tensor *self__data, int self__len) {
+  PROTECT(
+    torch::_foreach_cos_out(of_carray_tensor(out_data, out_len), of_carray_tensor(self__data, self__len));
+  )
+}
+
+tensor *atg__foreach_cosh(tensor *self__data, int self__len) {
+  PROTECT(
+    auto outputs__ = torch::_foreach_cosh(of_carray_tensor(self__data, self__len));
+    int sz = outputs__.size();
+    torch::Tensor **out__ = (torch::Tensor**)malloc((sz + 1) * sizeof(torch::Tensor*));
+    for (int i = 0; i < sz; ++i)
+      out__[i] = new torch::Tensor(outputs__[i]);
+    out__[sz] = nullptr;
+    return out__;
+  )
+  return nullptr;
+}
+
+void atg__foreach_cosh_(tensor *self__data, int self__len) {
+  PROTECT(
+    torch::_foreach_cosh_(of_carray_tensor(self__data, self__len));
+  )
+}
+
+void atg__foreach_cosh_out(tensor *out_data, int out_len, tensor *self__data, int self__len) {
+  PROTECT(
+    torch::_foreach_cosh_out(of_carray_tensor(out_data, out_len), of_carray_tensor(self__data, self__len));
+  )
+}
+
+tensor *atg__foreach_div(tensor *self__data, int self__len, scalar scalar) {
+  PROTECT(
+    auto outputs__ = torch::_foreach_div(of_carray_tensor(self__data, self__len), *scalar);
+    int sz = outputs__.size();
+    torch::Tensor **out__ = (torch::Tensor**)malloc((sz + 1) * sizeof(torch::Tensor*));
+    for (int i = 0; i < sz; ++i)
+      out__[i] = new torch::Tensor(outputs__[i]);
+    out__[sz] = nullptr;
+    return out__;
+  )
+  return nullptr;
+}
+
+void atg__foreach_div_(tensor *self__data, int self__len, scalar scalar) {
+  PROTECT(
+    torch::_foreach_div_(of_carray_tensor(self__data, self__len), *scalar);
+  )
+}
+
+tensor *atg__foreach_div_list(tensor *self__data, int self__len, tensor *other_data, int other_len) {
+  PROTECT(
+    auto outputs__ = torch::_foreach_div(of_carray_tensor(self__data, self__len), of_carray_tensor(other_data, other_len));
+    int sz = outputs__.size();
+    torch::Tensor **out__ = (torch::Tensor**)malloc((sz + 1) * sizeof(torch::Tensor*));
+    for (int i = 0; i < sz; ++i)
+      out__[i] = new torch::Tensor(outputs__[i]);
+    out__[sz] = nullptr;
+    return out__;
+  )
+  return nullptr;
+}
+
+void atg__foreach_div_list_(tensor *self__data, int self__len, tensor *other_data, int other_len) {
+  PROTECT(
+    torch::_foreach_div_(of_carray_tensor(self__data, self__len), of_carray_tensor(other_data, other_len));
+  )
+}
+
+void atg__foreach_div_list_out(tensor *out_data, int out_len, tensor *self__data, int self__len, tensor *other_data, int other_len) {
+  PROTECT(
+    torch::_foreach_div_out(of_carray_tensor(out_data, out_len), of_carray_tensor(self__data, self__len), of_carray_tensor(other_data, other_len));
+  )
+}
+
+void atg__foreach_div_scalar_out(tensor *out_data, int out_len, tensor *self__data, int self__len, scalar scalar) {
+  PROTECT(
+    torch::_foreach_div_out(of_carray_tensor(out_data, out_len), of_carray_tensor(self__data, self__len), *scalar);
+  )
+}
+
+tensor *atg__foreach_div_tensor(tensor *self__data, int self__len, tensor other) {
+  PROTECT(
+    auto outputs__ = torch::_foreach_div(of_carray_tensor(self__data, self__len), *other);
+    int sz = outputs__.size();
+    torch::Tensor **out__ = (torch::Tensor**)malloc((sz + 1) * sizeof(torch::Tensor*));
+    for (int i = 0; i < sz; ++i)
+      out__[i] = new torch::Tensor(outputs__[i]);
+    out__[sz] = nullptr;
+    return out__;
+  )
+  return nullptr;
+}
+
+void atg__foreach_div_tensor_(tensor *self__data, int self__len, tensor other) {
+  PROTECT(
+    torch::_foreach_div_(of_carray_tensor(self__data, self__len), *other);
+  )
+}
+
+void atg__foreach_div_tensor_out(tensor *out_data, int out_len, tensor *self__data, int self__len, tensor other) {
+  PROTECT(
+    torch::_foreach_div_out(of_carray_tensor(out_data, out_len), of_carray_tensor(self__data, self__len), *other);
+  )
+}
+
+tensor *atg__foreach_erf(tensor *self__data, int self__len) {
+  PROTECT(
+    auto outputs__ = torch::_foreach_erf(of_carray_tensor(self__data, self__len));
+    int sz = outputs__.size();
+    torch::Tensor **out__ = (torch::Tensor**)malloc((sz + 1) * sizeof(torch::Tensor*));
+    for (int i = 0; i < sz; ++i)
+      out__[i] = new torch::Tensor(outputs__[i]);
+    out__[sz] = nullptr;
+    return out__;
+  )
+  return nullptr;
+}
+
+void atg__foreach_erf_(tensor *self__data, int self__len) {
+  PROTECT(
+    torch::_foreach_erf_(of_carray_tensor(self__data, self__len));
+  )
+}
+
+void atg__foreach_erf_out(tensor *out_data, int out_len, tensor *self__data, int self__len) {
+  PROTECT(
+    torch::_foreach_erf_out(of_carray_tensor(out_data, out_len), of_carray_tensor(self__data, self__len));
+  )
+}
+
+tensor *atg__foreach_erfc(tensor *self__data, int self__len) {
+  PROTECT(
+    auto outputs__ = torch::_foreach_erfc(of_carray_tensor(self__data, self__len));
+    int sz = outputs__.size();
+    torch::Tensor **out__ = (torch::Tensor**)malloc((sz + 1) * sizeof(torch::Tensor*));
+    for (int i = 0; i < sz; ++i)
+      out__[i] = new torch::Tensor(outputs__[i]);
+    out__[sz] = nullptr;
+    return out__;
+  )
+  return nullptr;
+}
+
+void atg__foreach_erfc_(tensor *self__data, int self__len) {
+  PROTECT(
+    torch::_foreach_erfc_(of_carray_tensor(self__data, self__len));
+  )
+}
+
+void atg__foreach_erfc_out(tensor *out_data, int out_len, tensor *self__data, int self__len) {
+  PROTECT(
+    torch::_foreach_erfc_out(of_carray_tensor(out_data, out_len), of_carray_tensor(self__data, self__len));
+  )
+}
+
+tensor *atg__foreach_exp(tensor *self__data, int self__len) {
+  PROTECT(
+    auto outputs__ = torch::_foreach_exp(of_carray_tensor(self__data, self__len));
+    int sz = outputs__.size();
+    torch::Tensor **out__ = (torch::Tensor**)malloc((sz + 1) * sizeof(torch::Tensor*));
+    for (int i = 0; i < sz; ++i)
+      out__[i] = new torch::Tensor(outputs__[i]);
+    out__[sz] = nullptr;
+    return out__;
+  )
+  return nullptr;
+}
+
+void atg__foreach_exp_(tensor *self__data, int self__len) {
+  PROTECT(
+    torch::_foreach_exp_(of_carray_tensor(self__data, self__len));
+  )
+}
+
+void atg__foreach_exp_out(tensor *out_data, int out_len, tensor *self__data, int self__len) {
+  PROTECT(
+    torch::_foreach_exp_out(of_carray_tensor(out_data, out_len), of_carray_tensor(self__data, self__len));
+  )
+}
+
+tensor *atg__foreach_expm1(tensor *self__data, int self__len) {
+  PROTECT(
+    auto outputs__ = torch::_foreach_expm1(of_carray_tensor(self__data, self__len));
+    int sz = outputs__.size();
+    torch::Tensor **out__ = (torch::Tensor**)malloc((sz + 1) * sizeof(torch::Tensor*));
+    for (int i = 0; i < sz; ++i)
+      out__[i] = new torch::Tensor(outputs__[i]);
+    out__[sz] = nullptr;
+    return out__;
+  )
+  return nullptr;
+}
+
+void atg__foreach_expm1_(tensor *self__data, int self__len) {
+  PROTECT(
+    torch::_foreach_expm1_(of_carray_tensor(self__data, self__len));
+  )
+}
+
+void atg__foreach_expm1_out(tensor *out_data, int out_len, tensor *self__data, int self__len) {
+  PROTECT(
+    torch::_foreach_expm1_out(of_carray_tensor(out_data, out_len), of_carray_tensor(self__data, self__len));
+  )
+}
+
+tensor *atg__foreach_floor(tensor *self__data, int self__len) {
+  PROTECT(
+    auto outputs__ = torch::_foreach_floor(of_carray_tensor(self__data, self__len));
+    int sz = outputs__.size();
+    torch::Tensor **out__ = (torch::Tensor**)malloc((sz + 1) * sizeof(torch::Tensor*));
+    for (int i = 0; i < sz; ++i)
+      out__[i] = new torch::Tensor(outputs__[i]);
+    out__[sz] = nullptr;
+    return out__;
+  )
+  return nullptr;
+}
+
+void atg__foreach_floor_(tensor *self__data, int self__len) {
+  PROTECT(
+    torch::_foreach_floor_(of_carray_tensor(self__data, self__len));
+  )
+}
+
+void atg__foreach_floor_out(tensor *out_data, int out_len, tensor *self__data, int self__len) {
+  PROTECT(
+    torch::_foreach_floor_out(of_carray_tensor(out_data, out_len), of_carray_tensor(self__data, self__len));
+  )
+}
+
+tensor *atg__foreach_frac(tensor *self__data, int self__len) {
+  PROTECT(
+    auto outputs__ = torch::_foreach_frac(of_carray_tensor(self__data, self__len));
+    int sz = outputs__.size();
+    torch::Tensor **out__ = (torch::Tensor**)malloc((sz + 1) * sizeof(torch::Tensor*));
+    for (int i = 0; i < sz; ++i)
+      out__[i] = new torch::Tensor(outputs__[i]);
+    out__[sz] = nullptr;
+    return out__;
+  )
+  return nullptr;
+}
+
+void atg__foreach_frac_(tensor *self__data, int self__len) {
+  PROTECT(
+    torch::_foreach_frac_(of_carray_tensor(self__data, self__len));
+  )
+}
+
+void atg__foreach_frac_out(tensor *out_data, int out_len, tensor *self__data, int self__len) {
+  PROTECT(
+    torch::_foreach_frac_out(of_carray_tensor(out_data, out_len), of_carray_tensor(self__data, self__len));
+  )
+}
+
+tensor *atg__foreach_lerp(tensor *self__data, int self__len, tensor *tensors1_data, int tensors1_len, tensor *weights_data, int weights_len) {
+  PROTECT(
+    auto outputs__ = torch::_foreach_lerp(of_carray_tensor(self__data, self__len), of_carray_tensor(tensors1_data, tensors1_len), of_carray_tensor(weights_data, weights_len));
+    int sz = outputs__.size();
+    torch::Tensor **out__ = (torch::Tensor**)malloc((sz + 1) * sizeof(torch::Tensor*));
+    for (int i = 0; i < sz; ++i)
+      out__[i] = new torch::Tensor(outputs__[i]);
+    out__[sz] = nullptr;
+    return out__;
+  )
+  return nullptr;
+}
+
+void atg__foreach_lerp_(tensor *self__data, int self__len, tensor *tensors1_data, int tensors1_len, tensor *weights_data, int weights_len) {
+  PROTECT(
+    torch::_foreach_lerp_(of_carray_tensor(self__data, self__len), of_carray_tensor(tensors1_data, tensors1_len), of_carray_tensor(weights_data, weights_len));
+  )
+}
+
+void atg__foreach_lerp_list_out(tensor *out_data, int out_len, tensor *self__data, int self__len, tensor *tensors1_data, int tensors1_len, tensor *weights_data, int weights_len) {
+  PROTECT(
+    torch::_foreach_lerp_out(of_carray_tensor(out_data, out_len), of_carray_tensor(self__data, self__len), of_carray_tensor(tensors1_data, tensors1_len), of_carray_tensor(weights_data, weights_len));
+  )
+}
+
+tensor *atg__foreach_lerp_scalar(tensor *self__data, int self__len, tensor *tensors1_data, int tensors1_len, scalar weight) {
+  PROTECT(
+    auto outputs__ = torch::_foreach_lerp(of_carray_tensor(self__data, self__len), of_carray_tensor(tensors1_data, tensors1_len), *weight);
+    int sz = outputs__.size();
+    torch::Tensor **out__ = (torch::Tensor**)malloc((sz + 1) * sizeof(torch::Tensor*));
+    for (int i = 0; i < sz; ++i)
+      out__[i] = new torch::Tensor(outputs__[i]);
+    out__[sz] = nullptr;
+    return out__;
+  )
+  return nullptr;
+}
+
+void atg__foreach_lerp_scalar_(tensor *self__data, int self__len, tensor *tensors1_data, int tensors1_len, scalar weight) {
+  PROTECT(
+    torch::_foreach_lerp_(of_carray_tensor(self__data, self__len), of_carray_tensor(tensors1_data, tensors1_len), *weight);
+  )
+}
+
+void atg__foreach_lerp_scalar_out(tensor *out_data, int out_len, tensor *self__data, int self__len, tensor *tensors1_data, int tensors1_len, scalar weight) {
+  PROTECT(
+    torch::_foreach_lerp_out(of_carray_tensor(out_data, out_len), of_carray_tensor(self__data, self__len), of_carray_tensor(tensors1_data, tensors1_len), *weight);
+  )
+}
+
+tensor *atg__foreach_lgamma(tensor *self__data, int self__len) {
+  PROTECT(
+    auto outputs__ = torch::_foreach_lgamma(of_carray_tensor(self__data, self__len));
+    int sz = outputs__.size();
+    torch::Tensor **out__ = (torch::Tensor**)malloc((sz + 1) * sizeof(torch::Tensor*));
+    for (int i = 0; i < sz; ++i)
+      out__[i] = new torch::Tensor(outputs__[i]);
+    out__[sz] = nullptr;
+    return out__;
+  )
+  return nullptr;
+}
+
+void atg__foreach_lgamma_(tensor *self__data, int self__len) {
+  PROTECT(
+    torch::_foreach_lgamma_(of_carray_tensor(self__data, self__len));
+  )
+}
+
+void atg__foreach_lgamma_out(tensor *out_data, int out_len, tensor *self__data, int self__len) {
+  PROTECT(
+    torch::_foreach_lgamma_out(of_carray_tensor(out_data, out_len), of_carray_tensor(self__data, self__len));
+  )
+}
+
+tensor *atg__foreach_log(tensor *self__data, int self__len) {
+  PROTECT(
+    auto outputs__ = torch::_foreach_log(of_carray_tensor(self__data, self__len));
+    int sz = outputs__.size();
+    torch::Tensor **out__ = (torch::Tensor**)malloc((sz + 1) * sizeof(torch::Tensor*));
+    for (int i = 0; i < sz; ++i)
+      out__[i] = new torch::Tensor(outputs__[i]);
+    out__[sz] = nullptr;
+    return out__;
+  )
+  return nullptr;
+}
+
+tensor *atg__foreach_log10(tensor *self__data, int self__len) {
+  PROTECT(
+    auto outputs__ = torch::_foreach_log10(of_carray_tensor(self__data, self__len));
+    int sz = outputs__.size();
+    torch::Tensor **out__ = (torch::Tensor**)malloc((sz + 1) * sizeof(torch::Tensor*));
+    for (int i = 0; i < sz; ++i)
+      out__[i] = new torch::Tensor(outputs__[i]);
+    out__[sz] = nullptr;
+    return out__;
+  )
+  return nullptr;
+}
+
+void atg__foreach_log10_(tensor *self__data, int self__len) {
+  PROTECT(
+    torch::_foreach_log10_(of_carray_tensor(self__data, self__len));
+  )
+}
+
+void atg__foreach_log10_out(tensor *out_data, int out_len, tensor *self__data, int self__len) {
+  PROTECT(
+    torch::_foreach_log10_out(of_carray_tensor(out_data, out_len), of_carray_tensor(self__data, self__len));
+  )
+}
+
+tensor *atg__foreach_log1p(tensor *self__data, int self__len) {
+  PROTECT(
+    auto outputs__ = torch::_foreach_log1p(of_carray_tensor(self__data, self__len));
+    int sz = outputs__.size();
+    torch::Tensor **out__ = (torch::Tensor**)malloc((sz + 1) * sizeof(torch::Tensor*));
+    for (int i = 0; i < sz; ++i)
+      out__[i] = new torch::Tensor(outputs__[i]);
+    out__[sz] = nullptr;
+    return out__;
+  )
+  return nullptr;
+}
+
+void atg__foreach_log1p_(tensor *self__data, int self__len) {
+  PROTECT(
+    torch::_foreach_log1p_(of_carray_tensor(self__data, self__len));
+  )
+}
+
+void atg__foreach_log1p_out(tensor *out_data, int out_len, tensor *self__data, int self__len) {
+  PROTECT(
+    torch::_foreach_log1p_out(of_carray_tensor(out_data, out_len), of_carray_tensor(self__data, self__len));
+  )
+}
+
+tensor *atg__foreach_log2(tensor *self__data, int self__len) {
+  PROTECT(
+    auto outputs__ = torch::_foreach_log2(of_carray_tensor(self__data, self__len));
+    int sz = outputs__.size();
+    torch::Tensor **out__ = (torch::Tensor**)malloc((sz + 1) * sizeof(torch::Tensor*));
+    for (int i = 0; i < sz; ++i)
+      out__[i] = new torch::Tensor(outputs__[i]);
+    out__[sz] = nullptr;
+    return out__;
+  )
+  return nullptr;
+}
+
+void atg__foreach_log2_(tensor *self__data, int self__len) {
+  PROTECT(
+    torch::_foreach_log2_(of_carray_tensor(self__data, self__len));
+  )
+}
+
+void atg__foreach_log2_out(tensor *out_data, int out_len, tensor *self__data, int self__len) {
+  PROTECT(
+    torch::_foreach_log2_out(of_carray_tensor(out_data, out_len), of_carray_tensor(self__data, self__len));
+  )
+}
+
+void atg__foreach_log_(tensor *self__data, int self__len) {
+  PROTECT(
+    torch::_foreach_log_(of_carray_tensor(self__data, self__len));
+  )
+}
+
+void atg__foreach_log_out(tensor *out_data, int out_len, tensor *self__data, int self__len) {
+  PROTECT(
+    torch::_foreach_log_out(of_carray_tensor(out_data, out_len), of_carray_tensor(self__data, self__len));
+  )
+}
+
+tensor *atg__foreach_max(tensor *self__data, int self__len) {
+  PROTECT(
+    auto outputs__ = torch::_foreach_max(of_carray_tensor(self__data, self__len));
+    int sz = outputs__.size();
+    torch::Tensor **out__ = (torch::Tensor**)malloc((sz + 1) * sizeof(torch::Tensor*));
+    for (int i = 0; i < sz; ++i)
+      out__[i] = new torch::Tensor(outputs__[i]);
+    out__[sz] = nullptr;
+    return out__;
+  )
+  return nullptr;
+}
+
+void atg__foreach_max_out(tensor *out_data, int out_len, tensor *self__data, int self__len) {
+  PROTECT(
+    torch::_foreach_max_out(of_carray_tensor(out_data, out_len), of_carray_tensor(self__data, self__len));
+  )
+}
+
+tensor *atg__foreach_maximum(tensor *self__data, int self__len, scalar scalar) {
+  PROTECT(
+    auto outputs__ = torch::_foreach_maximum(of_carray_tensor(self__data, self__len), *scalar);
+    int sz = outputs__.size();
+    torch::Tensor **out__ = (torch::Tensor**)malloc((sz + 1) * sizeof(torch::Tensor*));
+    for (int i = 0; i < sz; ++i)
+      out__[i] = new torch::Tensor(outputs__[i]);
+    out__[sz] = nullptr;
+    return out__;
+  )
+  return nullptr;
+}
+
+void atg__foreach_maximum_(tensor *self__data, int self__len, scalar scalar) {
+  PROTECT(
+    torch::_foreach_maximum_(of_carray_tensor(self__data, self__len), *scalar);
+  )
+}
+
+tensor *atg__foreach_maximum_list(tensor *self__data, int self__len, tensor *other_data, int other_len) {
+  PROTECT(
+    auto outputs__ = torch::_foreach_maximum(of_carray_tensor(self__data, self__len), of_carray_tensor(other_data, other_len));
+    int sz = outputs__.size();
+    torch::Tensor **out__ = (torch::Tensor**)malloc((sz + 1) * sizeof(torch::Tensor*));
+    for (int i = 0; i < sz; ++i)
+      out__[i] = new torch::Tensor(outputs__[i]);
+    out__[sz] = nullptr;
+    return out__;
+  )
+  return nullptr;
+}
+
+void atg__foreach_maximum_list_(tensor *self__data, int self__len, tensor *other_data, int other_len) {
+  PROTECT(
+    torch::_foreach_maximum_(of_carray_tensor(self__data, self__len), of_carray_tensor(other_data, other_len));
+  )
+}
+
+void atg__foreach_maximum_list_out(tensor *out_data, int out_len, tensor *self__data, int self__len, tensor *other_data, int other_len) {
+  PROTECT(
+    torch::_foreach_maximum_out(of_carray_tensor(out_data, out_len), of_carray_tensor(self__data, self__len), of_carray_tensor(other_data, other_len));
+  )
+}
+
+void atg__foreach_maximum_scalar_out(tensor *out_data, int out_len, tensor *self__data, int self__len, scalar scalar) {
+  PROTECT(
+    torch::_foreach_maximum_out(of_carray_tensor(out_data, out_len), of_carray_tensor(self__data, self__len), *scalar);
+  )
+}
+
+tensor *atg__foreach_minimum(tensor *self__data, int self__len, scalar scalar) {
+  PROTECT(
+    auto outputs__ = torch::_foreach_minimum(of_carray_tensor(self__data, self__len), *scalar);
+    int sz = outputs__.size();
+    torch::Tensor **out__ = (torch::Tensor**)malloc((sz + 1) * sizeof(torch::Tensor*));
+    for (int i = 0; i < sz; ++i)
+      out__[i] = new torch::Tensor(outputs__[i]);
+    out__[sz] = nullptr;
+    return out__;
+  )
+  return nullptr;
+}
+
+void atg__foreach_minimum_(tensor *self__data, int self__len, scalar scalar) {
+  PROTECT(
+    torch::_foreach_minimum_(of_carray_tensor(self__data, self__len), *scalar);
+  )
+}
+
+tensor *atg__foreach_minimum_list(tensor *self__data, int self__len, tensor *other_data, int other_len) {
+  PROTECT(
+    auto outputs__ = torch::_foreach_minimum(of_carray_tensor(self__data, self__len), of_carray_tensor(other_data, other_len));
+    int sz = outputs__.size();
+    torch::Tensor **out__ = (torch::Tensor**)malloc((sz + 1) * sizeof(torch::Tensor*));
+    for (int i = 0; i < sz; ++i)
+      out__[i] = new torch::Tensor(outputs__[i]);
+    out__[sz] = nullptr;
+    return out__;
+  )
+  return nullptr;
+}
+
+void atg__foreach_minimum_list_(tensor *self__data, int self__len, tensor *other_data, int other_len) {
+  PROTECT(
+    torch::_foreach_minimum_(of_carray_tensor(self__data, self__len), of_carray_tensor(other_data, other_len));
+  )
+}
+
+void atg__foreach_minimum_list_out(tensor *out_data, int out_len, tensor *self__data, int self__len, tensor *other_data, int other_len) {
+  PROTECT(
+    torch::_foreach_minimum_out(of_carray_tensor(out_data, out_len), of_carray_tensor(self__data, self__len), of_carray_tensor(other_data, other_len));
+  )
+}
+
+void atg__foreach_minimum_scalar_out(tensor *out_data, int out_len, tensor *self__data, int self__len, scalar scalar) {
+  PROTECT(
+    torch::_foreach_minimum_out(of_carray_tensor(out_data, out_len), of_carray_tensor(self__data, self__len), *scalar);
+  )
+}
+
+tensor *atg__foreach_mul(tensor *self__data, int self__len, scalar scalar) {
+  PROTECT(
+    auto outputs__ = torch::_foreach_mul(of_carray_tensor(self__data, self__len), *scalar);
+    int sz = outputs__.size();
+    torch::Tensor **out__ = (torch::Tensor**)malloc((sz + 1) * sizeof(torch::Tensor*));
+    for (int i = 0; i < sz; ++i)
+      out__[i] = new torch::Tensor(outputs__[i]);
+    out__[sz] = nullptr;
+    return out__;
+  )
+  return nullptr;
+}
+
+void atg__foreach_mul_(tensor *self__data, int self__len, scalar scalar) {
+  PROTECT(
+    torch::_foreach_mul_(of_carray_tensor(self__data, self__len), *scalar);
+  )
+}
+
+tensor *atg__foreach_mul_list(tensor *self__data, int self__len, tensor *other_data, int other_len) {
+  PROTECT(
+    auto outputs__ = torch::_foreach_mul(of_carray_tensor(self__data, self__len), of_carray_tensor(other_data, other_len));
+    int sz = outputs__.size();
+    torch::Tensor **out__ = (torch::Tensor**)malloc((sz + 1) * sizeof(torch::Tensor*));
+    for (int i = 0; i < sz; ++i)
+      out__[i] = new torch::Tensor(outputs__[i]);
+    out__[sz] = nullptr;
+    return out__;
+  )
+  return nullptr;
+}
+
+void atg__foreach_mul_list_(tensor *self__data, int self__len, tensor *other_data, int other_len) {
+  PROTECT(
+    torch::_foreach_mul_(of_carray_tensor(self__data, self__len), of_carray_tensor(other_data, other_len));
+  )
+}
+
+void atg__foreach_mul_list_out(tensor *out_data, int out_len, tensor *self__data, int self__len, tensor *other_data, int other_len) {
+  PROTECT(
+    torch::_foreach_mul_out(of_carray_tensor(out_data, out_len), of_carray_tensor(self__data, self__len), of_carray_tensor(other_data, other_len));
+  )
+}
+
+void atg__foreach_mul_scalar_out(tensor *out_data, int out_len, tensor *self__data, int self__len, scalar scalar) {
+  PROTECT(
+    torch::_foreach_mul_out(of_carray_tensor(out_data, out_len), of_carray_tensor(self__data, self__len), *scalar);
+  )
+}
+
+tensor *atg__foreach_mul_tensor(tensor *self__data, int self__len, tensor other) {
+  PROTECT(
+    auto outputs__ = torch::_foreach_mul(of_carray_tensor(self__data, self__len), *other);
+    int sz = outputs__.size();
+    torch::Tensor **out__ = (torch::Tensor**)malloc((sz + 1) * sizeof(torch::Tensor*));
+    for (int i = 0; i < sz; ++i)
+      out__[i] = new torch::Tensor(outputs__[i]);
+    out__[sz] = nullptr;
+    return out__;
+  )
+  return nullptr;
+}
+
+void atg__foreach_mul_tensor_(tensor *self__data, int self__len, tensor other) {
+  PROTECT(
+    torch::_foreach_mul_(of_carray_tensor(self__data, self__len), *other);
+  )
+}
+
+void atg__foreach_mul_tensor_out(tensor *out_data, int out_len, tensor *self__data, int self__len, tensor other) {
+  PROTECT(
+    torch::_foreach_mul_out(of_carray_tensor(out_data, out_len), of_carray_tensor(self__data, self__len), *other);
+  )
+}
+
+tensor *atg__foreach_neg(tensor *self__data, int self__len) {
+  PROTECT(
+    auto outputs__ = torch::_foreach_neg(of_carray_tensor(self__data, self__len));
+    int sz = outputs__.size();
+    torch::Tensor **out__ = (torch::Tensor**)malloc((sz + 1) * sizeof(torch::Tensor*));
+    for (int i = 0; i < sz; ++i)
+      out__[i] = new torch::Tensor(outputs__[i]);
+    out__[sz] = nullptr;
+    return out__;
+  )
+  return nullptr;
+}
+
+void atg__foreach_neg_(tensor *self__data, int self__len) {
+  PROTECT(
+    torch::_foreach_neg_(of_carray_tensor(self__data, self__len));
+  )
+}
+
+void atg__foreach_neg_out(tensor *out_data, int out_len, tensor *self__data, int self__len) {
+  PROTECT(
+    torch::_foreach_neg_out(of_carray_tensor(out_data, out_len), of_carray_tensor(self__data, self__len));
+  )
+}
+
+tensor *atg__foreach_norm(tensor *self__data, int self__len, scalar ord, int dtype) {
+  PROTECT(
+    auto outputs__ = torch::_foreach_norm(of_carray_tensor(self__data, self__len), *ord, dtype < 0 ? c10::nullopt : c10::optional<at::ScalarType>(at::ScalarType(dtype)));
+    int sz = outputs__.size();
+    torch::Tensor **out__ = (torch::Tensor**)malloc((sz + 1) * sizeof(torch::Tensor*));
+    for (int i = 0; i < sz; ++i)
+      out__[i] = new torch::Tensor(outputs__[i]);
+    out__[sz] = nullptr;
+    return out__;
+  )
+  return nullptr;
+}
+
+void atg__foreach_norm_scalar_out(tensor *out_data, int out_len, tensor *self__data, int self__len, scalar ord, int dtype) {
+  PROTECT(
+    torch::_foreach_norm_out(of_carray_tensor(out_data, out_len), of_carray_tensor(self__data, self__len), *ord, dtype < 0 ? c10::nullopt : c10::optional<at::ScalarType>(at::ScalarType(dtype)));
+  )
+}
+
+tensor *atg__foreach_pow(tensor *self__data, int self__len, tensor *exponent_data, int exponent_len) {
+  PROTECT(
+    auto outputs__ = torch::_foreach_pow(of_carray_tensor(self__data, self__len), of_carray_tensor(exponent_data, exponent_len));
+    int sz = outputs__.size();
+    torch::Tensor **out__ = (torch::Tensor**)malloc((sz + 1) * sizeof(torch::Tensor*));
+    for (int i = 0; i < sz; ++i)
+      out__[i] = new torch::Tensor(outputs__[i]);
+    out__[sz] = nullptr;
+    return out__;
+  )
+  return nullptr;
+}
+
+void atg__foreach_pow_(tensor *self__data, int self__len, tensor *exponent_data, int exponent_len) {
+  PROTECT(
+    torch::_foreach_pow_(of_carray_tensor(self__data, self__len), of_carray_tensor(exponent_data, exponent_len));
+  )
+}
+
+void atg__foreach_pow_list_out(tensor *out_data, int out_len, tensor *self__data, int self__len, tensor *exponent_data, int exponent_len) {
+  PROTECT(
+    torch::_foreach_pow_out(of_carray_tensor(out_data, out_len), of_carray_tensor(self__data, self__len), of_carray_tensor(exponent_data, exponent_len));
+  )
+}
+
+tensor *atg__foreach_pow_scalar(tensor *self__data, int self__len, scalar exponent) {
+  PROTECT(
+    auto outputs__ = torch::_foreach_pow(of_carray_tensor(self__data, self__len), *exponent);
+    int sz = outputs__.size();
+    torch::Tensor **out__ = (torch::Tensor**)malloc((sz + 1) * sizeof(torch::Tensor*));
+    for (int i = 0; i < sz; ++i)
+      out__[i] = new torch::Tensor(outputs__[i]);
+    out__[sz] = nullptr;
+    return out__;
+  )
+  return nullptr;
+}
+
+void atg__foreach_pow_scalar_(tensor *self__data, int self__len, scalar exponent) {
+  PROTECT(
+    torch::_foreach_pow_(of_carray_tensor(self__data, self__len), *exponent);
+  )
+}
+
+void atg__foreach_pow_scalar_out(tensor *out_data, int out_len, tensor *self__data, int self__len, scalar exponent) {
+  PROTECT(
+    torch::_foreach_pow_out(of_carray_tensor(out_data, out_len), of_carray_tensor(self__data, self__len), *exponent);
+  )
+}
+
+tensor *atg__foreach_pow_scalarandtensor(scalar self_scalar, tensor *exponent_data, int exponent_len) {
+  PROTECT(
+    auto outputs__ = torch::_foreach_pow(*self_scalar, of_carray_tensor(exponent_data, exponent_len));
+    int sz = outputs__.size();
+    torch::Tensor **out__ = (torch::Tensor**)malloc((sz + 1) * sizeof(torch::Tensor*));
+    for (int i = 0; i < sz; ++i)
+      out__[i] = new torch::Tensor(outputs__[i]);
+    out__[sz] = nullptr;
+    return out__;
+  )
+  return nullptr;
+}
+
+tensor *atg__foreach_reciprocal(tensor *self__data, int self__len) {
+  PROTECT(
+    auto outputs__ = torch::_foreach_reciprocal(of_carray_tensor(self__data, self__len));
+    int sz = outputs__.size();
+    torch::Tensor **out__ = (torch::Tensor**)malloc((sz + 1) * sizeof(torch::Tensor*));
+    for (int i = 0; i < sz; ++i)
+      out__[i] = new torch::Tensor(outputs__[i]);
+    out__[sz] = nullptr;
+    return out__;
+  )
+  return nullptr;
+}
+
+void atg__foreach_reciprocal_(tensor *self__data, int self__len) {
+  PROTECT(
+    torch::_foreach_reciprocal_(of_carray_tensor(self__data, self__len));
+  )
+}
+
+void atg__foreach_reciprocal_out(tensor *out_data, int out_len, tensor *self__data, int self__len) {
+  PROTECT(
+    torch::_foreach_reciprocal_out(of_carray_tensor(out_data, out_len), of_carray_tensor(self__data, self__len));
+  )
+}
+
+tensor *atg__foreach_round(tensor *self__data, int self__len) {
+  PROTECT(
+    auto outputs__ = torch::_foreach_round(of_carray_tensor(self__data, self__len));
+    int sz = outputs__.size();
+    torch::Tensor **out__ = (torch::Tensor**)malloc((sz + 1) * sizeof(torch::Tensor*));
+    for (int i = 0; i < sz; ++i)
+      out__[i] = new torch::Tensor(outputs__[i]);
+    out__[sz] = nullptr;
+    return out__;
+  )
+  return nullptr;
+}
+
+void atg__foreach_round_(tensor *self__data, int self__len) {
+  PROTECT(
+    torch::_foreach_round_(of_carray_tensor(self__data, self__len));
+  )
+}
+
+void atg__foreach_round_out(tensor *out_data, int out_len, tensor *self__data, int self__len) {
+  PROTECT(
+    torch::_foreach_round_out(of_carray_tensor(out_data, out_len), of_carray_tensor(self__data, self__len));
+  )
+}
+
+tensor *atg__foreach_rsqrt(tensor *self__data, int self__len) {
+  PROTECT(
+    auto outputs__ = torch::_foreach_rsqrt(of_carray_tensor(self__data, self__len));
+    int sz = outputs__.size();
+    torch::Tensor **out__ = (torch::Tensor**)malloc((sz + 1) * sizeof(torch::Tensor*));
+    for (int i = 0; i < sz; ++i)
+      out__[i] = new torch::Tensor(outputs__[i]);
+    out__[sz] = nullptr;
+    return out__;
+  )
+  return nullptr;
+}
+
+void atg__foreach_rsqrt_(tensor *self__data, int self__len) {
+  PROTECT(
+    torch::_foreach_rsqrt_(of_carray_tensor(self__data, self__len));
+  )
+}
+
+void atg__foreach_rsqrt_out(tensor *out_data, int out_len, tensor *self__data, int self__len) {
+  PROTECT(
+    torch::_foreach_rsqrt_out(of_carray_tensor(out_data, out_len), of_carray_tensor(self__data, self__len));
+  )
+}
+
+tensor *atg__foreach_sigmoid(tensor *self__data, int self__len) {
+  PROTECT(
+    auto outputs__ = torch::_foreach_sigmoid(of_carray_tensor(self__data, self__len));
+    int sz = outputs__.size();
+    torch::Tensor **out__ = (torch::Tensor**)malloc((sz + 1) * sizeof(torch::Tensor*));
+    for (int i = 0; i < sz; ++i)
+      out__[i] = new torch::Tensor(outputs__[i]);
+    out__[sz] = nullptr;
+    return out__;
+  )
+  return nullptr;
+}
+
+void atg__foreach_sigmoid_(tensor *self__data, int self__len) {
+  PROTECT(
+    torch::_foreach_sigmoid_(of_carray_tensor(self__data, self__len));
+  )
+}
+
+void atg__foreach_sigmoid_out(tensor *out_data, int out_len, tensor *self__data, int self__len) {
+  PROTECT(
+    torch::_foreach_sigmoid_out(of_carray_tensor(out_data, out_len), of_carray_tensor(self__data, self__len));
+  )
+}
+
+tensor *atg__foreach_sign(tensor *self__data, int self__len) {
+  PROTECT(
+    auto outputs__ = torch::_foreach_sign(of_carray_tensor(self__data, self__len));
+    int sz = outputs__.size();
+    torch::Tensor **out__ = (torch::Tensor**)malloc((sz + 1) * sizeof(torch::Tensor*));
+    for (int i = 0; i < sz; ++i)
+      out__[i] = new torch::Tensor(outputs__[i]);
+    out__[sz] = nullptr;
+    return out__;
+  )
+  return nullptr;
+}
+
+void atg__foreach_sign_(tensor *self__data, int self__len) {
+  PROTECT(
+    torch::_foreach_sign_(of_carray_tensor(self__data, self__len));
+  )
+}
+
+void atg__foreach_sign_out(tensor *out_data, int out_len, tensor *self__data, int self__len) {
+  PROTECT(
+    torch::_foreach_sign_out(of_carray_tensor(out_data, out_len), of_carray_tensor(self__data, self__len));
+  )
+}
+
+tensor *atg__foreach_sin(tensor *self__data, int self__len) {
+  PROTECT(
+    auto outputs__ = torch::_foreach_sin(of_carray_tensor(self__data, self__len));
+    int sz = outputs__.size();
+    torch::Tensor **out__ = (torch::Tensor**)malloc((sz + 1) * sizeof(torch::Tensor*));
+    for (int i = 0; i < sz; ++i)
+      out__[i] = new torch::Tensor(outputs__[i]);
+    out__[sz] = nullptr;
+    return out__;
+  )
+  return nullptr;
+}
+
+void atg__foreach_sin_(tensor *self__data, int self__len) {
+  PROTECT(
+    torch::_foreach_sin_(of_carray_tensor(self__data, self__len));
+  )
+}
+
+void atg__foreach_sin_out(tensor *out_data, int out_len, tensor *self__data, int self__len) {
+  PROTECT(
+    torch::_foreach_sin_out(of_carray_tensor(out_data, out_len), of_carray_tensor(self__data, self__len));
+  )
+}
+
+tensor *atg__foreach_sinh(tensor *self__data, int self__len) {
+  PROTECT(
+    auto outputs__ = torch::_foreach_sinh(of_carray_tensor(self__data, self__len));
+    int sz = outputs__.size();
+    torch::Tensor **out__ = (torch::Tensor**)malloc((sz + 1) * sizeof(torch::Tensor*));
+    for (int i = 0; i < sz; ++i)
+      out__[i] = new torch::Tensor(outputs__[i]);
+    out__[sz] = nullptr;
+    return out__;
+  )
+  return nullptr;
+}
+
+void atg__foreach_sinh_(tensor *self__data, int self__len) {
+  PROTECT(
+    torch::_foreach_sinh_(of_carray_tensor(self__data, self__len));
+  )
+}
+
+void atg__foreach_sinh_out(tensor *out_data, int out_len, tensor *self__data, int self__len) {
+  PROTECT(
+    torch::_foreach_sinh_out(of_carray_tensor(out_data, out_len), of_carray_tensor(self__data, self__len));
+  )
+}
+
+tensor *atg__foreach_sqrt(tensor *self__data, int self__len) {
+  PROTECT(
+    auto outputs__ = torch::_foreach_sqrt(of_carray_tensor(self__data, self__len));
+    int sz = outputs__.size();
+    torch::Tensor **out__ = (torch::Tensor**)malloc((sz + 1) * sizeof(torch::Tensor*));
+    for (int i = 0; i < sz; ++i)
+      out__[i] = new torch::Tensor(outputs__[i]);
+    out__[sz] = nullptr;
+    return out__;
+  )
+  return nullptr;
+}
+
+void atg__foreach_sqrt_(tensor *self__data, int self__len) {
+  PROTECT(
+    torch::_foreach_sqrt_(of_carray_tensor(self__data, self__len));
+  )
+}
+
+void atg__foreach_sqrt_out(tensor *out_data, int out_len, tensor *self__data, int self__len) {
+  PROTECT(
+    torch::_foreach_sqrt_out(of_carray_tensor(out_data, out_len), of_carray_tensor(self__data, self__len));
+  )
+}
+
+tensor *atg__foreach_sub(tensor *self__data, int self__len, scalar scalar) {
+  PROTECT(
+    auto outputs__ = torch::_foreach_sub(of_carray_tensor(self__data, self__len), *scalar);
+    int sz = outputs__.size();
+    torch::Tensor **out__ = (torch::Tensor**)malloc((sz + 1) * sizeof(torch::Tensor*));
+    for (int i = 0; i < sz; ++i)
+      out__[i] = new torch::Tensor(outputs__[i]);
+    out__[sz] = nullptr;
+    return out__;
+  )
+  return nullptr;
+}
+
+void atg__foreach_sub_(tensor *self__data, int self__len, scalar scalar) {
+  PROTECT(
+    torch::_foreach_sub_(of_carray_tensor(self__data, self__len), *scalar);
+  )
+}
+
+tensor *atg__foreach_sub_list(tensor *self__data, int self__len, tensor *other_data, int other_len, scalar alpha) {
+  PROTECT(
+    auto outputs__ = torch::_foreach_sub(of_carray_tensor(self__data, self__len), of_carray_tensor(other_data, other_len), *alpha);
+    int sz = outputs__.size();
+    torch::Tensor **out__ = (torch::Tensor**)malloc((sz + 1) * sizeof(torch::Tensor*));
+    for (int i = 0; i < sz; ++i)
+      out__[i] = new torch::Tensor(outputs__[i]);
+    out__[sz] = nullptr;
+    return out__;
+  )
+  return nullptr;
+}
+
+void atg__foreach_sub_list_(tensor *self__data, int self__len, tensor *other_data, int other_len, scalar alpha) {
+  PROTECT(
+    torch::_foreach_sub_(of_carray_tensor(self__data, self__len), of_carray_tensor(other_data, other_len), *alpha);
+  )
+}
+
+void atg__foreach_sub_list_out(tensor *out_data, int out_len, tensor *self__data, int self__len, tensor *other_data, int other_len, scalar alpha) {
+  PROTECT(
+    torch::_foreach_sub_out(of_carray_tensor(out_data, out_len), of_carray_tensor(self__data, self__len), of_carray_tensor(other_data, other_len), *alpha);
+  )
+}
+
+void atg__foreach_sub_scalar_out(tensor *out_data, int out_len, tensor *self__data, int self__len, scalar scalar) {
+  PROTECT(
+    torch::_foreach_sub_out(of_carray_tensor(out_data, out_len), of_carray_tensor(self__data, self__len), *scalar);
+  )
+}
+
+tensor *atg__foreach_tan(tensor *self__data, int self__len) {
+  PROTECT(
+    auto outputs__ = torch::_foreach_tan(of_carray_tensor(self__data, self__len));
+    int sz = outputs__.size();
+    torch::Tensor **out__ = (torch::Tensor**)malloc((sz + 1) * sizeof(torch::Tensor*));
+    for (int i = 0; i < sz; ++i)
+      out__[i] = new torch::Tensor(outputs__[i]);
+    out__[sz] = nullptr;
+    return out__;
+  )
+  return nullptr;
+}
+
+void atg__foreach_tan_(tensor *self__data, int self__len) {
+  PROTECT(
+    torch::_foreach_tan_(of_carray_tensor(self__data, self__len));
+  )
+}
+
+void atg__foreach_tan_out(tensor *out_data, int out_len, tensor *self__data, int self__len) {
+  PROTECT(
+    torch::_foreach_tan_out(of_carray_tensor(out_data, out_len), of_carray_tensor(self__data, self__len));
+  )
+}
+
+tensor *atg__foreach_tanh(tensor *self__data, int self__len) {
+  PROTECT(
+    auto outputs__ = torch::_foreach_tanh(of_carray_tensor(self__data, self__len));
+    int sz = outputs__.size();
+    torch::Tensor **out__ = (torch::Tensor**)malloc((sz + 1) * sizeof(torch::Tensor*));
+    for (int i = 0; i < sz; ++i)
+      out__[i] = new torch::Tensor(outputs__[i]);
+    out__[sz] = nullptr;
+    return out__;
+  )
+  return nullptr;
+}
+
+void atg__foreach_tanh_(tensor *self__data, int self__len) {
+  PROTECT(
+    torch::_foreach_tanh_(of_carray_tensor(self__data, self__len));
+  )
+}
+
+void atg__foreach_tanh_out(tensor *out_data, int out_len, tensor *self__data, int self__len) {
+  PROTECT(
+    torch::_foreach_tanh_out(of_carray_tensor(out_data, out_len), of_carray_tensor(self__data, self__len));
+  )
+}
+
+tensor *atg__foreach_trunc(tensor *self__data, int self__len) {
+  PROTECT(
+    auto outputs__ = torch::_foreach_trunc(of_carray_tensor(self__data, self__len));
+    int sz = outputs__.size();
+    torch::Tensor **out__ = (torch::Tensor**)malloc((sz + 1) * sizeof(torch::Tensor*));
+    for (int i = 0; i < sz; ++i)
+      out__[i] = new torch::Tensor(outputs__[i]);
+    out__[sz] = nullptr;
+    return out__;
+  )
+  return nullptr;
+}
+
+void atg__foreach_trunc_(tensor *self__data, int self__len) {
+  PROTECT(
+    torch::_foreach_trunc_(of_carray_tensor(self__data, self__len));
+  )
+}
+
+void atg__foreach_trunc_out(tensor *out_data, int out_len, tensor *self__data, int self__len) {
+  PROTECT(
+    torch::_foreach_trunc_out(of_carray_tensor(out_data, out_len), of_carray_tensor(self__data, self__len));
+  )
+}
+
+tensor *atg__foreach_zero(tensor *self__data, int self__len) {
+  PROTECT(
+    auto outputs__ = torch::_foreach_zero(of_carray_tensor(self__data, self__len));
+    int sz = outputs__.size();
+    torch::Tensor **out__ = (torch::Tensor**)malloc((sz + 1) * sizeof(torch::Tensor*));
+    for (int i = 0; i < sz; ++i)
+      out__[i] = new torch::Tensor(outputs__[i]);
+    out__[sz] = nullptr;
+    return out__;
+  )
+  return nullptr;
+}
+
+void atg__foreach_zero_(tensor *self__data, int self__len) {
+  PROTECT(
+    torch::_foreach_zero_(of_carray_tensor(self__data, self__len));
+  )
+}
+
+void atg__foreach_zero_out(tensor *out_data, int out_len, tensor *self__data, int self__len) {
+  PROTECT(
+    torch::_foreach_zero_out(of_carray_tensor(out_data, out_len), of_carray_tensor(self__data, self__len));
+  )
+}
+
 void atg__functional_assert_async(tensor *out__, tensor self, char* assert_msg_ptr, int assert_msg_len, tensor dep_token) {
   PROTECT(
     auto outputs__ = torch::_functional_assert_async(*self, std::string(assert_msg_ptr, assert_msg_len), *dep_token);
@@ -1281,14 +2798,6 @@ void atg__fused_moving_avg_obs_fq_helper_out(tensor *out__, tensor out0, tensor 
   )
 }
 
-void atg__fused_rms_norm(tensor *out__, tensor input, int64_t *normalized_shape_data, int normalized_shape_len, tensor weight, double eps_v, uint8_t eps_null) {
-  PROTECT(
-    auto outputs__ = torch::_fused_rms_norm(*input, torch::IntArrayRef(normalized_shape_data, normalized_shape_len), (weight ? ::std::optional<at::Tensor>(*weight) : ::std::nullopt), eps_null ? c10::nullopt : c10::optional<double>(eps_v));
-    out__[0] = new torch::Tensor(std::get<0>(outputs__));
-    out__[1] = new torch::Tensor(std::get<1>(outputs__));
-  )
-}
-
 int64_t atg__fused_sdp_choice(tensor query, tensor key, tensor value, tensor attn_mask, double dropout_p, int is_causal, double scale_v, uint8_t scale_null, int enable_gqa) {
   PROTECT(
     return torch::_fused_sdp_choice(*query, *key, *value, (attn_mask ? ::std::optional<at::Tensor>(*attn_mask) : ::std::nullopt), dropout_p, (bool)is_causal, scale_null ? c10::nullopt : c10::optional<double>(scale_v), (bool)enable_gqa);
@@ -1342,13 +2851,6 @@ void atg__grid_sampler_2d_cpu_fallback_backward(tensor *out__, tensor grad_outpu
 void atg__grid_sampler_2d_cpu_fallback_out(tensor *out__, tensor out, tensor input, tensor grid, int64_t interpolation_mode, int64_t padding_mode, int align_corners) {
   PROTECT(
     auto outputs__ = torch::_grid_sampler_2d_cpu_fallback_out(*out, *input, *grid, interpolation_mode, padding_mode, (bool)align_corners);
-    out__[0] = new torch::Tensor(outputs__);
-  )
-}
-
-void atg__grouped_mm(tensor *out__, tensor self, tensor mat2, tensor offs, tensor bias, int out_dtype) {
-  PROTECT(
-    auto outputs__ = torch::_grouped_mm(*self, *mat2, (offs ? ::std::optional<at::Tensor>(*offs) : ::std::nullopt), (bias ? ::std::optional<at::Tensor>(*bias) : ::std::nullopt), out_dtype < 0 ? c10::nullopt : c10::optional<at::ScalarType>(at::ScalarType(out_dtype)));
     out__[0] = new torch::Tensor(outputs__);
   )
 }
@@ -3600,36 +5102,6 @@ void atg__validate_compressed_sparse_indices(int is_crow, tensor compressed_idx,
   )
 }
 
-void atg__validate_sparse_bsc_tensor_args(tensor ccol_indices, tensor row_indices, tensor values, int64_t *size_data, int size_len, int check_pinning) {
-  PROTECT(
-    torch::_validate_sparse_bsc_tensor_args(*ccol_indices, *row_indices, *values, torch::IntArrayRef(size_data, size_len), (bool)check_pinning);
-  )
-}
-
-void atg__validate_sparse_bsr_tensor_args(tensor crow_indices, tensor col_indices, tensor values, int64_t *size_data, int size_len, int check_pinning) {
-  PROTECT(
-    torch::_validate_sparse_bsr_tensor_args(*crow_indices, *col_indices, *values, torch::IntArrayRef(size_data, size_len), (bool)check_pinning);
-  )
-}
-
-void atg__validate_sparse_compressed_tensor_args(tensor compressed_indices, tensor plain_indices, tensor values, int64_t *size_data, int size_len, int8_t layout, int check_pinning) {
-  PROTECT(
-    torch::_validate_sparse_compressed_tensor_args(*compressed_indices, *plain_indices, *values, torch::IntArrayRef(size_data, size_len), static_cast<at::Layout>(layout), (bool)check_pinning);
-  )
-}
-
-void atg__validate_sparse_csc_tensor_args(tensor ccol_indices, tensor row_indices, tensor values, int64_t *size_data, int size_len, int check_pinning) {
-  PROTECT(
-    torch::_validate_sparse_csc_tensor_args(*ccol_indices, *row_indices, *values, torch::IntArrayRef(size_data, size_len), (bool)check_pinning);
-  )
-}
-
-void atg__validate_sparse_csr_tensor_args(tensor crow_indices, tensor col_indices, tensor values, int64_t *size_data, int size_len, int check_pinning) {
-  PROTECT(
-    torch::_validate_sparse_csr_tensor_args(*crow_indices, *col_indices, *values, torch::IntArrayRef(size_data, size_len), (bool)check_pinning);
-  )
-}
-
 void atg__values(tensor *out__, tensor self) {
   PROTECT(
     auto outputs__ = self->_values();
@@ -3668,13 +5140,6 @@ void atg__weight_int4pack_mm(tensor *out__, tensor self, tensor mat2, int64_t qG
 void atg__weight_int4pack_mm_for_cpu(tensor *out__, tensor self, tensor mat2, int64_t qGroupSize, tensor qScaleAndZeros) {
   PROTECT(
     auto outputs__ = torch::_weight_int4pack_mm_for_cpu(*self, *mat2, qGroupSize, *qScaleAndZeros);
-    out__[0] = new torch::Tensor(outputs__);
-  )
-}
-
-void atg__weight_int4pack_mm_with_scales_and_zeros(tensor *out__, tensor self, tensor mat2, int64_t qGroupSize, tensor qScale, tensor qZeros) {
-  PROTECT(
-    auto outputs__ = torch::_weight_int4pack_mm_with_scales_and_zeros(*self, *mat2, qGroupSize, *qScale, *qZeros);
     out__[0] = new torch::Tensor(outputs__);
   )
 }
@@ -4063,20 +5528,6 @@ void atg_addmm(tensor *out__, tensor self, tensor mat1, tensor mat2) {
 void atg_addmm_(tensor *out__, tensor self, tensor mat1, tensor mat2) {
   PROTECT(
     auto outputs__ = self->addmm_(*mat1, *mat2);
-    out__[0] = new torch::Tensor(outputs__);
-  )
-}
-
-void atg_addmm_dtype(tensor *out__, tensor self, tensor mat1, tensor mat2, int out_dtype) {
-  PROTECT(
-    auto outputs__ = torch::addmm(*self, *mat1, *mat2, at::ScalarType(out_dtype));
-    out__[0] = new torch::Tensor(outputs__);
-  )
-}
-
-void atg_addmm_dtype_out(tensor *out__, tensor out, tensor self, tensor mat1, tensor mat2, int out_dtype) {
-  PROTECT(
-    auto outputs__ = torch::addmm_out(*out, *self, *mat1, *mat2, at::ScalarType(out_dtype));
     out__[0] = new torch::Tensor(outputs__);
   )
 }
@@ -4877,20 +6328,6 @@ void atg_baddbmm_(tensor *out__, tensor self, tensor batch1, tensor batch2) {
   )
 }
 
-void atg_baddbmm_dtype(tensor *out__, tensor self, tensor batch1, tensor batch2, int out_dtype, scalar beta, scalar alpha) {
-  PROTECT(
-    auto outputs__ = torch::baddbmm(*self, *batch1, *batch2, at::ScalarType(out_dtype), *beta, *alpha);
-    out__[0] = new torch::Tensor(outputs__);
-  )
-}
-
-void atg_baddbmm_dtype_out(tensor *out__, tensor out, tensor self, tensor batch1, tensor batch2, int out_dtype) {
-  PROTECT(
-    auto outputs__ = torch::baddbmm_out(*out, *self, *batch1, *batch2, at::ScalarType(out_dtype));
-    out__[0] = new torch::Tensor(outputs__);
-  )
-}
-
 void atg_baddbmm_out(tensor *out__, tensor out, tensor self, tensor batch1, tensor batch2) {
   PROTECT(
     auto outputs__ = torch::baddbmm_out(*out, *self, *batch1, *batch2);
@@ -5503,20 +6940,6 @@ void atg_block_diag_out(tensor *out__, tensor out, tensor *tensors_data, int ten
 void atg_bmm(tensor *out__, tensor self, tensor mat2) {
   PROTECT(
     auto outputs__ = torch::bmm(*self, *mat2);
-    out__[0] = new torch::Tensor(outputs__);
-  )
-}
-
-void atg_bmm_dtype(tensor *out__, tensor self, tensor mat2, int out_dtype) {
-  PROTECT(
-    auto outputs__ = torch::bmm(*self, *mat2, at::ScalarType(out_dtype));
-    out__[0] = new torch::Tensor(outputs__);
-  )
-}
-
-void atg_bmm_dtype_out(tensor *out__, tensor out, tensor self, tensor mat2, int out_dtype) {
-  PROTECT(
-    auto outputs__ = torch::bmm_out(*out, *self, *mat2, at::ScalarType(out_dtype));
     out__[0] = new torch::Tensor(outputs__);
   )
 }
@@ -9124,20 +10547,6 @@ void atg_hardtanh_out(tensor *out__, tensor out, tensor self) {
   )
 }
 
-void atg_hash_tensor(tensor *out__, tensor self, int64_t *dim_data, int dim_len, int keepdim, int64_t mode) {
-  PROTECT(
-    auto outputs__ = torch::hash_tensor(*self, torch::IntArrayRef(dim_data, dim_len), (bool)keepdim, mode);
-    out__[0] = new torch::Tensor(outputs__);
-  )
-}
-
-void atg_hash_tensor_out(tensor *out__, tensor out, tensor self, int64_t *dim_data, int dim_len, int keepdim, int64_t mode) {
-  PROTECT(
-    auto outputs__ = torch::hash_tensor_out(*out, *self, torch::IntArrayRef(dim_data, dim_len), (bool)keepdim, mode);
-    out__[0] = new torch::Tensor(outputs__);
-  )
-}
-
 void atg_heaviside(tensor *out__, tensor self, tensor values) {
   PROTECT(
     auto outputs__ = torch::heaviside(*self, *values);
@@ -12350,20 +13759,6 @@ void atg_mm(tensor *out__, tensor self, tensor mat2) {
   )
 }
 
-void atg_mm_dtype(tensor *out__, tensor self, tensor mat2, int out_dtype) {
-  PROTECT(
-    auto outputs__ = torch::mm(*self, *mat2, at::ScalarType(out_dtype));
-    out__[0] = new torch::Tensor(outputs__);
-  )
-}
-
-void atg_mm_dtype_out(tensor *out__, tensor out, tensor self, tensor mat2, int out_dtype) {
-  PROTECT(
-    auto outputs__ = torch::mm_out(*out, *self, *mat2, at::ScalarType(out_dtype));
-    out__[0] = new torch::Tensor(outputs__);
-  )
-}
-
 void atg_mm_out(tensor *out__, tensor out, tensor self, tensor mat2) {
   PROTECT(
     auto outputs__ = torch::mm_out(*out, *self, *mat2);
@@ -14009,20 +15404,6 @@ void atg_randint_like_low_dtype_out(tensor *out__, tensor out, tensor self, int6
 void atg_randint_like_out(tensor *out__, tensor out, tensor self, int64_t high) {
   PROTECT(
     auto outputs__ = torch::randint_like_out(*out, *self, high);
-    out__[0] = new torch::Tensor(outputs__);
-  )
-}
-
-void atg_randint_like_tensor(tensor *out__, tensor self, tensor high) {
-  PROTECT(
-    auto outputs__ = torch::randint_like(*self, *high);
-    out__[0] = new torch::Tensor(outputs__);
-  )
-}
-
-void atg_randint_like_tensor_out(tensor *out__, tensor out, tensor self, tensor high) {
-  PROTECT(
-    auto outputs__ = torch::randint_like_out(*out, *self, *high);
     out__[0] = new torch::Tensor(outputs__);
   )
 }

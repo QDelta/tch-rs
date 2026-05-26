@@ -670,26 +670,6 @@ extern "C" {
         blank_: i64,
         zero_infinity_: c_int,
     );
-    pub fn atg__cudnn_attention_backward(
-        out__: *mut *mut C_tensor,
-        grad_out_: *mut C_tensor,
-        query_: *mut C_tensor,
-        key_: *mut C_tensor,
-        value_: *mut C_tensor,
-        out_: *mut C_tensor,
-        logsumexp_: *mut C_tensor,
-        philox_seed_: *mut C_tensor,
-        philox_offset_: *mut C_tensor,
-        attn_bias_: *mut C_tensor,
-        cum_seq_q_: *mut C_tensor,
-        cum_seq_k_: *mut C_tensor,
-        max_q_: i64,
-        max_k_: i64,
-        dropout_p_: f64,
-        is_causal_: c_int,
-        scale_v: f64,
-        scale_null: i8,
-    );
     pub fn atg__cudnn_ctc_loss(
         out__: *mut *mut C_tensor,
         log_probs_: *mut C_tensor,
@@ -1240,6 +1220,957 @@ extern "C" {
         arg2_: c_int,
         arg3_: c_int,
     );
+    pub fn atg__foreach_abs(
+        self__data: *const *mut C_tensor,
+        self__len: c_int,
+    ) -> *mut *mut C_tensor;
+    pub fn atg__foreach_abs_(self__data: *const *mut C_tensor, self__len: c_int);
+    pub fn atg__foreach_abs_out(
+        out_data: *const *mut C_tensor,
+        out_len: c_int,
+        self__data: *const *mut C_tensor,
+        self__len: c_int,
+    );
+    pub fn atg__foreach_acos(
+        self__data: *const *mut C_tensor,
+        self__len: c_int,
+    ) -> *mut *mut C_tensor;
+    pub fn atg__foreach_acos_(self__data: *const *mut C_tensor, self__len: c_int);
+    pub fn atg__foreach_acos_out(
+        out_data: *const *mut C_tensor,
+        out_len: c_int,
+        self__data: *const *mut C_tensor,
+        self__len: c_int,
+    );
+    pub fn atg__foreach_add(
+        self__data: *const *mut C_tensor,
+        self__len: c_int,
+        scalar_: *mut C_scalar,
+    ) -> *mut *mut C_tensor;
+    pub fn atg__foreach_add_(
+        self__data: *const *mut C_tensor,
+        self__len: c_int,
+        scalar_: *mut C_scalar,
+    );
+    pub fn atg__foreach_add_list(
+        self__data: *const *mut C_tensor,
+        self__len: c_int,
+        other_data: *const *mut C_tensor,
+        other_len: c_int,
+        alpha_: *mut C_scalar,
+    ) -> *mut *mut C_tensor;
+    pub fn atg__foreach_add_list_(
+        self__data: *const *mut C_tensor,
+        self__len: c_int,
+        other_data: *const *mut C_tensor,
+        other_len: c_int,
+        alpha_: *mut C_scalar,
+    );
+    pub fn atg__foreach_add_list_out(
+        out_data: *const *mut C_tensor,
+        out_len: c_int,
+        self__data: *const *mut C_tensor,
+        self__len: c_int,
+        other_data: *const *mut C_tensor,
+        other_len: c_int,
+        alpha_: *mut C_scalar,
+    );
+    pub fn atg__foreach_add_scalar_out(
+        out_data: *const *mut C_tensor,
+        out_len: c_int,
+        self__data: *const *mut C_tensor,
+        self__len: c_int,
+        scalar_: *mut C_scalar,
+    );
+    pub fn atg__foreach_add_tensor(
+        self__data: *const *mut C_tensor,
+        self__len: c_int,
+        other_: *mut C_tensor,
+        alpha_: *mut C_scalar,
+    ) -> *mut *mut C_tensor;
+    pub fn atg__foreach_add_tensor_(
+        self__data: *const *mut C_tensor,
+        self__len: c_int,
+        other_: *mut C_tensor,
+        alpha_: *mut C_scalar,
+    );
+    pub fn atg__foreach_add_tensor_out(
+        out_data: *const *mut C_tensor,
+        out_len: c_int,
+        self__data: *const *mut C_tensor,
+        self__len: c_int,
+        other_: *mut C_tensor,
+        alpha_: *mut C_scalar,
+    );
+    pub fn atg__foreach_addcdiv(
+        self__data: *const *mut C_tensor,
+        self__len: c_int,
+        tensor1_data: *const *mut C_tensor,
+        tensor1_len: c_int,
+        tensor2_data: *const *mut C_tensor,
+        tensor2_len: c_int,
+        value_: *mut C_scalar,
+    ) -> *mut *mut C_tensor;
+    pub fn atg__foreach_addcdiv_(
+        self__data: *const *mut C_tensor,
+        self__len: c_int,
+        tensor1_data: *const *mut C_tensor,
+        tensor1_len: c_int,
+        tensor2_data: *const *mut C_tensor,
+        tensor2_len: c_int,
+        value_: *mut C_scalar,
+    );
+    pub fn atg__foreach_addcdiv_scalar_out(
+        out_data: *const *mut C_tensor,
+        out_len: c_int,
+        self__data: *const *mut C_tensor,
+        self__len: c_int,
+        tensor1_data: *const *mut C_tensor,
+        tensor1_len: c_int,
+        tensor2_data: *const *mut C_tensor,
+        tensor2_len: c_int,
+        value_: *mut C_scalar,
+    );
+    pub fn atg__foreach_addcdiv_tensor(
+        self__data: *const *mut C_tensor,
+        self__len: c_int,
+        tensor1_data: *const *mut C_tensor,
+        tensor1_len: c_int,
+        tensor2_data: *const *mut C_tensor,
+        tensor2_len: c_int,
+        scalars_: *mut C_tensor,
+    ) -> *mut *mut C_tensor;
+    pub fn atg__foreach_addcdiv_tensor_(
+        self__data: *const *mut C_tensor,
+        self__len: c_int,
+        tensor1_data: *const *mut C_tensor,
+        tensor1_len: c_int,
+        tensor2_data: *const *mut C_tensor,
+        tensor2_len: c_int,
+        scalars_: *mut C_tensor,
+    );
+    pub fn atg__foreach_addcdiv_tensor_out(
+        out_data: *const *mut C_tensor,
+        out_len: c_int,
+        self__data: *const *mut C_tensor,
+        self__len: c_int,
+        tensor1_data: *const *mut C_tensor,
+        tensor1_len: c_int,
+        tensor2_data: *const *mut C_tensor,
+        tensor2_len: c_int,
+        scalars_: *mut C_tensor,
+    );
+    pub fn atg__foreach_addcmul(
+        self__data: *const *mut C_tensor,
+        self__len: c_int,
+        tensor1_data: *const *mut C_tensor,
+        tensor1_len: c_int,
+        tensor2_data: *const *mut C_tensor,
+        tensor2_len: c_int,
+        value_: *mut C_scalar,
+    ) -> *mut *mut C_tensor;
+    pub fn atg__foreach_addcmul_(
+        self__data: *const *mut C_tensor,
+        self__len: c_int,
+        tensor1_data: *const *mut C_tensor,
+        tensor1_len: c_int,
+        tensor2_data: *const *mut C_tensor,
+        tensor2_len: c_int,
+        value_: *mut C_scalar,
+    );
+    pub fn atg__foreach_addcmul_scalar_out(
+        out_data: *const *mut C_tensor,
+        out_len: c_int,
+        self__data: *const *mut C_tensor,
+        self__len: c_int,
+        tensor1_data: *const *mut C_tensor,
+        tensor1_len: c_int,
+        tensor2_data: *const *mut C_tensor,
+        tensor2_len: c_int,
+        value_: *mut C_scalar,
+    );
+    pub fn atg__foreach_addcmul_tensor(
+        self__data: *const *mut C_tensor,
+        self__len: c_int,
+        tensor1_data: *const *mut C_tensor,
+        tensor1_len: c_int,
+        tensor2_data: *const *mut C_tensor,
+        tensor2_len: c_int,
+        scalars_: *mut C_tensor,
+    ) -> *mut *mut C_tensor;
+    pub fn atg__foreach_addcmul_tensor_(
+        self__data: *const *mut C_tensor,
+        self__len: c_int,
+        tensor1_data: *const *mut C_tensor,
+        tensor1_len: c_int,
+        tensor2_data: *const *mut C_tensor,
+        tensor2_len: c_int,
+        scalars_: *mut C_tensor,
+    );
+    pub fn atg__foreach_addcmul_tensor_out(
+        out_data: *const *mut C_tensor,
+        out_len: c_int,
+        self__data: *const *mut C_tensor,
+        self__len: c_int,
+        tensor1_data: *const *mut C_tensor,
+        tensor1_len: c_int,
+        tensor2_data: *const *mut C_tensor,
+        tensor2_len: c_int,
+        scalars_: *mut C_tensor,
+    );
+    pub fn atg__foreach_asin(
+        self__data: *const *mut C_tensor,
+        self__len: c_int,
+    ) -> *mut *mut C_tensor;
+    pub fn atg__foreach_asin_(self__data: *const *mut C_tensor, self__len: c_int);
+    pub fn atg__foreach_asin_out(
+        out_data: *const *mut C_tensor,
+        out_len: c_int,
+        self__data: *const *mut C_tensor,
+        self__len: c_int,
+    );
+    pub fn atg__foreach_atan(
+        self__data: *const *mut C_tensor,
+        self__len: c_int,
+    ) -> *mut *mut C_tensor;
+    pub fn atg__foreach_atan_(self__data: *const *mut C_tensor, self__len: c_int);
+    pub fn atg__foreach_atan_out(
+        out_data: *const *mut C_tensor,
+        out_len: c_int,
+        self__data: *const *mut C_tensor,
+        self__len: c_int,
+    );
+    pub fn atg__foreach_ceil(
+        self__data: *const *mut C_tensor,
+        self__len: c_int,
+    ) -> *mut *mut C_tensor;
+    pub fn atg__foreach_ceil_(self__data: *const *mut C_tensor, self__len: c_int);
+    pub fn atg__foreach_ceil_out(
+        out_data: *const *mut C_tensor,
+        out_len: c_int,
+        self__data: *const *mut C_tensor,
+        self__len: c_int,
+    );
+    pub fn atg__foreach_clamp_max(
+        self__data: *const *mut C_tensor,
+        self__len: c_int,
+        scalar_: *mut C_scalar,
+    ) -> *mut *mut C_tensor;
+    pub fn atg__foreach_clamp_max_(
+        self__data: *const *mut C_tensor,
+        self__len: c_int,
+        scalar_: *mut C_scalar,
+    );
+    pub fn atg__foreach_clamp_max_list(
+        self__data: *const *mut C_tensor,
+        self__len: c_int,
+        other_data: *const *mut C_tensor,
+        other_len: c_int,
+    ) -> *mut *mut C_tensor;
+    pub fn atg__foreach_clamp_max_list_(
+        self__data: *const *mut C_tensor,
+        self__len: c_int,
+        other_data: *const *mut C_tensor,
+        other_len: c_int,
+    );
+    pub fn atg__foreach_clamp_max_list_out(
+        out_data: *const *mut C_tensor,
+        out_len: c_int,
+        self__data: *const *mut C_tensor,
+        self__len: c_int,
+        other_data: *const *mut C_tensor,
+        other_len: c_int,
+    );
+    pub fn atg__foreach_clamp_max_scalar_out(
+        out_data: *const *mut C_tensor,
+        out_len: c_int,
+        self__data: *const *mut C_tensor,
+        self__len: c_int,
+        scalar_: *mut C_scalar,
+    );
+    pub fn atg__foreach_clamp_min(
+        self__data: *const *mut C_tensor,
+        self__len: c_int,
+        scalar_: *mut C_scalar,
+    ) -> *mut *mut C_tensor;
+    pub fn atg__foreach_clamp_min_(
+        self__data: *const *mut C_tensor,
+        self__len: c_int,
+        scalar_: *mut C_scalar,
+    );
+    pub fn atg__foreach_clamp_min_list(
+        self__data: *const *mut C_tensor,
+        self__len: c_int,
+        other_data: *const *mut C_tensor,
+        other_len: c_int,
+    ) -> *mut *mut C_tensor;
+    pub fn atg__foreach_clamp_min_list_(
+        self__data: *const *mut C_tensor,
+        self__len: c_int,
+        other_data: *const *mut C_tensor,
+        other_len: c_int,
+    );
+    pub fn atg__foreach_clamp_min_list_out(
+        out_data: *const *mut C_tensor,
+        out_len: c_int,
+        self__data: *const *mut C_tensor,
+        self__len: c_int,
+        other_data: *const *mut C_tensor,
+        other_len: c_int,
+    );
+    pub fn atg__foreach_clamp_min_scalar_out(
+        out_data: *const *mut C_tensor,
+        out_len: c_int,
+        self__data: *const *mut C_tensor,
+        self__len: c_int,
+        scalar_: *mut C_scalar,
+    );
+    pub fn atg__foreach_copy(
+        self__data: *const *mut C_tensor,
+        self__len: c_int,
+        src_data: *const *mut C_tensor,
+        src_len: c_int,
+        non_blocking_: c_int,
+    ) -> *mut *mut C_tensor;
+    pub fn atg__foreach_copy_(
+        self__data: *const *mut C_tensor,
+        self__len: c_int,
+        src_data: *const *mut C_tensor,
+        src_len: c_int,
+        non_blocking_: c_int,
+    );
+    pub fn atg__foreach_copy_out(
+        out_data: *const *mut C_tensor,
+        out_len: c_int,
+        self__data: *const *mut C_tensor,
+        self__len: c_int,
+        src_data: *const *mut C_tensor,
+        src_len: c_int,
+        non_blocking_: c_int,
+    );
+    pub fn atg__foreach_cos(
+        self__data: *const *mut C_tensor,
+        self__len: c_int,
+    ) -> *mut *mut C_tensor;
+    pub fn atg__foreach_cos_(self__data: *const *mut C_tensor, self__len: c_int);
+    pub fn atg__foreach_cos_out(
+        out_data: *const *mut C_tensor,
+        out_len: c_int,
+        self__data: *const *mut C_tensor,
+        self__len: c_int,
+    );
+    pub fn atg__foreach_cosh(
+        self__data: *const *mut C_tensor,
+        self__len: c_int,
+    ) -> *mut *mut C_tensor;
+    pub fn atg__foreach_cosh_(self__data: *const *mut C_tensor, self__len: c_int);
+    pub fn atg__foreach_cosh_out(
+        out_data: *const *mut C_tensor,
+        out_len: c_int,
+        self__data: *const *mut C_tensor,
+        self__len: c_int,
+    );
+    pub fn atg__foreach_div(
+        self__data: *const *mut C_tensor,
+        self__len: c_int,
+        scalar_: *mut C_scalar,
+    ) -> *mut *mut C_tensor;
+    pub fn atg__foreach_div_(
+        self__data: *const *mut C_tensor,
+        self__len: c_int,
+        scalar_: *mut C_scalar,
+    );
+    pub fn atg__foreach_div_list(
+        self__data: *const *mut C_tensor,
+        self__len: c_int,
+        other_data: *const *mut C_tensor,
+        other_len: c_int,
+    ) -> *mut *mut C_tensor;
+    pub fn atg__foreach_div_list_(
+        self__data: *const *mut C_tensor,
+        self__len: c_int,
+        other_data: *const *mut C_tensor,
+        other_len: c_int,
+    );
+    pub fn atg__foreach_div_list_out(
+        out_data: *const *mut C_tensor,
+        out_len: c_int,
+        self__data: *const *mut C_tensor,
+        self__len: c_int,
+        other_data: *const *mut C_tensor,
+        other_len: c_int,
+    );
+    pub fn atg__foreach_div_scalar_out(
+        out_data: *const *mut C_tensor,
+        out_len: c_int,
+        self__data: *const *mut C_tensor,
+        self__len: c_int,
+        scalar_: *mut C_scalar,
+    );
+    pub fn atg__foreach_div_tensor(
+        self__data: *const *mut C_tensor,
+        self__len: c_int,
+        other_: *mut C_tensor,
+    ) -> *mut *mut C_tensor;
+    pub fn atg__foreach_div_tensor_(
+        self__data: *const *mut C_tensor,
+        self__len: c_int,
+        other_: *mut C_tensor,
+    );
+    pub fn atg__foreach_div_tensor_out(
+        out_data: *const *mut C_tensor,
+        out_len: c_int,
+        self__data: *const *mut C_tensor,
+        self__len: c_int,
+        other_: *mut C_tensor,
+    );
+    pub fn atg__foreach_erf(
+        self__data: *const *mut C_tensor,
+        self__len: c_int,
+    ) -> *mut *mut C_tensor;
+    pub fn atg__foreach_erf_(self__data: *const *mut C_tensor, self__len: c_int);
+    pub fn atg__foreach_erf_out(
+        out_data: *const *mut C_tensor,
+        out_len: c_int,
+        self__data: *const *mut C_tensor,
+        self__len: c_int,
+    );
+    pub fn atg__foreach_erfc(
+        self__data: *const *mut C_tensor,
+        self__len: c_int,
+    ) -> *mut *mut C_tensor;
+    pub fn atg__foreach_erfc_(self__data: *const *mut C_tensor, self__len: c_int);
+    pub fn atg__foreach_erfc_out(
+        out_data: *const *mut C_tensor,
+        out_len: c_int,
+        self__data: *const *mut C_tensor,
+        self__len: c_int,
+    );
+    pub fn atg__foreach_exp(
+        self__data: *const *mut C_tensor,
+        self__len: c_int,
+    ) -> *mut *mut C_tensor;
+    pub fn atg__foreach_exp_(self__data: *const *mut C_tensor, self__len: c_int);
+    pub fn atg__foreach_exp_out(
+        out_data: *const *mut C_tensor,
+        out_len: c_int,
+        self__data: *const *mut C_tensor,
+        self__len: c_int,
+    );
+    pub fn atg__foreach_expm1(
+        self__data: *const *mut C_tensor,
+        self__len: c_int,
+    ) -> *mut *mut C_tensor;
+    pub fn atg__foreach_expm1_(self__data: *const *mut C_tensor, self__len: c_int);
+    pub fn atg__foreach_expm1_out(
+        out_data: *const *mut C_tensor,
+        out_len: c_int,
+        self__data: *const *mut C_tensor,
+        self__len: c_int,
+    );
+    pub fn atg__foreach_floor(
+        self__data: *const *mut C_tensor,
+        self__len: c_int,
+    ) -> *mut *mut C_tensor;
+    pub fn atg__foreach_floor_(self__data: *const *mut C_tensor, self__len: c_int);
+    pub fn atg__foreach_floor_out(
+        out_data: *const *mut C_tensor,
+        out_len: c_int,
+        self__data: *const *mut C_tensor,
+        self__len: c_int,
+    );
+    pub fn atg__foreach_frac(
+        self__data: *const *mut C_tensor,
+        self__len: c_int,
+    ) -> *mut *mut C_tensor;
+    pub fn atg__foreach_frac_(self__data: *const *mut C_tensor, self__len: c_int);
+    pub fn atg__foreach_frac_out(
+        out_data: *const *mut C_tensor,
+        out_len: c_int,
+        self__data: *const *mut C_tensor,
+        self__len: c_int,
+    );
+    pub fn atg__foreach_lerp(
+        self__data: *const *mut C_tensor,
+        self__len: c_int,
+        tensors1_data: *const *mut C_tensor,
+        tensors1_len: c_int,
+        weights_data: *const *mut C_tensor,
+        weights_len: c_int,
+    ) -> *mut *mut C_tensor;
+    pub fn atg__foreach_lerp_(
+        self__data: *const *mut C_tensor,
+        self__len: c_int,
+        tensors1_data: *const *mut C_tensor,
+        tensors1_len: c_int,
+        weights_data: *const *mut C_tensor,
+        weights_len: c_int,
+    );
+    pub fn atg__foreach_lerp_list_out(
+        out_data: *const *mut C_tensor,
+        out_len: c_int,
+        self__data: *const *mut C_tensor,
+        self__len: c_int,
+        tensors1_data: *const *mut C_tensor,
+        tensors1_len: c_int,
+        weights_data: *const *mut C_tensor,
+        weights_len: c_int,
+    );
+    pub fn atg__foreach_lerp_scalar(
+        self__data: *const *mut C_tensor,
+        self__len: c_int,
+        tensors1_data: *const *mut C_tensor,
+        tensors1_len: c_int,
+        weight_: *mut C_scalar,
+    ) -> *mut *mut C_tensor;
+    pub fn atg__foreach_lerp_scalar_(
+        self__data: *const *mut C_tensor,
+        self__len: c_int,
+        tensors1_data: *const *mut C_tensor,
+        tensors1_len: c_int,
+        weight_: *mut C_scalar,
+    );
+    pub fn atg__foreach_lerp_scalar_out(
+        out_data: *const *mut C_tensor,
+        out_len: c_int,
+        self__data: *const *mut C_tensor,
+        self__len: c_int,
+        tensors1_data: *const *mut C_tensor,
+        tensors1_len: c_int,
+        weight_: *mut C_scalar,
+    );
+    pub fn atg__foreach_lgamma(
+        self__data: *const *mut C_tensor,
+        self__len: c_int,
+    ) -> *mut *mut C_tensor;
+    pub fn atg__foreach_lgamma_(self__data: *const *mut C_tensor, self__len: c_int);
+    pub fn atg__foreach_lgamma_out(
+        out_data: *const *mut C_tensor,
+        out_len: c_int,
+        self__data: *const *mut C_tensor,
+        self__len: c_int,
+    );
+    pub fn atg__foreach_log(
+        self__data: *const *mut C_tensor,
+        self__len: c_int,
+    ) -> *mut *mut C_tensor;
+    pub fn atg__foreach_log10(
+        self__data: *const *mut C_tensor,
+        self__len: c_int,
+    ) -> *mut *mut C_tensor;
+    pub fn atg__foreach_log10_(self__data: *const *mut C_tensor, self__len: c_int);
+    pub fn atg__foreach_log10_out(
+        out_data: *const *mut C_tensor,
+        out_len: c_int,
+        self__data: *const *mut C_tensor,
+        self__len: c_int,
+    );
+    pub fn atg__foreach_log1p(
+        self__data: *const *mut C_tensor,
+        self__len: c_int,
+    ) -> *mut *mut C_tensor;
+    pub fn atg__foreach_log1p_(self__data: *const *mut C_tensor, self__len: c_int);
+    pub fn atg__foreach_log1p_out(
+        out_data: *const *mut C_tensor,
+        out_len: c_int,
+        self__data: *const *mut C_tensor,
+        self__len: c_int,
+    );
+    pub fn atg__foreach_log2(
+        self__data: *const *mut C_tensor,
+        self__len: c_int,
+    ) -> *mut *mut C_tensor;
+    pub fn atg__foreach_log2_(self__data: *const *mut C_tensor, self__len: c_int);
+    pub fn atg__foreach_log2_out(
+        out_data: *const *mut C_tensor,
+        out_len: c_int,
+        self__data: *const *mut C_tensor,
+        self__len: c_int,
+    );
+    pub fn atg__foreach_log_(self__data: *const *mut C_tensor, self__len: c_int);
+    pub fn atg__foreach_log_out(
+        out_data: *const *mut C_tensor,
+        out_len: c_int,
+        self__data: *const *mut C_tensor,
+        self__len: c_int,
+    );
+    pub fn atg__foreach_max(
+        self__data: *const *mut C_tensor,
+        self__len: c_int,
+    ) -> *mut *mut C_tensor;
+    pub fn atg__foreach_max_out(
+        out_data: *const *mut C_tensor,
+        out_len: c_int,
+        self__data: *const *mut C_tensor,
+        self__len: c_int,
+    );
+    pub fn atg__foreach_maximum(
+        self__data: *const *mut C_tensor,
+        self__len: c_int,
+        scalar_: *mut C_scalar,
+    ) -> *mut *mut C_tensor;
+    pub fn atg__foreach_maximum_(
+        self__data: *const *mut C_tensor,
+        self__len: c_int,
+        scalar_: *mut C_scalar,
+    );
+    pub fn atg__foreach_maximum_list(
+        self__data: *const *mut C_tensor,
+        self__len: c_int,
+        other_data: *const *mut C_tensor,
+        other_len: c_int,
+    ) -> *mut *mut C_tensor;
+    pub fn atg__foreach_maximum_list_(
+        self__data: *const *mut C_tensor,
+        self__len: c_int,
+        other_data: *const *mut C_tensor,
+        other_len: c_int,
+    );
+    pub fn atg__foreach_maximum_list_out(
+        out_data: *const *mut C_tensor,
+        out_len: c_int,
+        self__data: *const *mut C_tensor,
+        self__len: c_int,
+        other_data: *const *mut C_tensor,
+        other_len: c_int,
+    );
+    pub fn atg__foreach_maximum_scalar_out(
+        out_data: *const *mut C_tensor,
+        out_len: c_int,
+        self__data: *const *mut C_tensor,
+        self__len: c_int,
+        scalar_: *mut C_scalar,
+    );
+    pub fn atg__foreach_minimum(
+        self__data: *const *mut C_tensor,
+        self__len: c_int,
+        scalar_: *mut C_scalar,
+    ) -> *mut *mut C_tensor;
+    pub fn atg__foreach_minimum_(
+        self__data: *const *mut C_tensor,
+        self__len: c_int,
+        scalar_: *mut C_scalar,
+    );
+    pub fn atg__foreach_minimum_list(
+        self__data: *const *mut C_tensor,
+        self__len: c_int,
+        other_data: *const *mut C_tensor,
+        other_len: c_int,
+    ) -> *mut *mut C_tensor;
+    pub fn atg__foreach_minimum_list_(
+        self__data: *const *mut C_tensor,
+        self__len: c_int,
+        other_data: *const *mut C_tensor,
+        other_len: c_int,
+    );
+    pub fn atg__foreach_minimum_list_out(
+        out_data: *const *mut C_tensor,
+        out_len: c_int,
+        self__data: *const *mut C_tensor,
+        self__len: c_int,
+        other_data: *const *mut C_tensor,
+        other_len: c_int,
+    );
+    pub fn atg__foreach_minimum_scalar_out(
+        out_data: *const *mut C_tensor,
+        out_len: c_int,
+        self__data: *const *mut C_tensor,
+        self__len: c_int,
+        scalar_: *mut C_scalar,
+    );
+    pub fn atg__foreach_mul(
+        self__data: *const *mut C_tensor,
+        self__len: c_int,
+        scalar_: *mut C_scalar,
+    ) -> *mut *mut C_tensor;
+    pub fn atg__foreach_mul_(
+        self__data: *const *mut C_tensor,
+        self__len: c_int,
+        scalar_: *mut C_scalar,
+    );
+    pub fn atg__foreach_mul_list(
+        self__data: *const *mut C_tensor,
+        self__len: c_int,
+        other_data: *const *mut C_tensor,
+        other_len: c_int,
+    ) -> *mut *mut C_tensor;
+    pub fn atg__foreach_mul_list_(
+        self__data: *const *mut C_tensor,
+        self__len: c_int,
+        other_data: *const *mut C_tensor,
+        other_len: c_int,
+    );
+    pub fn atg__foreach_mul_list_out(
+        out_data: *const *mut C_tensor,
+        out_len: c_int,
+        self__data: *const *mut C_tensor,
+        self__len: c_int,
+        other_data: *const *mut C_tensor,
+        other_len: c_int,
+    );
+    pub fn atg__foreach_mul_scalar_out(
+        out_data: *const *mut C_tensor,
+        out_len: c_int,
+        self__data: *const *mut C_tensor,
+        self__len: c_int,
+        scalar_: *mut C_scalar,
+    );
+    pub fn atg__foreach_mul_tensor(
+        self__data: *const *mut C_tensor,
+        self__len: c_int,
+        other_: *mut C_tensor,
+    ) -> *mut *mut C_tensor;
+    pub fn atg__foreach_mul_tensor_(
+        self__data: *const *mut C_tensor,
+        self__len: c_int,
+        other_: *mut C_tensor,
+    );
+    pub fn atg__foreach_mul_tensor_out(
+        out_data: *const *mut C_tensor,
+        out_len: c_int,
+        self__data: *const *mut C_tensor,
+        self__len: c_int,
+        other_: *mut C_tensor,
+    );
+    pub fn atg__foreach_neg(
+        self__data: *const *mut C_tensor,
+        self__len: c_int,
+    ) -> *mut *mut C_tensor;
+    pub fn atg__foreach_neg_(self__data: *const *mut C_tensor, self__len: c_int);
+    pub fn atg__foreach_neg_out(
+        out_data: *const *mut C_tensor,
+        out_len: c_int,
+        self__data: *const *mut C_tensor,
+        self__len: c_int,
+    );
+    pub fn atg__foreach_norm(
+        self__data: *const *mut C_tensor,
+        self__len: c_int,
+        ord_: *mut C_scalar,
+        dtype_: c_int,
+    ) -> *mut *mut C_tensor;
+    pub fn atg__foreach_norm_scalar_out(
+        out_data: *const *mut C_tensor,
+        out_len: c_int,
+        self__data: *const *mut C_tensor,
+        self__len: c_int,
+        ord_: *mut C_scalar,
+        dtype_: c_int,
+    );
+    pub fn atg__foreach_pow(
+        self__data: *const *mut C_tensor,
+        self__len: c_int,
+        exponent_data: *const *mut C_tensor,
+        exponent_len: c_int,
+    ) -> *mut *mut C_tensor;
+    pub fn atg__foreach_pow_(
+        self__data: *const *mut C_tensor,
+        self__len: c_int,
+        exponent_data: *const *mut C_tensor,
+        exponent_len: c_int,
+    );
+    pub fn atg__foreach_pow_list_out(
+        out_data: *const *mut C_tensor,
+        out_len: c_int,
+        self__data: *const *mut C_tensor,
+        self__len: c_int,
+        exponent_data: *const *mut C_tensor,
+        exponent_len: c_int,
+    );
+    pub fn atg__foreach_pow_scalar(
+        self__data: *const *mut C_tensor,
+        self__len: c_int,
+        exponent_: *mut C_scalar,
+    ) -> *mut *mut C_tensor;
+    pub fn atg__foreach_pow_scalar_(
+        self__data: *const *mut C_tensor,
+        self__len: c_int,
+        exponent_: *mut C_scalar,
+    );
+    pub fn atg__foreach_pow_scalar_out(
+        out_data: *const *mut C_tensor,
+        out_len: c_int,
+        self__data: *const *mut C_tensor,
+        self__len: c_int,
+        exponent_: *mut C_scalar,
+    );
+    pub fn atg__foreach_pow_scalarandtensor(
+        self_scalar_: *mut C_scalar,
+        exponent_data: *const *mut C_tensor,
+        exponent_len: c_int,
+    ) -> *mut *mut C_tensor;
+    pub fn atg__foreach_reciprocal(
+        self__data: *const *mut C_tensor,
+        self__len: c_int,
+    ) -> *mut *mut C_tensor;
+    pub fn atg__foreach_reciprocal_(self__data: *const *mut C_tensor, self__len: c_int);
+    pub fn atg__foreach_reciprocal_out(
+        out_data: *const *mut C_tensor,
+        out_len: c_int,
+        self__data: *const *mut C_tensor,
+        self__len: c_int,
+    );
+    pub fn atg__foreach_round(
+        self__data: *const *mut C_tensor,
+        self__len: c_int,
+    ) -> *mut *mut C_tensor;
+    pub fn atg__foreach_round_(self__data: *const *mut C_tensor, self__len: c_int);
+    pub fn atg__foreach_round_out(
+        out_data: *const *mut C_tensor,
+        out_len: c_int,
+        self__data: *const *mut C_tensor,
+        self__len: c_int,
+    );
+    pub fn atg__foreach_rsqrt(
+        self__data: *const *mut C_tensor,
+        self__len: c_int,
+    ) -> *mut *mut C_tensor;
+    pub fn atg__foreach_rsqrt_(self__data: *const *mut C_tensor, self__len: c_int);
+    pub fn atg__foreach_rsqrt_out(
+        out_data: *const *mut C_tensor,
+        out_len: c_int,
+        self__data: *const *mut C_tensor,
+        self__len: c_int,
+    );
+    pub fn atg__foreach_sigmoid(
+        self__data: *const *mut C_tensor,
+        self__len: c_int,
+    ) -> *mut *mut C_tensor;
+    pub fn atg__foreach_sigmoid_(self__data: *const *mut C_tensor, self__len: c_int);
+    pub fn atg__foreach_sigmoid_out(
+        out_data: *const *mut C_tensor,
+        out_len: c_int,
+        self__data: *const *mut C_tensor,
+        self__len: c_int,
+    );
+    pub fn atg__foreach_sign(
+        self__data: *const *mut C_tensor,
+        self__len: c_int,
+    ) -> *mut *mut C_tensor;
+    pub fn atg__foreach_sign_(self__data: *const *mut C_tensor, self__len: c_int);
+    pub fn atg__foreach_sign_out(
+        out_data: *const *mut C_tensor,
+        out_len: c_int,
+        self__data: *const *mut C_tensor,
+        self__len: c_int,
+    );
+    pub fn atg__foreach_sin(
+        self__data: *const *mut C_tensor,
+        self__len: c_int,
+    ) -> *mut *mut C_tensor;
+    pub fn atg__foreach_sin_(self__data: *const *mut C_tensor, self__len: c_int);
+    pub fn atg__foreach_sin_out(
+        out_data: *const *mut C_tensor,
+        out_len: c_int,
+        self__data: *const *mut C_tensor,
+        self__len: c_int,
+    );
+    pub fn atg__foreach_sinh(
+        self__data: *const *mut C_tensor,
+        self__len: c_int,
+    ) -> *mut *mut C_tensor;
+    pub fn atg__foreach_sinh_(self__data: *const *mut C_tensor, self__len: c_int);
+    pub fn atg__foreach_sinh_out(
+        out_data: *const *mut C_tensor,
+        out_len: c_int,
+        self__data: *const *mut C_tensor,
+        self__len: c_int,
+    );
+    pub fn atg__foreach_sqrt(
+        self__data: *const *mut C_tensor,
+        self__len: c_int,
+    ) -> *mut *mut C_tensor;
+    pub fn atg__foreach_sqrt_(self__data: *const *mut C_tensor, self__len: c_int);
+    pub fn atg__foreach_sqrt_out(
+        out_data: *const *mut C_tensor,
+        out_len: c_int,
+        self__data: *const *mut C_tensor,
+        self__len: c_int,
+    );
+    pub fn atg__foreach_sub(
+        self__data: *const *mut C_tensor,
+        self__len: c_int,
+        scalar_: *mut C_scalar,
+    ) -> *mut *mut C_tensor;
+    pub fn atg__foreach_sub_(
+        self__data: *const *mut C_tensor,
+        self__len: c_int,
+        scalar_: *mut C_scalar,
+    );
+    pub fn atg__foreach_sub_list(
+        self__data: *const *mut C_tensor,
+        self__len: c_int,
+        other_data: *const *mut C_tensor,
+        other_len: c_int,
+        alpha_: *mut C_scalar,
+    ) -> *mut *mut C_tensor;
+    pub fn atg__foreach_sub_list_(
+        self__data: *const *mut C_tensor,
+        self__len: c_int,
+        other_data: *const *mut C_tensor,
+        other_len: c_int,
+        alpha_: *mut C_scalar,
+    );
+    pub fn atg__foreach_sub_list_out(
+        out_data: *const *mut C_tensor,
+        out_len: c_int,
+        self__data: *const *mut C_tensor,
+        self__len: c_int,
+        other_data: *const *mut C_tensor,
+        other_len: c_int,
+        alpha_: *mut C_scalar,
+    );
+    pub fn atg__foreach_sub_scalar_out(
+        out_data: *const *mut C_tensor,
+        out_len: c_int,
+        self__data: *const *mut C_tensor,
+        self__len: c_int,
+        scalar_: *mut C_scalar,
+    );
+    pub fn atg__foreach_tan(
+        self__data: *const *mut C_tensor,
+        self__len: c_int,
+    ) -> *mut *mut C_tensor;
+    pub fn atg__foreach_tan_(self__data: *const *mut C_tensor, self__len: c_int);
+    pub fn atg__foreach_tan_out(
+        out_data: *const *mut C_tensor,
+        out_len: c_int,
+        self__data: *const *mut C_tensor,
+        self__len: c_int,
+    );
+    pub fn atg__foreach_tanh(
+        self__data: *const *mut C_tensor,
+        self__len: c_int,
+    ) -> *mut *mut C_tensor;
+    pub fn atg__foreach_tanh_(self__data: *const *mut C_tensor, self__len: c_int);
+    pub fn atg__foreach_tanh_out(
+        out_data: *const *mut C_tensor,
+        out_len: c_int,
+        self__data: *const *mut C_tensor,
+        self__len: c_int,
+    );
+    pub fn atg__foreach_trunc(
+        self__data: *const *mut C_tensor,
+        self__len: c_int,
+    ) -> *mut *mut C_tensor;
+    pub fn atg__foreach_trunc_(self__data: *const *mut C_tensor, self__len: c_int);
+    pub fn atg__foreach_trunc_out(
+        out_data: *const *mut C_tensor,
+        out_len: c_int,
+        self__data: *const *mut C_tensor,
+        self__len: c_int,
+    );
+    pub fn atg__foreach_zero(
+        self__data: *const *mut C_tensor,
+        self__len: c_int,
+    ) -> *mut *mut C_tensor;
+    pub fn atg__foreach_zero_(self__data: *const *mut C_tensor, self__len: c_int);
+    pub fn atg__foreach_zero_out(
+        out_data: *const *mut C_tensor,
+        out_len: c_int,
+        self__data: *const *mut C_tensor,
+        self__len: c_int,
+    );
     pub fn atg__functional_assert_async(
         out__: *mut *mut C_tensor,
         self_: *mut C_tensor,
@@ -1330,15 +2261,6 @@ extern "C" {
         per_row_fake_quant_: c_int,
         symmetric_quant_: c_int,
     );
-    pub fn atg__fused_rms_norm(
-        out__: *mut *mut C_tensor,
-        input_: *mut C_tensor,
-        normalized_shape_data: *const i64,
-        normalized_shape_len: c_int,
-        weight_: *mut C_tensor,
-        eps_v: f64,
-        eps_null: i8,
-    );
     pub fn atg__fused_sdp_choice(
         query_: *mut C_tensor,
         key_: *mut C_tensor,
@@ -1390,14 +2312,6 @@ extern "C" {
         interpolation_mode_: i64,
         padding_mode_: i64,
         align_corners_: c_int,
-    );
-    pub fn atg__grouped_mm(
-        out__: *mut *mut C_tensor,
-        self_: *mut C_tensor,
-        mat2_: *mut C_tensor,
-        offs_: *mut C_tensor,
-        bias_: *mut C_tensor,
-        out_dtype_: c_int,
     );
     pub fn atg__has_compatible_shallow_copy_type(
         self_: *mut C_tensor,
@@ -3725,47 +4639,6 @@ extern "C" {
         dim_: i64,
         nnz_: i64,
     );
-    pub fn atg__validate_sparse_bsc_tensor_args(
-        ccol_indices_: *mut C_tensor,
-        row_indices_: *mut C_tensor,
-        values_: *mut C_tensor,
-        size_data: *const i64,
-        size_len: c_int,
-        check_pinning_: c_int,
-    );
-    pub fn atg__validate_sparse_bsr_tensor_args(
-        crow_indices_: *mut C_tensor,
-        col_indices_: *mut C_tensor,
-        values_: *mut C_tensor,
-        size_data: *const i64,
-        size_len: c_int,
-        check_pinning_: c_int,
-    );
-    pub fn atg__validate_sparse_compressed_tensor_args(
-        compressed_indices_: *mut C_tensor,
-        plain_indices_: *mut C_tensor,
-        values_: *mut C_tensor,
-        size_data: *const i64,
-        size_len: c_int,
-        layout_: i8,
-        check_pinning_: c_int,
-    );
-    pub fn atg__validate_sparse_csc_tensor_args(
-        ccol_indices_: *mut C_tensor,
-        row_indices_: *mut C_tensor,
-        values_: *mut C_tensor,
-        size_data: *const i64,
-        size_len: c_int,
-        check_pinning_: c_int,
-    );
-    pub fn atg__validate_sparse_csr_tensor_args(
-        crow_indices_: *mut C_tensor,
-        col_indices_: *mut C_tensor,
-        values_: *mut C_tensor,
-        size_data: *const i64,
-        size_len: c_int,
-        check_pinning_: c_int,
-    );
     pub fn atg__values(out__: *mut *mut C_tensor, self_: *mut C_tensor);
     pub fn atg__values_copy(out__: *mut *mut C_tensor, self_: *mut C_tensor);
     pub fn atg__values_copy_out(
@@ -3787,14 +4660,6 @@ extern "C" {
         mat2_: *mut C_tensor,
         qGroupSize_: i64,
         qScaleAndZeros_: *mut C_tensor,
-    );
-    pub fn atg__weight_int4pack_mm_with_scales_and_zeros(
-        out__: *mut *mut C_tensor,
-        self_: *mut C_tensor,
-        mat2_: *mut C_tensor,
-        qGroupSize_: i64,
-        qScale_: *mut C_tensor,
-        qZeros_: *mut C_tensor,
     );
     pub fn atg__weight_int8pack_mm(
         out__: *mut *mut C_tensor,
@@ -4066,21 +4931,6 @@ extern "C" {
         self_: *mut C_tensor,
         mat1_: *mut C_tensor,
         mat2_: *mut C_tensor,
-    );
-    pub fn atg_addmm_dtype(
-        out__: *mut *mut C_tensor,
-        self_: *mut C_tensor,
-        mat1_: *mut C_tensor,
-        mat2_: *mut C_tensor,
-        out_dtype_: c_int,
-    );
-    pub fn atg_addmm_dtype_out(
-        out__: *mut *mut C_tensor,
-        out_: *mut C_tensor,
-        self_: *mut C_tensor,
-        mat1_: *mut C_tensor,
-        mat2_: *mut C_tensor,
-        out_dtype_: c_int,
     );
     pub fn atg_addmm_out(
         out__: *mut *mut C_tensor,
@@ -4632,23 +5482,6 @@ extern "C" {
         batch1_: *mut C_tensor,
         batch2_: *mut C_tensor,
     );
-    pub fn atg_baddbmm_dtype(
-        out__: *mut *mut C_tensor,
-        self_: *mut C_tensor,
-        batch1_: *mut C_tensor,
-        batch2_: *mut C_tensor,
-        out_dtype_: c_int,
-        beta_: *mut C_scalar,
-        alpha_: *mut C_scalar,
-    );
-    pub fn atg_baddbmm_dtype_out(
-        out__: *mut *mut C_tensor,
-        out_: *mut C_tensor,
-        self_: *mut C_tensor,
-        batch1_: *mut C_tensor,
-        batch2_: *mut C_tensor,
-        out_dtype_: c_int,
-    );
     pub fn atg_baddbmm_out(
         out__: *mut *mut C_tensor,
         out_: *mut C_tensor,
@@ -5147,19 +5980,6 @@ extern "C" {
         tensors_len: c_int,
     );
     pub fn atg_bmm(out__: *mut *mut C_tensor, self_: *mut C_tensor, mat2_: *mut C_tensor);
-    pub fn atg_bmm_dtype(
-        out__: *mut *mut C_tensor,
-        self_: *mut C_tensor,
-        mat2_: *mut C_tensor,
-        out_dtype_: c_int,
-    );
-    pub fn atg_bmm_dtype_out(
-        out__: *mut *mut C_tensor,
-        out_: *mut C_tensor,
-        self_: *mut C_tensor,
-        mat2_: *mut C_tensor,
-        out_dtype_: c_int,
-    );
     pub fn atg_bmm_out(
         out__: *mut *mut C_tensor,
         out_: *mut C_tensor,
@@ -8045,23 +8865,6 @@ extern "C" {
         max_val_: *mut C_scalar,
     );
     pub fn atg_hardtanh_out(out__: *mut *mut C_tensor, out_: *mut C_tensor, self_: *mut C_tensor);
-    pub fn atg_hash_tensor(
-        out__: *mut *mut C_tensor,
-        self_: *mut C_tensor,
-        dim_data: *const i64,
-        dim_len: c_int,
-        keepdim_: c_int,
-        mode_: i64,
-    );
-    pub fn atg_hash_tensor_out(
-        out__: *mut *mut C_tensor,
-        out_: *mut C_tensor,
-        self_: *mut C_tensor,
-        dim_data: *const i64,
-        dim_len: c_int,
-        keepdim_: c_int,
-        mode_: i64,
-    );
     pub fn atg_heaviside(out__: *mut *mut C_tensor, self_: *mut C_tensor, values_: *mut C_tensor);
     pub fn atg_heaviside_(out__: *mut *mut C_tensor, self_: *mut C_tensor, values_: *mut C_tensor);
     pub fn atg_heaviside_out(
@@ -10760,19 +11563,6 @@ extern "C" {
         train_: c_int,
     );
     pub fn atg_mm(out__: *mut *mut C_tensor, self_: *mut C_tensor, mat2_: *mut C_tensor);
-    pub fn atg_mm_dtype(
-        out__: *mut *mut C_tensor,
-        self_: *mut C_tensor,
-        mat2_: *mut C_tensor,
-        out_dtype_: c_int,
-    );
-    pub fn atg_mm_dtype_out(
-        out__: *mut *mut C_tensor,
-        out_: *mut C_tensor,
-        self_: *mut C_tensor,
-        mat2_: *mut C_tensor,
-        out_dtype_: c_int,
-    );
     pub fn atg_mm_out(
         out__: *mut *mut C_tensor,
         out_: *mut C_tensor,
@@ -12149,17 +12939,6 @@ extern "C" {
         out_: *mut C_tensor,
         self_: *mut C_tensor,
         high_: i64,
-    );
-    pub fn atg_randint_like_tensor(
-        out__: *mut *mut C_tensor,
-        self_: *mut C_tensor,
-        high_: *mut C_tensor,
-    );
-    pub fn atg_randint_like_tensor_out(
-        out__: *mut *mut C_tensor,
-        out_: *mut C_tensor,
-        self_: *mut C_tensor,
-        high_: *mut C_tensor,
     );
     pub fn atg_randint_low(
         out__: *mut *mut C_tensor,
